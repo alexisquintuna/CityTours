@@ -31,6 +31,7 @@ const router = new Router({
                 requiresAuth: false
             }
         },
+        {},
         {
             path: "/loggedIn",
             name: "loggedIn",
