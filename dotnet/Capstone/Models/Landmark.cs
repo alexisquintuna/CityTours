@@ -8,6 +8,7 @@ namespace Capstone.Models
     public class Landmark
     {
         //create a model using the sql data columns as properties
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public string Category { get; set; }

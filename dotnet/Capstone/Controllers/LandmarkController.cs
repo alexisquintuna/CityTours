@@ -26,7 +26,7 @@ namespace Capstone.Controllers
         [HttpGet]
         public ActionResult<List<Landmark>> GetListOfLandmarks()
         {
-
+            return Ok(landmarkDao.ListAllLandmarks());
         }
     }
 }
