@@ -29,7 +29,7 @@ CREATE TABLE landmarks (
 	landmark_id int IDENTITY(1000,1) NOT NULL,
 	name varchar(200) NOT NULL,
 	description varchar(240) NOT NULL,
-	catagory varchar(50) NOT NULL,
+	category varchar(50) NOT NULL,
 	latitude varchar(50) NOT NULL,
 	longitude varchar(50) NOT NULL,
 	address varchar(200) NOT NULL,
@@ -45,7 +45,7 @@ INSERT INTO users (username, password_hash, salt, user_role) VALUES ('Robert','J
 INSERT INTO users (username, password_hash, salt, user_role) VALUES ('Nancy','YhyGVQ+Ch69n4JMBncM4lNF/i9s=', 'Ar/aB2thQTI=','admin');
 
 --test landmark data 
-INSERT INTO landmarks (name, description, catagory, latitude, longitude, address, link)
+INSERT INTO landmarks (name, description, category, latitude, longitude, address, link)
 VALUES
 ('Ohio Stadium', 'American football stadium in Columbus, Ohio, on the campus of The Ohio State University. Common nicknames include "the Horseshoe", "the Shoe", and "the House That Harley Built".', 'Sports', '40.000999996', '-83.018499926', '411 Woody Hayes Dr., Columbus, OH 43210', 'https://ohiostatebuckeyes.com/sports/m-footbl/facilities/ohio-stadium/'),
 ('Columbus Museum of Art', 'An art museum in downtown Columbus, Ohio. The museum collects and exhibits American and European modern and contemporary art, folk art, glass art, and photography.', 'Culture', '39.964384', '-82.987770', '480 E Broad St., Columbus, OH 43215', 'https://www.columbusmuseum.org/'),
