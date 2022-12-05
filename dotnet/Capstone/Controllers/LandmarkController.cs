@@ -26,7 +26,25 @@ namespace Capstone.Controllers
         [HttpGet]
         public ActionResult<List<Landmark>> GetListOfLandmarks()
         {
-            return Ok(landmarkDao.ListAllLandmarks());
+            List<Landmark> landmarks = landmarkDao.ListAllLandmarks();
+
+            if(landmarks != null)
+            {
+                return Ok(landmarks);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("{id}")]
+        public ActionResult<Landmark> GetLandmarkById(int id)
+        {
+            Landmark landmark = landmarkDao.LandmarkById(id);
+
+            if(landmark != null)
+            {
+                return Ok(landmark);
+            }
+            return NotFound();
         }
     }
 }
