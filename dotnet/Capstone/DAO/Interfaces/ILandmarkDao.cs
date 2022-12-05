@@ -7,5 +7,6 @@ namespace Capstone.DAO
     {
         //get all landmarks method
         public List<Landmark> ListAllLandmarks();
+        public Landmark LandmarkById(int landmarkId);
     }
 }

@@ -46,6 +46,34 @@ namespace Capstone.DAO
             return landmarks;
         }
 
+        public Landmark LandmarkById(int landmarkId)
+        {
+            Landmark landmark = null;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT landmark_id, name, description, category, latitude, longitude, address, link FROM landmarks WHERE landmark_id = @landmark_id;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@landmark_id", landmarkId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        landmark = GetLandmarkFromReader(reader);
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return landmark;
+        }
+
         private Landmark GetLandmarkFromReader(SqlDataReader reader)
         {
             Landmark l = new Landmark()
