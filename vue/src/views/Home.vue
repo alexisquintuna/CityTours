@@ -1,7 +1,8 @@
 <template>
   <div class="home">
     <h1>Home</h1>
-    <p>If you are seeing this, you are authenticated.</p>
+    <p>This will be the main page of city tours
+    </p>
   </div>
 </template>
 
