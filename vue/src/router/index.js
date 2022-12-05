@@ -8,6 +8,7 @@ import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import NotFound from '@/views/NotFound.vue'
+import Landmarks from '@/views/Landmarks.vue'
 
 Vue.use(Router)
 
@@ -31,7 +32,14 @@ const router = new Router({
                 requiresAuth: false
             }
         },
-        {},
+        {
+            path: '/landmark',
+            name: 'landmarks',
+            component: Landmarks,
+            meta: {
+                requiresAuth: true
+            }
+        },
         {
             path: "/loggedIn",
             name: "loggedIn",

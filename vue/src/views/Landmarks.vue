@@ -12,7 +12,7 @@ import LandmarkMap from '@/components/LandmarkMap.vue';
 
 export default {
     name: "landmarks",
-    components: [LandmarkList, LandmarkMap],
+    components: {LandmarkList, LandmarkMap},
 }
 </script>
 
