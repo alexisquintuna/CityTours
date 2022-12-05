@@ -28,7 +28,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT id, name, description, category, latitude, longitude, address, link FROM landmarks;";
+                    string sql = "SELECT landmark_id, name, description, category, latitude, longitude, address, link FROM landmarks;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -50,7 +50,7 @@ namespace Capstone.DAO
         {
             Landmark l = new Landmark()
             {
-                Id = Convert.ToInt32(reader["id"]),
+                Id = Convert.ToInt32(reader["landmark_id"]),
                 Name = Convert.ToString(reader["name"]),
                 Description = Convert.ToString(reader["description"]),
                 Category = Convert.ToString(reader["category"]),
