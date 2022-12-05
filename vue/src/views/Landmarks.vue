@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="landmark-page">
         <landmark-list></landmark-list>
         <landmark-map></landmark-map>
     </div>
@@ -17,5 +17,14 @@ export default {
 </script>
 
 <style>
+.landmark-page{
+    display: flex;
+    justify-content: space-around;
+    background-color: rgb(176, 176, 206);
+    height: 85%;
+    width: 75%;
+    margin: auto;
+    border-radius: 20px;
+}
 
 </style>
