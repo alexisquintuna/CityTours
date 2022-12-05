@@ -31,7 +31,14 @@ const router = new Router({
                 requiresAuth: false
             }
         },
-        {},
+        {
+            path: '/landmark',
+            name: 'landmarks',
+            component: Landmarks,
+            meta: {
+                requiresAuth: true
+            }
+        },
         {
             path: "/loggedIn",
             name: "loggedIn",
