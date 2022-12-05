@@ -4,7 +4,7 @@
       <div>
         <router-link id="logo-text" class="nav-text" v-bind:to="{ name: 'home' }">City Tours</router-link>
       </div>
-      <div id="nav0left">
+      <div id="nav-left">
         <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.token != ''"> My Adventures</router-link>
         <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.token != ''">My Profile</router-link>
         <router-link class="nav-subtext nav-text login-btn" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
@@ -22,7 +22,6 @@
   height: 100%;
 }
 #nav{
-  background-color: seagreen;
   display: flex;
   justify-content: space-between;
   height: 70px;
@@ -42,18 +41,31 @@
   font-size: 36px;
 }
 
+#nav-left{
+  display: flex;
+  align-items: center;
+}
+
 .nav-subtext{
   font-size: 24px;
   margin: 0 15px;
 }
 
 .login-btn{
-  background-color: rgb(117, 81, 55);
+  background-color: rgba(255, 255, 255, 0.288);
   border-radius: 100px;
   display: block;
   height: 40px;
-  width: 100px;
+  width: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.login-btn:hover{
+  transition: 700ms;
+  color: white;
+  background-color: black;
 }
 
 </style>
