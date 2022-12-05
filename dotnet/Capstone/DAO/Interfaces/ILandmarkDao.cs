@@ -1,11 +1,9 @@
-﻿using System;
+﻿using Capstone.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
-namespace Capstone.DAO.Interfaces
+namespace Capstone.DAO
 {
-    public class ILandmarkDao
+    public interface ILandmarkDao
     {
         //get all landmarks method
     }
