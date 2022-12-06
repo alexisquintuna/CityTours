@@ -13,7 +13,7 @@ export default {
 
 <style>
 .map{
-  background-color:antiquewhite;
+  background-color:rgb(37, 37, 37);
   width: 50%;
   margin: 30px;
   border-radius: 20px;

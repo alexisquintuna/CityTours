@@ -91,7 +91,6 @@ export default {
 
 <style >
 #register {
-  width: 100%;
   position: relative;
   display: flex;
   justify-content: center;
@@ -102,8 +101,7 @@ export default {
   width: 450px;
   height: 525px;
   position: absolute;
-  top: 50%;
-  transform: translate(0, 50%);
+  transform: translate(0, 45%);
   display: flex;
   flex-direction: column;
   text-align: center;

@@ -20,7 +20,7 @@ export default {
 .landmark-page{
     display: flex;
     justify-content: space-around;
-    background-color: rgb(176, 176, 206);
+    background-color: #164747;
     height: 85%;
     width: 75%;
     margin: auto;
