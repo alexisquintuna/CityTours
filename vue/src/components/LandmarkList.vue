@@ -45,6 +45,9 @@ export default {
   margin: 30px;
   border-radius: 20px;
   overflow: auto;
+  border-top: 15px solid brown;
+  border-bottom: 15px solid brown;
+
 }
 
 /* width */
