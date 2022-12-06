@@ -9,6 +9,7 @@ namespace Capstone.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    //[Authorize]
     public class LandmarkController : ControllerBase
     {
         //constructor with dependency injection
