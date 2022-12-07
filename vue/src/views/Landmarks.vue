@@ -1,7 +1,9 @@
 <template>
-    <div class="landmark-page">
+    <div class='landmark-page' >
+        <div class="landmark-container">
         <landmark-list></landmark-list>
         <landmark-map></landmark-map>
+        </div>
     </div>
   
 </template>
@@ -17,13 +19,20 @@ export default {
 </script>
 
 <style>
+
 .landmark-page{
+    display:flex;
+    justify-content: center;
+    align-self: center;
+}
+
+.landmark-container{
     display: flex;
     justify-content: space-around;
     background-color: #f5f5f5;
     height: 85%;
     width: 75%;
-    margin: auto;
+    margin: 7rem auto;
     border-radius: 20px;
 }
 

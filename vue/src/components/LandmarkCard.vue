@@ -42,6 +42,7 @@ export default {
 }
 
 .card {
+  overflow: hidden;
   padding: 5px 10px;
   display: flex;
   align-items: center;
@@ -69,6 +70,7 @@ export default {
 
 .details h1{
     color: #022596;
+    font-size: 1.8rem;
 }
 
 .details h1,
@@ -80,8 +82,7 @@ export default {
 }
 
 .details p {
-  /* background-color: blue; */
-  width: 24rem;
+  width: 100%;
   height: 4.5ch;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -91,16 +92,14 @@ export default {
 
 .icon {
   position: relative;
-  bottom: 45px;
-  right: 15px;
-  width: 20px;
-  height: 20px;
-  background-color: rgb(185, 4, 40);
+  bottom: 2.8rem;
+  width: 1.3rem;
+  height: 1.3rem;
   border-radius: 100px;
 }
 .img-icon {
-  width: 20px;
-  height: 20px;
+  width: 1.3rem;
+  height: 1rem;
   border-radius: 100px;
 }
 </style>

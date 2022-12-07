@@ -2,12 +2,14 @@
   <div id="app">
     <div id="nav">
       <div>
-        <router-link id="logo-text" class="nav-text" v-bind:to="{ name: 'home' }">City Tours</router-link>
+        <router-link id="logo-text" class="nav-text" v-bind:to="{ name: 'home' }">Open <br>City</router-link>
       </div>
       <div id="nav-left">
         <router-link class="nav-subtext nav-text" v-bind:to="{ name: 'landmarks' }" v-if="$store.state.token != ''">Landmark List</router-link>
-        <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.token != ''">My Adventures</router-link>
-        <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.token != ''">My Profile</router-link>
+        <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'user'">My Adventures</router-link>
+        <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'user'">My Profile</router-link>
+        <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'admin'">Add Landmarks</router-link>
+        <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'admin'">Admin Profile</router-link>
         <router-link class="nav-subtext nav-text login-btn" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
         <router-link class="nav-subtext nav-text login-btn" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''" >Log In</router-link>
       </div>
@@ -16,30 +18,44 @@
       <!-- <p v-if="$store.state.user.username"> User is {{$store.state.user.username}}</p> -->
   </div>
 </template>
+<script>
+export default{
+  data(){
+    return{
+      user:{
+        role: this.$store.state.user
+      }
+    }
+  }
+}
+</script>
 
 <style>
 .router-view{
+  bottom: 0;
   height: 100%;
+  width: 100%;
 }
 #app{
-  position: relative;
-  width: 100%;
-  height: 100%;
+  height: 100vh;
 }
 #nav{
+  position: absolute;
+  top: 0;
   display: flex;
   justify-content: space-between;
-  height: 70px;
+  height: 120px;
+  width: 100%;
   align-items: center;
 }
 
 #nav > div{
-  margin: 0 10px;
+  margin: 0 70px;
 }
 
 .nav-text {
   text-decoration: none;
-  color: white;;
+  color: rgb(255, 255, 255);;
 }
  
 #logo-text{

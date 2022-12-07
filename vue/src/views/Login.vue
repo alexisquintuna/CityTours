@@ -84,27 +84,42 @@ export default {
   align-content: center;
 }
 .form-signin{
-  width: 450px;
-  height: 450px;
-  position: absolute;
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 30rem;
+  height: 32rem;
   transform: translate(0, 50%);
   display: flex;
   flex-direction: column;
+  gap: 3%;
   text-align: center;
   background-color:rgb(255, 255, 255);
   border-radius: 50px;
 }
 #title{
   position: relative;
-  top: 10px;
+  bottom: 10px;
   font-size: 40px;
 }
 #sub-title{
   position: relative;
-  bottom: 24px;
+  bottom: 18px;
   font-size: 20px;
 }
-input{
+.alert-danger{
+  color: red;
+  position: relative;
+  bottom: 10px;
+}
+
+.alert-danger{
+  color: rgb(0, 129, 0);
+  position: relative;
+  bottom: 10px;
+}
+
+.form-control{
   height: 47px;
   width: 300px;
   border-radius: 10px;
@@ -114,14 +129,17 @@ input{
   padding-left: 10px;
   font-size: 18px;
 }
-input::placeholder{
+.form-control::placeholder{
   color: black;
+}
+input{
+  border:none;
 }
 input:focus{
   outline: none;
 }
 
-input:focus::placeholder{
+.form-control:focus::placeholder{
   color:transparent;
 }
 button:hover{
@@ -133,17 +151,13 @@ button:hover{
 }
 button{
   width: 65%;
-  margin: auto;
+  margin: 0 auto;
   height: 60px;
   border:none;
   border-radius: 50px;
   background-color: black;
   color: white;
   font-size: 28px;
-}
-.register-p{
-  position: relative;
-  bottom: 20px;
 }
 
 .register{

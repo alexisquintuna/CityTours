@@ -95,6 +95,7 @@ ul {
 
 /* width */
 ::-webkit-scrollbar {
+  background: rgba(252, 252, 252, 0.411);
   width: 20px;
 }
 ::-webkit-scrollbar-button {
@@ -103,12 +104,12 @@ ul {
 }
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  background: rgba(252, 252, 252, 0.411);
+  background: #7c7c7cb7;
   border-radius: 10px;
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #164747;
+  background: #0717aa;
   transition: 400ms;
 }
 </style>

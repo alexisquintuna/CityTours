@@ -91,27 +91,24 @@ export default {
 
 <style >
 #register {
-  position: relative;
   display: flex;
   justify-content: center;
   align-content: center;
 }
 
-.form-register {
-  width: 450px;
-  height: 525px;
-  position: absolute;
-  transform: translate(0, 45%);
+.form-register{
+  padding: 10px;
+  align-items: center;
+  justify-content: center;
+  width: 30rem;
+  height: 32rem;
+  transform: translate(0, 50%);
   display: flex;
   flex-direction: column;
+  gap: 3%;
   text-align: center;
-  background-color: rgb(255, 255, 255);
+  background-color:rgb(255, 255, 255);
   border-radius: 50px;
-}
-
-.login-p {
-  position: relative;
-  bottom: 20px;
 }
 
 .login {
