@@ -2,7 +2,7 @@
   <div class="home">
     <form class="home-form" action="">
       <input class="home-input" type="text" placeholder="CITY">
-      <router-link>SEND</router-link>
+      <!-- <router-link>SEND</router-link> -->
     </form>
   </div>
 </template>
@@ -18,7 +18,6 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 92%;
 }
 .home-form{
   height: 13%;
@@ -33,12 +32,10 @@ export default {
   font-size: 65px;
   height: 7rem;
   width: 25rem;
+  color: white;
 }
 
 .home-input::placeholder{
-  color: white;
-}
-.home-input:focus{
   color: white;
 }
 .home-input:focus::placeholder{
