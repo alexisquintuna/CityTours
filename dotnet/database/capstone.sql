@@ -23,6 +23,16 @@ CREATE TABLE users (
 	user_role varchar(50) NOT NULL
 	CONSTRAINT PK_user PRIMARY KEY (user_id)
 )
+CREATE TABLE trips (
+	trip_id int IDENTITY(1,1) NOT NULL,
+	trip_name varchar(50) NOT NULL,
+	user_id int FOREIGN KEY REFERENCES users(user_id) NOT NULL,
+	CONSTRAINT PK_trip PRIMARY KEY (trip_id)
+)
+CREATE TABLE trip_landmark (
+	trip_id int FOREIGN KEY REFERENCES trips(trip_id) NOT NULL,
+	landmark_id int FOREIGN KEY REFERENCES landmarks(landmark_id) NOT NULL
+)
 
 --populate default data
 CREATE TABLE landmarks (
