@@ -79,8 +79,6 @@ export default {
 <style >
 
 #login{
-  width: 100%;
-  position: relative;
   display: flex;
   justify-content: center;
   align-content: center;
@@ -89,7 +87,6 @@ export default {
   width: 450px;
   height: 450px;
   position: absolute;
-  top: 50%;
   transform: translate(0, 50%);
   display: flex;
   flex-direction: column;
