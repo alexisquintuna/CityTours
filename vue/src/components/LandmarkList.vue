@@ -3,7 +3,7 @@
     <ul>
       <li
         v-for="landmark in this.$store.state.landmarks"
-        v-bind:key="landmark.id"
+        v-bind:key="landmark.xid"
       >
         <landmark-card
           class="landmark-card"
@@ -17,33 +17,77 @@
 
 <script>
 import LandmarkCard from "@/components/LandmarkCard.vue";
-import landmarkService from "../services/LandmarkService.js";
+//import landmarkService from "../services/LandmarkService.js";
+import zipCodeService from "../services/ZipCodeService.js";
+import openMapTripService from "../services/OpenMapTripService.js"
 
 export default {
   name: "landmark-list",
   components: { LandmarkCard },
+  data() {
+      return {
+          location: {
+              lat: "",
+              lng: ""
+          }
+      }
+  },
+  //props: ['zipCode'],
   methods: {
-    getAllLandmarks() {
-      landmarkService
-        .getLandmarks()
-        .then((response) => {
-          console.log("reaching");
-          if (response.status === 200) {
-            this.$store.commit("SET_LANDMARKS", response.data);
-            console.log("reaching");
-            console.log(response.data);
-          }
-        })
-        .catch((error) => {
-          if (error.response.status == 404) {
-            this.$router.push({ name: "NotFound" });
-          }
-        });
-    },
+      getLandmarksByZip() {
+          const zipCode = this.$route.params.zip;
+          zipCodeService.getZipCodeInfo(zipCode)
+          .then((response) => {
+              //response.header("Access-Control-Allow-Origin", "*");
+              console.log("Getting Zip Codes");
+              if (response.status === 200) {
+                  this.location = response.data;
+                  
+              }
+          })
+          .catch((error) => {
+              console.log("reached catch in landmarklist.vue");
+              console.log(error);
+              if (error.response.status == 404) {
+                  this.$router.push({ name: "NotFound"});
+              }
+          })
+          openMapTripService.getNearbyPlaces(this.location.lat, this.location.lng)
+                  .then((response) => {
+                      if (response.status === 200) {
+                          this.$store.commit("SET_LANDMARKS", response.data);
+                          console.log(response.data);
+                      }
+                  })
+                  .catch((error) => {
+                      if (error.response.status == 404) {
+                          this.$router.push({ name: "NotFound"});
+                      }
+                  });
+
+      }
+    // getAllLandmarks() {
+    //   landmarkService
+    //     .getLandmarks()
+    //     .then((response) => {
+    //       console.log("reaching");
+    //       if (response.status === 200) {
+    //         this.$store.commit("SET_LANDMARKS", response.data);
+    //         console.log("reaching");
+    //         console.log(response.data);
+    //       }
+    //     })
+    //     .catch((error) => {
+    //       if (error.response.status == 404) {
+    //         this.$router.push({ name: "NotFound" });
+    //       }
+    //     });
+    //}
   },
   created() {
     console.log("reaching created");
-    this.getAllLandmarks();
+    //this.getAllLandmarks();
+    this.getLandmarksByZip();
   },
 };
 </script>

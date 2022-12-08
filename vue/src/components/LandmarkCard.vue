@@ -1,7 +1,7 @@
 <template>
   <router-link
     class="big-card"
-    v-bind:to="{ name: 'landmark-details', params: { id: landmark.id } }"
+    v-bind:to="{ name: 'landmark-details', params: { id: landmark.xid } }"
   >
     <div class="card">
       <div>
@@ -13,7 +13,7 @@
       </div>
       <div class="details">
         <h1>{{ landmark.name }}</h1>
-        <p>{{ landmark.description }}</p>
+        <!-- <p>{{ landmark.text }}</p> -->
       </div>
       <div class="icon">
         <img
