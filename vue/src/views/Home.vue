@@ -1,15 +1,27 @@
 <template>
   <div class="home">
-    <form class="home-form" action="">
-      <input class="home-input" type="text" placeholder="ZIPCODE">
-      <!-- <router-link>SEND</router-link> -->
+    <form class="home-form" action="" v-on:submit="saveZip">
+      <input class="home-input" type="text" placeholder="Please enter a zip code" v-model="zipCode">
+      <router-link v-bind:to="{name: 'landmarks', params: {zip: zipCode}}">
+        <input class="enter-zip" type="submit">
+      </router-link>
     </form>
   </div>
 </template>
 
 <script>
 export default {
-  name: "home"
+  name: "home",
+  data() {
+    return {
+      zipCode: "",
+    }
+  },
+  methods: {
+    saveZip() {
+      this.$store.commit("SET_ZIPCODE", this.zipCode);
+    }
+  }
 };
 </script>
 

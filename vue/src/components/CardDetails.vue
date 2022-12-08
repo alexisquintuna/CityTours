@@ -1,11 +1,11 @@
 <template>
   <div class="details-page">
-    <router-link id="back" v-bind:to="{ name: 'landmarks' }">BACK</router-link>
+    <router-link id="back" v-bind:to="{ name: 'landmarks', params: {zip: this.$store.state.zipCode} }">BACK</router-link>
     <div class="details-container">
       <div class="details-main">
         <div class="header-section">
           <h1 class="landmark-header">{{ landmark.name }}</h1>
-          <p>In {{ landmark.address }}</p>
+          <p>In {{ landmark.address.city }}, {{landmark.address.state}} </p>
         </div>
         <section class="info-section">
           <div class="right-side">
@@ -14,7 +14,7 @@
               src="https://www.ncaa.com/_flysystem/public-s3/styles/large_16x9/public-s3/images/2022-10/ohiostadium.jpg?h=06ac0d8c&itok=WYyRIchp"
               alt=""
             />
-            <p class="details-description">{{ landmark.description }}</p>
+            <p class="details-description">{{ landmark.wikipedia_extracts.text }}</p>
           </div>
           <aside>
             <h3>Details</h3>
@@ -37,7 +37,8 @@
 </template>
 
 <script>
-import landmarkService from "@/services/LandmarkService.js";
+//import landmarkService from "@/services/LandmarkService.js";
+import openMapTripService from "../services/OpenMapTripService.js";
 
 export default {
   name: "card-details",
@@ -48,28 +49,42 @@ export default {
   },
   props: ["id"],
   created() {
-    landmarkService
-      .getLandmarkById(this.id)
-      .then((response) => {
-        if (response.status === 200) {
-          console.log(response.data);
-          this.landmark = response.data;
-        }
-      })
-      .catch((error) => {
-        if (error.response.status == 404) {
-          this.$router.push({ name: "NotFound" });
-        }
-      });
+    openMapTripService.getPlaceDetails(this.id)
+    .then((response) => {
+      if (response.status === 200) {
+        console.log(response.data);
+        this.landmark = response.data;
+      }
+    })
+    .catch((error) => {
+      if (error.response.status == 404) {
+        this.$router.push({name: "NotFound"});
+      }
+    })
+
+    // landmarkService
+    //   .getLandmarkById(this.id)
+    //   .then((response) => {
+    //     if (response.status === 200) {
+    //       console.log(response.data);
+    //       this.landmark = response.data;
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     if (error.response.status == 404) {
+    //       this.$router.push({ name: "NotFound" });
+    //     }
+    //   });
   },
 };
 </script>
 
 <style>
 #back {
+  color: black;
   position: relative;
   bottom: -9.2rem;
-  left: 13rem;
+  left: 10rem;
   text-decoration: none;
   font-size: 20px;
   font-weight: bold;
@@ -78,20 +93,22 @@ export default {
 
 .details-page {
   color: black;
-  background-color: rgb(0, 0, 185);
-  height: 120%;
+  height: 100vh;
 }
 .details-container {
   background-color: rgb(255, 255, 255);
   position: relative;
+  overflow: scroll;
   top: 4.5rem;
-  height: 100%;
-
+  height: 50rem;
+  width: 94%;
+  border-radius: 20px;
+  margin: 2rem auto 0;
+  padding: 0;
 }
 .details-main {
   margin: 0 auto;
   width: 78%;
-  height: auto;
 }
 .header-section {
   margin: 35px 0;

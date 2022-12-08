@@ -33,7 +33,7 @@ export default{
 <style>
 .router-view{
   bottom: 0;
-  height: 100%;
+  height: auto;
   width: 100%;
 }
 #app{
@@ -73,9 +73,14 @@ export default{
 }
 
 .nav-subtext:hover{
-  color:rgb(189, 55, 166);
+  /* background-image: linear-gradient(
+    to bottom,
+    rgba(247, 247, 247, 0),
+    rgb(255, 254, 254)
+  ); */
+  color:#6BAA75;
   text-decoration: underline;
-  transition: 200ms;
+  transition: 400ms;
 }
 
 .login-btn{
@@ -92,7 +97,7 @@ export default{
 .login-btn:hover{
   transition: 700ms;
   color: white;
-  background-color: rgb(189, 55, 166);
+  background-color: #6BAA75;
 }
 
 </style>

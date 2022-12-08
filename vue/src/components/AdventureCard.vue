@@ -17,7 +17,7 @@ export default {
     color: white;
     position: relative;
     background-color: rgb(119, 95, 63);
-    height: 35rem;
+    height: 30rem;
     width: 22%;
     border-radius: 20px;
     background-image: url("https://globalgrasshopper.com/wp-content/uploads/2020/09/The-best-places-to-vist-in-Ecuador.jpg");

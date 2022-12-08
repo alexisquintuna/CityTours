@@ -1,7 +1,11 @@
 <template>
   <div class="adventure-page">
     <div class="adventure-container">
-      <h1>Need to add list</h1>
+      <div class="newTrip-border-btn">
+        <router-link class="new-trip-btn" v-bind:to="{ name: '' }">
+          + Add New Trip</router-link
+        >
+      </div>
       <adventure-list class="adv-list"></adventure-list>
     </div>
   </div>
@@ -17,23 +21,37 @@ export default {
 
 <style>
 .adventure-page {
-  height: 220vh;
-  background-color: rgba(250, 235, 215, 0.993);
   display: flex;
   justify-content: center;
-  align-items: center;
+  height: auto;
 }
 .adv-list {
   position: relative;
+  height: 100%;
+  margin-top: 1rem;
 }
 .adventure-container {
-    background-color: forestgreen;
-    height: 100%;
-    position: relative;
-    top: 10rem;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  position: relative;
+  height: 100%;
+  margin-top: 7rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
-.adventure-container > h1 {
+.newTrip-border-btn {
+  height: 3rem;
+  width: 10rem;
+  background-color: #6baa75;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+  margin: 2rem 0;
+}
+.new-trip-btn {
   color: white;
-  font-size: 98px;
+  text-decoration: none;
 }
 </style>

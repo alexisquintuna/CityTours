@@ -20,7 +20,8 @@ export default new Vuex.Store({
     state: {
         token: currentToken || '',
         user: currentUser || {},
-        landmarks: []
+        landmarks: [],
+        zipCode: "",
     },
     mutations: {
         SET_AUTH_TOKEN(state, token) {
@@ -42,7 +43,11 @@ export default new Vuex.Store({
         },
         SET_LANDMARKS(state, payload) {
             state.landmarks = payload;
+        },
+        SET_ZIPCODE(state, payload) {
+            state.zipCode = payload;
         }
+
 
     }
 })
