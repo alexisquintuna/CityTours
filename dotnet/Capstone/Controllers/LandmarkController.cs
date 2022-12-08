@@ -47,5 +47,17 @@ namespace Capstone.Controllers
             }
             return NotFound();
         }
+        //Double check landmark doesn't exist before adding to table
+        [HttpPost]
+        public ActionResult AddLandmark(Landmark landmark)
+        {
+            int landmarkId = landmarkDao.CreateLandmark(landmark);
+
+            if(landmarkId != 0)
+            {
+                return Ok();
+            }
+            return BadRequest(new { message = "An error occurred and the landmark was not created." });
+        }
     }
 }

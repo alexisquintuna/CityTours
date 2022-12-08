@@ -1,11 +1,11 @@
 <template>
   <div class="details-page">
-    <router-link id="back" v-bind:to="{ name: 'landmarks' }">BACK</router-link>
+    <router-link id="back" v-bind:to="{ name: 'landmarks', params: {zip: this.$store.state.zipCode} }">BACK</router-link>
     <div class="details-container">
       <div class="details-main">
         <div class="header-section">
           <h1 class="landmark-header">{{ landmark.name }}</h1>
-          <p>In {{ landmark.address }}</p>
+          <p>In {{ landmark.address.city }}, {{landmark.address.state}} </p>
         </div>
         <section class="info-section">
           <div class="right-side">
@@ -14,7 +14,7 @@
               src="https://www.ncaa.com/_flysystem/public-s3/styles/large_16x9/public-s3/images/2022-10/ohiostadium.jpg?h=06ac0d8c&itok=WYyRIchp"
               alt=""
             />
-            <p class="details-description">{{ landmark.description }}</p>
+            <p class="details-description">{{ landmark.wikipedia_extracts.text }}</p>
           </div>
           <aside>
             <h3>Details</h3>
@@ -37,7 +37,8 @@
 </template>
 
 <script>
-import landmarkService from "@/services/LandmarkService.js";
+//import landmarkService from "@/services/LandmarkService.js";
+import openMapTripService from "../services/OpenMapTripService.js";
 
 export default {
   name: "card-details",
@@ -48,19 +49,32 @@ export default {
   },
   props: ["id"],
   created() {
-    landmarkService
-      .getLandmarkById(this.id)
-      .then((response) => {
-        if (response.status === 200) {
-          console.log(response.data);
-          this.landmark = response.data;
-        }
-      })
-      .catch((error) => {
-        if (error.response.status == 404) {
-          this.$router.push({ name: "NotFound" });
-        }
-      });
+    openMapTripService.getPlaceDetails(this.id)
+    .then((response) => {
+      if (response.status === 200) {
+        console.log(response.data);
+        this.landmark = response.data;
+      }
+    })
+    .catch((error) => {
+      if (error.response.status == 404) {
+        this.$router.push({name: "NotFound"});
+      }
+    })
+
+    // landmarkService
+    //   .getLandmarkById(this.id)
+    //   .then((response) => {
+    //     if (response.status === 200) {
+    //       console.log(response.data);
+    //       this.landmark = response.data;
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     if (error.response.status == 404) {
+    //       this.$router.push({ name: "NotFound" });
+    //     }
+    //   });
   },
 };
 </script>

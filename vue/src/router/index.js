@@ -35,8 +35,8 @@ const router = new Router({
             },
         },
         {
-            path: "/landmark",
-            name: "landmarks",
+            path: '/landmark?zipcode=:zip',
+            name: 'landmarks',
             component: Landmarks,
             meta: {
                 requiresAuth: true,
