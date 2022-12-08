@@ -46,6 +46,93 @@ namespace Capstone.DAO
             return trips;
         }
 
+        public void AddLandmarkToTrip(int tripId, int landmarkId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "INSERT INTO trip_landmark(trip_id, landmark_id) " +
+                        "VALUES(@trip_id, @landmark_id);";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@trip_id", tripId);
+                    cmd.Parameters.AddWithValue("@landmark_id", landmarkId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+
+        public int CreateTrip(int userId, Trip trip)
+        {
+            int tripId = 0;
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "INSERT INTO trips(trip_name, user_id) " +
+                        "OUTPUT INSERTED.trip_id " +
+                        "VALUES(@trip_name, @user_id);";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@trip_name", trip.Name);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+
+                    tripId=(int)cmd.ExecuteScalar();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return tripId;
+        }
+
+        public void RemoveLandmark(int tripId, int landmarkId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM trip_landmark WHERE trip_id=@trip_id AND landmark_id=@landmark_id;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@trip_id", tripId);
+                    cmd.Parameters.AddWithValue("@landmark_id", landmarkId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
+        public void RemoveTrip(int tripId, int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "DELETE FROM trips WHERE trip_id=@trip_id AND user_id=@user_id;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@trip_id", tripId);
+                    cmd.Parameters.AddWithValue("@user_id", userId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+        }
 
         private Trip GetTripFromReader(SqlDataReader reader)
         {

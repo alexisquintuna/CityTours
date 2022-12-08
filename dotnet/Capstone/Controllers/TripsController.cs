@@ -22,10 +22,12 @@ namespace Capstone.Controllers
             tripDao = _tripDao;
         }
 
-        [HttpGet("{id}")]
-        public ActionResult<List<Trip>> GetTripsByUserId(int id)
+        [HttpGet]
+        public ActionResult<List<Trip>> GetTripsByUserId()
         {
-            List<Trip> trips = tripDao.TripsByUserId(id);
+            string username = User.Identity.Name;
+            User user = userDao.GetUser(username);
+            List<Trip> trips = tripDao.TripsByUserId(user.UserId);
 
             if(trips != null)
             {
@@ -46,10 +48,49 @@ namespace Capstone.Controllers
             return NotFound();
         }
 
-        [HttpPost("{tripId}")]
-        public ActionResult<List<Landmark>> AddLandmarkByTripId(int tripId, Landmark landmark)
+        [HttpPost]
+        public ActionResult AddTrip(Trip trip)
         {
+            string username = User.Identity.Name;
+            User user = userDao.GetUser(username);
+            int tripId=tripDao.CreateTrip(user.UserId, trip);
 
+            if (tripId != 0)
+            {
+                return Ok();
+            }
+            return BadRequest(new { message = "An error occurred and the landmark was not created." });
+        }
+
+        [HttpPost("{tripId}")]
+        public ActionResult AddLandmarkToTrip(int tripId, Landmark landmark)
+        {
+            int landmarkId = landmarkDao.CreateLandmark(landmark);
+            tripDao.AddLandmarkToTrip(tripId, landmarkId);
+
+            List<Landmark> landmarks = landmarkDao.LandmarksByTripId(tripId);
+
+            if(landmarks.Contains(landmark))
+            {
+                return Ok();
+            }
+            return BadRequest(new { message = "An error occurred and the landmark was not created." });
+        }
+        //Todo action results for both delete routes
+        [HttpDelete("{tripId}/{landmarkId}")]
+        public ActionResult DeleteLandmarkFromTrip(int tripId, int landmarkId)
+        {
+            tripDao.RemoveLandmark(tripId, landmarkId);
+            return Ok();
+        }
+
+        [HttpDelete("{tripId}")]
+        public ActionResult DeleteTrip(int tripId)
+        {
+            string username = User.Identity.Name;
+            User user = userDao.GetUser(username);
+            tripDao.RemoveTrip(tripId, user.UserId);
+            return Ok();
         }
 
     }

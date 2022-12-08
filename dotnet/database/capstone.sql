@@ -26,7 +26,7 @@ CREATE TABLE users (
 CREATE TABLE trips (
 	trip_id int IDENTITY(1,1) NOT NULL,
 	trip_name varchar(50) NOT NULL,
-	user_id int FOREIGN KEY REFERENCES users(user_id) NOT NULL,
+	user_id int FOREIGN KEY REFERENCES users(user_id) NOT NULL
 	CONSTRAINT PK_trip PRIMARY KEY (trip_id)
 )
 
@@ -46,6 +46,7 @@ CREATE TABLE landmarks (
 CREATE TABLE trip_landmark (
 	trip_id int FOREIGN KEY REFERENCES trips(trip_id) NOT NULL,
 	landmark_id int FOREIGN KEY REFERENCES landmarks(landmark_id) NOT NULL
+	CONSTRAINT PK_trip_landmark PRIMARY KEY (landmark_id, trip_id)
 )
 	
 
