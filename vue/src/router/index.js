@@ -3,13 +3,14 @@ import Router from 'vue-router'
 import store from '../store/index'
 
 import Home from '../views/Home.vue'
-import LoggedIn from '../views/LoggedIn.vue'
 import Login from '../views/Login.vue'
 import Logout from '../views/Logout.vue'
 import Register from '../views/Register.vue'
 import NotFound from '@/views/NotFound.vue'
 import Landmarks from '@/views/Landmarks.vue'
 import LandmarkDetails from '@/views/LandmarkDetails.vue'
+import MyAdventures from "@/views/MyAdventures.vue"
+import AddLandmark from "@/views/AddLandmark.vue";
 
 Vue.use(Router)
 
@@ -50,9 +51,17 @@ const router = new Router({
             }
         },
         {
-            path: "/loggedIn",
-            name: "loggedIn",
-            component: LoggedIn,
+            path: '/adventures',
+            name: 'adventures',
+            component: MyAdventures,
+            meta: {
+                requiresAuth: true
+            }
+        },
+        {
+            path: '/add-landmarks',
+            name: 'add-landmarks',
+            component: AddLandmark,
             meta: {
                 requiresAuth: true
             }

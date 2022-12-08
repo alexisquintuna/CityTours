@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <form class="home-form" action="">
-      <input class="home-input" type="text" placeholder="CITY">
+      <input class="home-input" type="text" placeholder="ZIPCODE">
       <!-- <router-link>SEND</router-link> -->
     </form>
   </div>
@@ -15,6 +15,7 @@ export default {
 
 <style>
 .home{
+  height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;

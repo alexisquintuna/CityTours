@@ -1,10 +1,13 @@
 <template>
-  <h1>You're logged In</h1>
+  
+  <div>
+      <h1>Adding Landmarks</h1>
+  </div>
 </template>
 
 <script>
 export default {
-
+    name:"add-landmarks"
 }
 </script>
 

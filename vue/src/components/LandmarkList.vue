@@ -65,11 +65,11 @@ li {
   border-radius: 30px;
 }
 
-li:nth-child(1) {
+.list> ul > li:nth-child(1) {
   box-shadow: 0px 2px 5px 3px rgba(168, 167, 167, 0.281);
 }
 
-li:hover {
+.list> ul > li:hover {
   box-shadow: 0px 2px 5px 3px rgba(168, 167, 167, 0.281);
 }
 

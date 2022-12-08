@@ -2,13 +2,13 @@
   <div id="app">
     <div id="nav">
       <div>
-        <router-link id="logo-text" class="nav-text" v-bind:to="{ name: 'home' }">Open <br>City</router-link>
+        <router-link id="logo-text" class="nav-text" v-bind:to="{ name: 'home' }">Opn <br>City</router-link>
       </div>
       <div id="nav-left">
         <router-link class="nav-subtext nav-text" v-bind:to="{ name: 'landmarks' }" v-if="$store.state.token != ''">Landmark List</router-link>
-        <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'user'">My Adventures</router-link>
+        <router-link class="nav-subtext nav-text" v-bind:to="{ name: 'adventures' }" v-if="$store.state.user.role == 'user'">My Adventures</router-link>
         <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'user'">My Profile</router-link>
-        <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'admin'">Add Landmarks</router-link>
+        <router-link class="nav-subtext nav-text" v-bind:to="{ name: 'add-landmark' }" v-if="$store.state.user.role == 'admin'">Add Landmarks</router-link>
         <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'admin'">Admin Profile</router-link>
         <router-link class="nav-subtext nav-text login-btn" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
         <router-link class="nav-subtext nav-text login-btn" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''" >Log In</router-link>
@@ -37,7 +37,7 @@ export default{
   width: 100%;
 }
 #app{
-  height: 100vh;
+  height: auto;
 }
 #nav{
   position: absolute;
