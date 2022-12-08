@@ -67,9 +67,10 @@ export default {
 
 <style>
 #back {
+  color: black;
   position: relative;
   bottom: -9.2rem;
-  left: 13rem;
+  left: 10rem;
   text-decoration: none;
   font-size: 20px;
   font-weight: bold;
@@ -78,20 +79,22 @@ export default {
 
 .details-page {
   color: black;
-  background-color: rgb(0, 0, 185);
-  height: 120%;
+  height: 100vh;
 }
 .details-container {
   background-color: rgb(255, 255, 255);
   position: relative;
+  overflow: scroll;
   top: 4.5rem;
-  height: 100%;
-
+  height: 50rem;
+  width: 94%;
+  border-radius: 20px;
+  margin: 2rem auto 0;
+  padding: 0;
 }
 .details-main {
   margin: 0 auto;
   width: 78%;
-  height: auto;
 }
 .header-section {
   margin: 35px 0;

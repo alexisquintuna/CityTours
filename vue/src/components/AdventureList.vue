@@ -8,6 +8,11 @@
       <adventure-card class="adv-card" ></adventure-card>
       <adventure-card class="adv-card" ></adventure-card>
       <adventure-card class="adv-card" ></adventure-card>
+      <adventure-card class="adv-card" ></adventure-card>
+      <adventure-card class="adv-card" ></adventure-card>
+      <adventure-card class="adv-card" ></adventure-card>
+      <adventure-card class="adv-card" ></adventure-card>
+
       </div>
   </div>
 </div>
@@ -25,9 +30,7 @@ export default {
 <style>
 .adventure-list{
     background-color: aqua;
-    height: 40rem;
     width: 100rem;
-    height: auto;
 }
 
 .adv-list-container{

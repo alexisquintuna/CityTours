@@ -6,7 +6,7 @@
         <div class="adding-box-top">
           <div class="adding-header-top">
             <h1>Create a new landmark</h1>
-            <p>Please enter your details</p>
+            <p>Please enter the following details</p>
           </div>
 
           <div class="top-btn">
@@ -45,11 +45,11 @@
           </div>
 
           <div class="adding-input">
-            <input
+            <textarea
               placeholder="Description"
               v-model="landmark.description"
               required
-              class="adding-form-control"
+              class="adding-form-control add-text-area"
               type="text"
             />
           </div>
@@ -57,8 +57,8 @@
         
         <div class="adding-box">
           <div class="adding-header">
-            <h1>Something</h1>
-            <p>Description for something</p>
+            <h1>Category</h1>
+            <p>Add the type of category it fits in</p>
           </div>
 
           <div class="adding-input">
@@ -74,8 +74,8 @@
         
         <div class="adding-box">
           <div class="adding-header">
-            <h1>Something</h1>
-            <p>Description for something</p>
+            <h1>Latitude</h1>
+            <p>Enter the latitude for landmark</p>
           </div>
 
           <div class="adding-input">
@@ -91,8 +91,8 @@
         
         <div class="adding-box">
           <div class="adding-header">
-            <h1>Something</h1>
-            <p>Description for something</p>
+            <h1>Longitude</h1>
+            <p>Enter the longitude for landmark</p>
           </div>
 
           <div class="adding-input">
@@ -108,8 +108,8 @@
         
         <div class="adding-box">
           <div class="adding-header">
-            <h1>Something</h1>
-            <p>Description for something</p>
+            <h1>Address</h1>
+            <p>Enter the address for landmark</p>
           </div>
 
           <div class="adding-input">
@@ -125,8 +125,8 @@
         
         <div class="adding-box">
           <div class="adding-header">
-            <h1>Something</h1>
-            <p>Description for something</p>
+            <h1>Website</h1>
+            <p>Enter the a url link to landmark</p>
           </div>
           
           <div class="adding-input">
@@ -180,26 +180,25 @@ export default {
 
 <style>
 .addLandmark-page {
-  background-color: rgb(0, 0, 185);
-  height: 100vh;
+  /* background-color: rgb(0, 0, 185); */
+  height: 130vh;
   width: 100%;
   display: flex;
   align-items: flex-end;
 }
 .adding-container {
-  background-color: aquamarine;
+  /* background-color: #FEFCFB; */
   width: 100%;
-  height: 100%;
-  position: relative;
-  top: 8rem;
+  height: 90%;
 }
 .adding-form {
-  background-color: rgb(14, 99, 70);
+    background-color: #f7f7f7;
   display: flex;
   flex-direction: column;
   width: 50%;
   height: 100%;
   margin: 0 auto;
+  border-radius: 20px;
 }
 .adding-box-top,
 .adding-box{
@@ -207,7 +206,6 @@ export default {
   align-items:flex-start;
   width: 90%;
   margin: 2rem auto 0;
-  /* background-color: rgb(38, 136, 136); */
 }
 
 .adding-box-top{
@@ -217,34 +215,62 @@ export default {
 .adding-header-top > h1{
   font-size: 1.7rem;
 }
+.adding-header > h1{
+  font-size: 1rem;
+}
+.adding-header-top > p,
+.adding-header > p{
+  font-size: 1rem;
+  color: rgb(131, 131, 131);
+}
 
 .adding-box{
-  /* border-top: 2px solid rgb(129, 129, 129); */
   height: 7rem;
+  margin: 1.5rem auto;
   padding-top: 1rem;
+  border-top: 1px solid rgb(179, 179, 179);
 }
 
 .adding-header-top,
 .adding-header{
-  /* background-color: beige; */
   width: 35%;
 }
 
 .adding-form-control {
   width: 100%;
-  border-radius: 5px;
+  border-radius: 10px;
   margin: 0px auto;
-  height: 3rem;
+  height: 2rem;
+  padding-left: 1rem;
+  border: 1px solid rgb(204, 204, 204);
+  font-weight: 600;
+}
+
+.adding-form-control::placeholder {
+    color: rgb(131, 131, 131);
+    font-weight:400;
+
+}
+
+.add-text-area{
+  height: 12vh;
+  padding: 10px;
+  margin: 0;
+  resize: none;
+}
+
+.add-text-area:focus{
+  outline:none
 }
 
 .adding-input{
   margin: 0;
   padding:0;
-  background-color: blue;
-  display: flex;
   width: 45%;
   overflow: hidden;
-}
+  border-radius: 10px;
+  box-shadow: 0 -0.5px 1px 0.5px rgba(0, 0, 0, 0.301);
+  }
 
 .top-btn{
   display: flex;}
@@ -255,6 +281,20 @@ export default {
   height: 2.4rem;
   width: 5rem;
   border-radius: 5px;
+}
+.cancel{
+  background-color: white;
+  color: black;
+  border: 1px solid;
+}
+.adding:hover{
+  background-color: #6BAA75;
+  border:none;
+  color: white;
+}
+.cancel:hover{
+  color: white;
+  background-color: rgb(0, 0, 0);
 }
 
 </style>
