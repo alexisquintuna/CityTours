@@ -29,10 +29,6 @@ CREATE TABLE trips (
 	user_id int FOREIGN KEY REFERENCES users(user_id) NOT NULL,
 	CONSTRAINT PK_trip PRIMARY KEY (trip_id)
 )
-CREATE TABLE trip_landmark (
-	trip_id int FOREIGN KEY REFERENCES trips(trip_id) NOT NULL,
-	landmark_id int FOREIGN KEY REFERENCES landmarks(landmark_id) NOT NULL
-)
 
 --populate default data
 CREATE TABLE landmarks (
@@ -45,6 +41,11 @@ CREATE TABLE landmarks (
 	address varchar(200) NOT NULL,
 	link varchar(200) NOT NULL
 	CONSTRAINT PK_landmark PRIMARY KEY (landmark_id)
+)
+
+CREATE TABLE trip_landmark (
+	trip_id int FOREIGN KEY REFERENCES trips(trip_id) NOT NULL,
+	landmark_id int FOREIGN KEY REFERENCES landmarks(landmark_id) NOT NULL
 )
 	
 

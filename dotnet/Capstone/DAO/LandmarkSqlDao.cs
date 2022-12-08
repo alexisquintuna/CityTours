@@ -74,6 +74,65 @@ namespace Capstone.DAO
             return landmark;
         }
 
+        public List<Landmark> LandmarksByTripId(int tripId)
+        {
+            List<Landmark> landmarks = new List<Landmark>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT landmark_id, name, description, category, latitude, longitude, address, link FROM landmarks JOIN trip_landmark ON landmark.landmark_id = trip_landmark.landmark_id WHERE trip_landmark.trip_id = @trip_id;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@trip_id", tripId);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        landmarks.Add(GetLandmarkFromReader(reader));
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return landmarks;
+        }
+
+        public int CreateLandmark(Landmark landmark)
+        {
+            int landmarkId=0;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "INSERT INTO landmark(name, description, category, latitude, longitude, address, link) " +
+                        "OUTPUT INSERTED.landmark_id " +
+                        "VALUES(@name, @description, @category, @latitude, @longitude, @address, @link);";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@name", landmark.Name);
+                    cmd.Parameters.AddWithValue("@description", landmark.Description);
+                    cmd.Parameters.AddWithValue("@category", landmark.Category);
+                    cmd.Parameters.AddWithValue("@latitude", landmark.Latitude);
+                    cmd.Parameters.AddWithValue("@longitude", landmark.Longitude);
+                    cmd.Parameters.AddWithValue("@address", landmark.Address);
+                    cmd.Parameters.AddWithValue("@link", landmark.Link);
+
+                    landmarkId =(int)cmd.ExecuteScalar();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return landmarkId;
+        }
+
         private Landmark GetLandmarkFromReader(SqlDataReader reader)
         {
             Landmark l = new Landmark()

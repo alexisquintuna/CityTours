@@ -11,7 +11,6 @@ import CardDetails from "@/components/CardDetails.vue";
 export default {
   name: "landmark-details",
   components: { CardDetails },
-  //props: ['id'],
   data() {
     return { landmarkId: 0 }
   },

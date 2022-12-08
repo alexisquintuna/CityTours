@@ -8,5 +8,7 @@ namespace Capstone.DAO
         //get all landmarks method
         public List<Landmark> ListAllLandmarks();
         public Landmark LandmarkById(int landmarkId);
+        public List<Landmark> LandmarksByTripId(int tripId);
+        public int CreateLandmark(Landmark landmark);
     }
 }

@@ -1,9 +1,13 @@
 <template>
-  <h1>You're logged In</h1>
+<div>
+
+      <h2>something else</h2>
+</div>
 </template>
 
 <script>
 export default {
+    name: "add-landmark",
 
 }
 </script>
