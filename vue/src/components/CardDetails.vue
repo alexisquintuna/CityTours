@@ -11,7 +11,7 @@
           <div class="right-side">
             <img
               class="details-img"
-              src="https://merriam-webster.com/assets/ld/word_of_the_day/images/2540/large.jpg"
+              src="https://www.kids-world-travel-guide.com/images/xitaly_coloseo_shutterstock_88957447_ed_1445441219_31892.jpg.pagespeed.ic.L-ebfWM8d-.webp"
               alt="picture of location"
             />
             <p class="details-description">{{ landmark.wikipedia_extracts.text }}</p>
@@ -23,8 +23,8 @@
             </p>
             <p class="aside-p">
               <span class="aside-span">Website</span>
-              <a :href="landmark.url" target="_blank" class="details-link">{{
-                landmark.url ? landmark.url : "No website link"
+              <a :href="landmark.link" target="_blank" class="details-link">{{
+                landmark.url ? landmark.url : "No Website link found"
               }}</a>
             </p>
             <br />

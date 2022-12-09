@@ -5,7 +5,7 @@
         <adventure-card
           class="adv-card"
           v-for="trip in this.$store.state.trips"
-          v-bind:key="trip.id"
+          v-bind:key="trip.id" v-bind:trip="trip"
         />
       </div>
     </div>

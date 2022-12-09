@@ -10,14 +10,29 @@
     </div>
     <div class="popup" v-if="buttonTrigger">
       <div class="popup-inner">
-        <form class="addingTrip-form" action="">
+        <form
+          class="addingTrip-form"
+          action=""
+          v-on:submit.prevent="addingTrip"
+        >
           <h1>Add a new trip to the list!</h1>
-          <input class="trip-name-input" type="text" placeholder="Name of trip" />
+          <input
+            class="trip-name-input"
+            type="text"
+            placeholder="Name of trip"
+            v-model="trip.name"
+          />
           <div class="buttons-div">
-            <button class="popup-close close-btn" v-on:click.prevent="TogglePopup()">
+            <button
+              class="popup-close close-btn"
+              v-on:click.prevent="TogglePopup()"
+            >
               Cancel
             </button>
-            <button class="popup-close add-btn" v-on:click.prevent="TogglePopup()">
+            <button
+              class="popup-close add-btn"
+              type="submit"
+            >
               Add Trip
             </button>
           </div>
@@ -29,10 +44,14 @@
 
 <script>
 import AdventureList from "@/components/AdventureList.vue";
+import TripsService from "../services/TripsService";
 export default {
   data() {
     return {
       buttonTrigger: false,
+      trip: {
+        name: ""
+      }
     };
   },
   name: "my-adventures",
@@ -42,6 +61,20 @@ export default {
       console.log("getting clicked");
       console.log(this.buttonTrigger);
       this.buttonTrigger = !this.buttonTrigger;
+    },
+    addingTrip() {
+      TripsService.createTrip(this.trip)
+        .then((response) => {
+          if (response.status === 200) {
+            this.TogglePopup();
+            location.reload();
+          }
+        })
+        .catch((error) => {
+          if (error.response.status == 400) {
+            this.$router.push({ name: "NotFound" });
+          }
+        });
     },
   },
 };
@@ -70,7 +103,7 @@ export default {
   border-radius: 20px;
 }
 
-.addingTrip-form{
+.addingTrip-form {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -79,15 +112,15 @@ export default {
   justify-content: center;
 }
 
-.addingTrip-form> h1,
-.addingTrip-form> input,
-.addingTrip-form> .buttons-div{
+.addingTrip-form > h1,
+.addingTrip-form > input,
+.addingTrip-form > .buttons-div {
   margin: 1.8rem;
 }
-.addingTrip-form> h1{
+.addingTrip-form > h1 {
   font-size: 2rem;
 }
-.trip-name-input{
+.trip-name-input {
   height: 2rem;
   border-bottom: 3px solid black;
   width: 75%;
@@ -107,11 +140,11 @@ export default {
   width: 100%;
 }
 
-.close-btn{
-  color:black;
+.close-btn {
+  color: black;
   background-color: white;
 }
-.close-btn:hover{
+.close-btn:hover {
   color: white;
   background-color: black;
 }
@@ -119,7 +152,7 @@ export default {
 .addingTrip-form {
   height: 100%;
   width: 100%;
-  border-radius: 20px;;
+  border-radius: 20px;
 }
 .adding-new-trip {
   background-color: aquamarine;
@@ -140,10 +173,9 @@ export default {
 }
 .adventure-container {
   background-color: rgb(255, 255, 255);
-  border-radius: 20px;
   position: relative;
   height: 100%;
-  margin-top: 7rem;
+  margin-top: 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;
