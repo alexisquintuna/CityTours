@@ -22,6 +22,7 @@ export default new Vuex.Store({
         user: currentUser || {},
         landmarks: [],
         trips: [],
+        hotspots: [],
         zipCode: "",
     },
     mutations: {
@@ -50,6 +51,9 @@ export default new Vuex.Store({
         },
         SET_TRIPS(state, payload) {
             state.trips = payload;
+        },
+        SET_HOTSPOTS(state, payload) {
+            state.hotspots = payload;
         },
 
 

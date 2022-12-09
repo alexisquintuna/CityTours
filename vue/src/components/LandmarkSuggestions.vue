@@ -3,7 +3,7 @@
       <ul>
       <li
       class="suggestion-li"
-        v-for="landmark in this.$store.state.landmarks"
+        v-for="landmark in this.$store.state.hotspots"
         v-bind:key="landmark.id"
       >
         <suggestion-card
@@ -23,15 +23,12 @@ export default {
   name: "suggestion-list",
   components: { SuggestionCard },
   methods: {
-    getAllLandmarks() {
+    getAllHotspots() {
       landmarkService
-        .getLandmarks()
+        .getHotspots()
         .then((response) => {
-          console.log("reaching");
           if (response.status === 200) {
-            this.$store.commit("SET_LANDMARKS", response.data);
-            console.log("reaching");
-            console.log(response.data);
+            this.$store.commit("SET_HOTSPOTS", response.data);
           }
         })
         .catch((error) => {
@@ -42,8 +39,7 @@ export default {
     },
   },
   created() {
-    console.log("reaching created");
-    this.getAllLandmarks();
+    this.getAllHotspots();
   },
 };
 </script>

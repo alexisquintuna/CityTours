@@ -12,7 +12,7 @@
         <div class="suggestion-icon">
           <img
             class="img-icon"
-            src="https://w7.pngwing.com/pngs/244/287/png-transparent-google-map-maker-pin-computer-icons-google-maps-map-icon-angle-black-map.png"
+            src="{{landmark.photo}}"
             alt=""
           />
         </div>
@@ -22,11 +22,13 @@
 </template>
 
 <script>
+import LandmarkService from '../services/LandmarkService.js'
 export default {
   name: "suggestion-card",
   props: {
     landmark: Object,
   },
+
 };
 </script>
 

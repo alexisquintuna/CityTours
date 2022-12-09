@@ -11,4 +11,7 @@ export default {
     createLandmark(landmark) {
         return axios.post('/landmark', landmark);
     }
+    getHotspots() {
+        return axios.get('/hotspots')
+    }
 }
