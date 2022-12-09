@@ -5,27 +5,26 @@
       <div class="details-main">
         <div class="header-section">
           <h1 class="landmark-header">{{ landmark.name }}</h1>
-          <p>In {{ landmark.address.city }}, {{landmark.address.state}} </p>
+          <p class="landmark-subheader">In {{ landmark.address.city }}, {{landmark.address.country}} </p>
         </div>
         <section class="info-section">
           <div class="right-side">
-            <div class="details-img" style="background-image: v-bind:url('this.landmark.image')" ></div>
-            <!-- <img
+            <img
               class="details-img"
-              v-bind:src="landmark.image"
+              src="https://merriam-webster.com/assets/ld/word_of_the_day/images/2540/large.jpg"
               alt="picture of location"
-            /> -->
+            />
             <p class="details-description">{{ landmark.wikipedia_extracts.text }}</p>
           </div>
           <aside>
             <h3>Details</h3>
             <p class="aside-p">
-              <span class="aside-span">Address</span> {{ landmark.address.house_number }} {{ landmark.address.road }}, {{ landmark.address.city }} {{ landmark.address.postcode }}
+              <span class="aside-span">Address</span> {{ landmark.address.house_number }} {{ landmark.address.road }} {{ landmark.address.city }} {{ landmark.address.postcode }}
             </p>
             <p class="aside-p">
               <span class="aside-span">Website</span>
-              <a :href="landmark.link" target="_blank" class="details-link">{{
-                landmark.link
+              <a :href="landmark.url" target="_blank" class="details-link">{{
+                landmark.url ? landmark.url : "No website link"
               }}</a>
             </p>
             <br />
@@ -36,7 +35,7 @@
     </div>
   </div>
 </template>
-
+ 
 <script>
 //import landmarkService from "@/services/LandmarkService.js";
 import openMapTripService from "../services/OpenMapTripService.js";
@@ -134,13 +133,20 @@ export default {
 .landmark-header {
   font-size: 48px;
 }
+
+.landmark-subheader{
+  font-style: italic;
+}
 .info-section {
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-areas: "info" "aside";
+  /* background-color: black; */
+  height: 100%;
 }
 
 .details-img {
+  border-radius: 0;
   width: 100%;
   height: 75%;
   border-radius: 20px;

@@ -11,13 +11,13 @@ export default {
     createTrip(trip) {
         return axios.post('/trips', trip);
     },
-    addLandmarkToTrip(id,landmark) {
+    addLandmarkToTrip(id, landmark) {
         return axios.post(`/trips/${id}`, landmark);
     },
     deleteTrip(id) {
         return axios.delete(`/trips/${id}`);
     },
-    deleteLandmarkFromTrip(id,landmark) {
+    deleteLandmarkFromTrip(id, landmark) {
         return axios.delete(`/trips/${id}/${landmark.id}`);
     }
 

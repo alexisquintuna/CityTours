@@ -3,7 +3,7 @@
     <card-details v-bind:id="landmarkId" />
   </div>
 </template>
-
+ 
 <script>
 import CardDetails from "@/components/CardDetails.vue";
 //import landmarkService from "../services/LandmarkService.js";
