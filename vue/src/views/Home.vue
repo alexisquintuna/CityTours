@@ -49,14 +49,14 @@ export default {
   justify-content: center;
   position: relative;
   flex-direction: column;
-  background: chartreuse;
+  margin-bottom: 5rem;
 }
 
 .home-form {
   width: auto;
   display: flex;
   align-items: center;
-  background: chocolate;
+  /* background: chocolate; */
 }
 
 .home-input {
@@ -72,7 +72,7 @@ export default {
 
 
 .submit-btn {
-  height: 40%;
+  height: 50%;
   width: 8rem;
   border-radius: 20px;
   background-color: #dbdbdb;
@@ -93,10 +93,11 @@ export default {
   background-color: black;
   color: white;
   transition: 400ms;
-  z-index: 1;
+  font-size: 1.6rem;
 }
 .enter-zip {
-  height: 2.4rem;
+  font-size: 1.4rem;
+  height: 100%;
   width: 100%;
   background-color: #fff;
   color:black;
