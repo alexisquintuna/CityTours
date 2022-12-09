@@ -6,7 +6,7 @@
           + Add New Trip
         </button>
       </div>
-      <adventure-list class="adv-list"></adventure-list>
+      <adventure-list class="adv-list" ></adventure-list>
     </div>
     <div class="popup" v-if="buttonTrigger">
       <div class="popup-inner">

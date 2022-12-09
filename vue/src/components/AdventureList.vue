@@ -23,6 +23,7 @@ export default {
     getTripsByUser() {
       TripsService.getTrips()
         .then((response) => {
+          console.log(response.data)
           if (response.status === 200) {
             this.$store.commit("SET_TRIPS", response.data);
           }

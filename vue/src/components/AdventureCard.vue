@@ -6,17 +6,43 @@
       </div>
       <h1>{{ trip.name }}</h1>
     </div>
+    <!-- v-if="buttonTrigger" -->
+    <div class="popup-adv" v-if="buttonTrigger">
+      <div class="popup-inner-adv" >
+        <h1>Are you sure you want to delete this card?</h1>
+        <div class="adv-btn-container">
+          <button v-on:click="togglePopup()" >Cancel</button>
+          <button v-on:click="toggleDelete()" >Confirm</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
 import TripsService from "../services/TripsService";
 export default {
+  data(){
+    return{
+      buttonTrigger: false,
+      confirmDelete: false,
+      tripId: 0,
+    }
+  },
   name: "adventure-card",
   props: ["trip"],
   methods: {
     deleteTrip(id) {
-      TripsService.deleteTrip(id)
+      this.buttonTrigger = !this.buttonTrigger
+      this.tripId = id
+    },
+    togglePopup(){
+      this.buttonTrigger = !this.buttonTrigger
+    },
+    toggleDelete(){
+      this.confirmDelete = !this.confirmDelete
+      if(this.confirmDelete){
+              TripsService.deleteTrip(this.tripId)
         .then(
            location.reload()
         )
@@ -25,7 +51,8 @@ export default {
             this.$router.push({ name: "NotFound" });
           }
         });
-    },
+      }
+    }
   },
 };
 </script>
@@ -36,14 +63,12 @@ export default {
   position: relative;
   height: 30rem;
   width: 22%;
-  border-radius: 20px;
   background-image: url("https://globalgrasshopper.com/wp-content/uploads/2020/09/The-best-places-to-vist-in-Ecuador.jpg");
 }
 
 .adv-bg {
   height: 100%;
   width: 100%;
-  border-radius: 20px;
   background-image: linear-gradient(
     to bottom,
     rgba(247, 247, 247, 0),
@@ -82,10 +107,40 @@ export default {
   width: 2rem;
   height: 2rem;
 }
+
 .delete-btn {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.288);
   color: rgb(253, 253, 253);
+}
+
+.popup-adv{
+  color: black;
+  position: fixed;
+  left:0;
+  right: 0;
+  top:0;
+  bottom:0;
+  background: rgba(0,0,0,0.2);
+  z-index: 99;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.popup-inner-adv{
+  background: white;
+  height: 25%;
+  width: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+flex-direction: column;
+}
+
+.adv-btn-container{
+  display: flex;
 }
 </style>
