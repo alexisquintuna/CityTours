@@ -7,5 +7,8 @@ export default {
     },
     getLandmarkById(id) {
         return axios.get(`/landmark/${id}`)
+    },
+    createLandmark(landmark) {
+        return axios.post('/landmark', landmark);
     }
 }

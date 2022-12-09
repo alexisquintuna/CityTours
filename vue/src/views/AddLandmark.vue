@@ -2,7 +2,7 @@
   <div class="addLandmark-page">
     <!-- <h1>Adding Landmarks</h1> -->
     <div class="adding-container">
-      <form action="" class="adding-form" submit.prevent="adding">
+      <form action="" class="adding-form" v-on:submit.prevent="adding">
         <div class="adding-box-top">
           <div class="adding-header-top">
             <h1>Create a new landmark</h1>
@@ -18,7 +18,6 @@
         <div class="alert alert-danger-adding" role="alert" v-if="addingErrors">
           {{ addingErrorsMsg }}
         </div>
-
 
         <div class="adding-box">
           <div class="adding-header">
@@ -37,7 +36,7 @@
             />
           </div>
         </div>
-        
+
         <div class="adding-box">
           <div class="adding-header">
             <h1>Description</h1>
@@ -54,7 +53,7 @@
             />
           </div>
         </div>
-        
+
         <div class="adding-box">
           <div class="adding-header">
             <h1>Category</h1>
@@ -71,7 +70,7 @@
             />
           </div>
         </div>
-        
+
         <div class="adding-box">
           <div class="adding-header">
             <h1>Latitude</h1>
@@ -88,7 +87,7 @@
             />
           </div>
         </div>
-        
+
         <div class="adding-box">
           <div class="adding-header">
             <h1>Longitude</h1>
@@ -105,7 +104,7 @@
             />
           </div>
         </div>
-        
+
         <div class="adding-box">
           <div class="adding-header">
             <h1>Address</h1>
@@ -122,13 +121,13 @@
             />
           </div>
         </div>
-        
+
         <div class="adding-box">
           <div class="adding-header">
             <h1>Website</h1>
             <p>Enter the a url link to landmark</p>
           </div>
-          
+
           <div class="adding-input">
             <input
               placeholder="Website Link"
@@ -139,13 +138,14 @@
             />
           </div>
         </div>
-      
       </form>
     </div>
   </div>
 </template>
 
 <script>
+import landmarkService from "../services/LandmarkService.js";
+
 export default {
   name: "add-landmarks",
   data() {
@@ -165,14 +165,22 @@ export default {
   },
   methods: {
     adding() {
-      if (this.landmark) {
-        this.addingErrors = true;
-        this.addingErrorsMsg = "Something bam bam";
-      } else {
-        //here will add a service to add stuff to the database
-        //example landmarkService.add(this.landmark).then((res) => {if(res.status=201) {this.$router.push({name:"landmarks"})}}).catch((err) => {this.addingErrors = false if(err.response.status == 400){this.addingErrorsMsg = "Bad Request: Validation Errors"}})
-        return this.addingErrors;
-      }
+      //here will add a service to add stuff to the database
+      //example
+      landmarkService
+        .createLandmark(this.landmark)
+        .then((res) => {
+          if (res.status == 200) {
+            this.$router.push({ name: "home" });
+          }
+        })
+        .catch((err) => {
+          this.addingErrors = false;
+          if (err.response.status == 400) {
+            this.addingErrorsMsg = "Bad Request: Validation Errors";
+          }
+        });
+      return this.addingErrors;
     },
   },
 };
@@ -192,7 +200,7 @@ export default {
   height: 90%;
 }
 .adding-form {
-    background-color: #f7f7f7;
+  background-color: #f7f7f7;
   display: flex;
   flex-direction: column;
   width: 50%;
@@ -201,30 +209,30 @@ export default {
   border-radius: 20px;
 }
 .adding-box-top,
-.adding-box{
+.adding-box {
   display: flex;
-  align-items:flex-start;
+  align-items: flex-start;
   width: 90%;
   margin: 2rem auto 0;
 }
 
-.adding-box-top{
+.adding-box-top {
   justify-content: space-between;
 }
 
-.adding-header-top > h1{
+.adding-header-top > h1 {
   font-size: 1.7rem;
 }
-.adding-header > h1{
+.adding-header > h1 {
   font-size: 1rem;
 }
 .adding-header-top > p,
-.adding-header > p{
+.adding-header > p {
   font-size: 1rem;
   color: rgb(131, 131, 131);
 }
 
-.adding-box{
+.adding-box {
   height: 7rem;
   margin: 1.5rem auto;
   padding-top: 1rem;
@@ -232,7 +240,7 @@ export default {
 }
 
 .adding-header-top,
-.adding-header{
+.adding-header {
   width: 35%;
 }
 
@@ -247,33 +255,33 @@ export default {
 }
 
 .adding-form-control::placeholder {
-    color: rgb(131, 131, 131);
-    font-weight:400;
-
+  color: rgb(131, 131, 131);
+  font-weight: 400;
 }
 
-.add-text-area{
+.add-text-area {
   height: 12vh;
   padding: 10px;
   margin: 0;
   resize: none;
 }
 
-.add-text-area:focus{
-  outline:none
+.add-text-area:focus {
+  outline: none;
 }
 
-.adding-input{
+.adding-input {
   margin: 0;
-  padding:0;
+  padding: 0;
   width: 45%;
   overflow: hidden;
   border-radius: 10px;
   box-shadow: 0 -0.5px 1px 0.5px rgba(0, 0, 0, 0.301);
-  }
+}
 
-.top-btn{
-  display: flex;}
+.top-btn {
+  display: flex;
+}
 .addNew-btn {
   margin: 5px;
   display: inline-block;
@@ -282,19 +290,18 @@ export default {
   width: 5rem;
   border-radius: 5px;
 }
-.cancel{
+.cancel {
   background-color: white;
   color: black;
   border: 1px solid;
 }
-.adding:hover{
-  background-color: #6BAA75;
-  border:none;
+.adding:hover {
+  background-color: #6baa75;
+  border: none;
   color: white;
 }
-.cancel:hover{
+.cancel:hover {
   color: white;
   background-color: rgb(0, 0, 0);
 }
-
 </style>
