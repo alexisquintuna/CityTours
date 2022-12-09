@@ -11,6 +11,7 @@ import Landmarks from "@/views/Landmarks.vue";
 import LandmarkDetails from "@/views/LandmarkDetails.vue";
 import MyAdventures from "@/views/MyAdventures.vue";
 import AddLandmark from "@/views/AddLandmark.vue";
+import AddNewTrip from "@/views/AddNewTrip.vue";
 
 Vue.use(Router);
 
@@ -62,6 +63,14 @@ const router = new Router({
             path: "/add-landmarks",
             name: "add-landmarks",
             component: AddLandmark,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: "/add-new-trip",
+            name: "add-new-trip",
+            component: AddNewTrip,
             meta: {
                 requiresAuth: true,
             },

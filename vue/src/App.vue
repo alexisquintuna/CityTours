@@ -73,11 +73,6 @@ export default{
 }
 
 .nav-subtext:hover{
-  /* background-image: linear-gradient(
-    to bottom,
-    rgba(247, 247, 247, 0),
-    rgb(255, 254, 254)
-  ); */
   color:#6BAA75;
   text-decoration: underline;
   transition: 400ms;

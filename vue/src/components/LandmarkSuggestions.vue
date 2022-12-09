@@ -61,8 +61,14 @@ export default {
 }
 .suggestion-list  > ul {
     display: flex;
+    height: 100%;
+    width: auto;
+    display: flex;
+    align-items: center;
 }
 .suggestion-list  > ul > li {
     width: 22%;
+    height: 100%;
+    margin-right: 2rem;
 }
 </style>

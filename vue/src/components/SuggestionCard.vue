@@ -1,9 +1,10 @@
 <template>
+    <div class="suggestion-card">
+
   <router-link
     class="suggestion-link"
     v-bind:to="{ name: 'landmark-details', params: { id: landmark.id } }"
   >
-    <div class="suggestion-card">
       <div class="suggestion-bg">
         <div class="suggestion-details">
           <h1>{{ landmark.name }}</h1>
@@ -16,8 +17,8 @@
           />
         </div>
       </div>
-    </div>
   </router-link>
+    </div>
 </template>
 
 <script>
@@ -32,7 +33,6 @@ export default {
 <style>
 .suggestion-bg {
   padding: 5px 10px;
-  margin: 0;
   height: 100%;
   width: 100%;
   border-radius: 20px;
@@ -50,14 +50,17 @@ export default {
   background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/LeVeque_Tower%2C_Columbus%2C_OH%2C_US_crop.jpg/170px-LeVeque_Tower%2C_Columbus%2C_OH%2C_US_crop.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  margin: 1rem auto;
   border-radius: 30px;
-  height: 90%;
+  height: 100%;
   width: 18rem;
-  position: absolute;
 }
+
 .suggestion-details {
-  margin: 0 15px;
+  margin-right: 1rem;
+  margin-bottom: 2rem;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
 }
 
 .suggestion-details h1 {
@@ -68,6 +71,8 @@ export default {
   display: inline-block;
   margin: 5px 0;
   padding: 0;
+  flex-wrap: wrap;
+  width: 10%;
 }
 
 .suggestion-icon {

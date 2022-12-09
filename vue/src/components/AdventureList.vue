@@ -16,6 +16,7 @@
       </div>
   </div>
 </div>
+<!-- fix icons too -->
 </template>
 
 <script>
@@ -29,13 +30,12 @@ export default {
 
 <style>
 .adventure-list{
-    background-color: aqua;
     width: 100rem;
 }
 
 .adv-list-container{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-around;
     width: 25% 25% 25% 25%;
     flex-wrap: wrap;
 }
