@@ -35,7 +35,7 @@ const router = new Router({
             },
         },
         {
-            path: '/landmark?zipcode=:zip',
+            path: '/landmark?query=:query',
             name: 'landmarks',
             component: Landmarks,
             meta: {

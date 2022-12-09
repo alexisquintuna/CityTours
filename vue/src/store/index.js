@@ -22,7 +22,7 @@ export default new Vuex.Store({
         user: currentUser || {},
         landmarks: [],
         trips: [],
-        zipCode: "",
+        locationQuery: "",
     },
     mutations: {
         SET_AUTH_TOKEN(state, token) {
@@ -45,8 +45,8 @@ export default new Vuex.Store({
         SET_LANDMARKS(state, payload) {
             state.landmarks = payload;
         },
-        SET_ZIPCODE(state, payload) {
-            state.zipCode = payload;
+        SET_LOCATION_QUERY(state, payload) {
+            state.locationQuery = payload;
         },
         SET_TRIPS(state, payload) {
             state.trips = payload;

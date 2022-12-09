@@ -7,7 +7,7 @@ import axios from 'axios'
 Vue.config.productionTip = false
 
 axios.defaults.baseURL = process.env.VUE_APP_REMOTE_API;
-axios.defaults.headers.get['Access-Control-Allow-Credentials'] = 'true';
+//axios.defaults.headers.get['Access-Control-Allow-Credentials'] = 'true';
 
 
 

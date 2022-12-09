@@ -1,6 +1,6 @@
 <template>
   <div class="details-page">
-    <router-link id="back" v-bind:to="{ name: 'landmarks', params: {zip: this.$store.state.zipCode} }">BACK</router-link>
+    <router-link id="back" v-bind:to="{ name: 'landmarks', params: {zip: this.$store.state.locationQuery} }">BACK</router-link>
     <div class="details-container">
       <div class="details-main">
         <div class="header-section">

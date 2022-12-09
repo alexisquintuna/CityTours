@@ -18,7 +18,7 @@
 <script>
 import LandmarkCard from "@/components/LandmarkCard.vue";
 //import landmarkService from "../services/LandmarkService.js";
-import zipCodeService from "../services/ZipCodeService.js";
+import mapboxService from "../services/MapboxService.js";
 import openMapTripService from "../services/OpenMapTripService.js"
 
 export default {
@@ -27,21 +27,22 @@ export default {
   data() {
       return {
           location: {
-              lat: "",
-              lng: ""
+              
+              
           }
       }
   },
   //props: ['zipCode'],
   methods: {
-      getLandmarksByZip() {
-          const zipCode = this.$route.params.zip;
-          zipCodeService.getZipCodeInfo(zipCode)
+      getLandmarksByAddress() {
+          const address = this.$route.params.query;
+          mapboxService.getAddressInfo(address)
           .then((response) => {
               //response.header("Access-Control-Allow-Origin", "*");
               console.log("Getting Zip Codes");
               if (response.status === 200) {
                   this.location = response.data;
+                  console.log(response.data);
                   
               }
           })
@@ -52,7 +53,7 @@ export default {
                   this.$router.push({ name: "NotFound"});
               }
           })
-          openMapTripService.getNearbyPlaces(this.location.lat, this.location.lng)
+          openMapTripService.getNearbyPlaces(this.location[0], this.location[0])
                   .then((response) => {
                       if (response.status === 200) {
                           this.$store.commit("SET_LANDMARKS", response.data);
@@ -87,7 +88,7 @@ export default {
   created() {
     console.log("reaching created");
     //this.getAllLandmarks();
-    this.getLandmarksByZip();
+    this.getLandmarksByAddress();
   },
 };
 </script>
