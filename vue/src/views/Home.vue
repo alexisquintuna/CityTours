@@ -75,21 +75,21 @@ export default {
   justify-content: center;
   text-decoration: none;
   position: relative;
-  /* right: 7.5rem; */
+  left:0.5rem;
 }
 
 .enter-zip:hover {
   cursor: pointer;
-  background-color: white;
-  color: black;
+  background-color: black;
+  color: white;
   transition: 400ms;
   z-index: 1;
 }
 .enter-zip {
   height: 2.4rem;
   width: 100%;
-  background-color: #000;
-  color:white;
+  background-color: #fff;
+  color:black;
   border-radius: 20px;
   margin: 0;
   padding: 0;

@@ -9,17 +9,18 @@
         </div>
         <section class="info-section">
           <div class="right-side">
-            <img
+            <div class="details-img" style="background-image: v-bind:url('this.landmark.image')" ></div>
+            <!-- <img
               class="details-img"
-              src="https://www.ncaa.com/_flysystem/public-s3/styles/large_16x9/public-s3/images/2022-10/ohiostadium.jpg?h=06ac0d8c&itok=WYyRIchp"
-              alt=""
-            />
+              v-bind:src="landmark.image"
+              alt="picture of location"
+            /> -->
             <p class="details-description">{{ landmark.wikipedia_extracts.text }}</p>
           </div>
           <aside>
             <h3>Details</h3>
             <p class="aside-p">
-              <span class="aside-span">Address</span> {{ landmark.address }}
+              <span class="aside-span">Address</span> {{ landmark.address.house_number }} {{ landmark.address.road }}, {{ landmark.address.city }} {{ landmark.address.postcode }}
             </p>
             <p class="aside-p">
               <span class="aside-span">Website</span>
@@ -51,6 +52,7 @@ export default {
   created() {
     openMapTripService.getPlaceDetails(this.id)
     .then((response) => {
+      console.log(response.data)
       if (response.status === 200) {
         console.log(response.data);
         this.landmark = response.data;
