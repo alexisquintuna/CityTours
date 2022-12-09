@@ -1,8 +1,7 @@
 <template>
   <div class="addLandmark-page">
-    <!-- <h1>Adding Landmarks</h1> -->
     <div class="adding-container">
-      <form action="" class="adding-form" v-on:submit.prevent="adding">
+      <form class="adding-form" v-on:submit.prevent="adding">
         <div class="adding-box-top">
           <div class="adding-header-top">
             <h1>Create a new landmark</h1>
@@ -125,12 +124,29 @@
         <div class="adding-box">
           <div class="adding-header">
             <h1>Website</h1>
-            <p>Enter the a url link to landmark</p>
+            <p>Enter a url link for landmarks website</p>
           </div>
 
           <div class="adding-input">
             <input
               placeholder="Website Link"
+              v-model="landmark.link"
+              required
+              class="adding-form-control"
+              type="text"
+            />
+          </div>
+        </div>
+        
+        <div class="adding-box">
+          <div class="adding-header">
+            <h1>Image Url</h1>
+            <p>Enter a image url link </p>
+          </div>
+
+          <div class="adding-input">
+            <input
+              placeholder="Image Url"
               v-model="landmark.link"
               required
               class="adding-form-control"
@@ -158,6 +174,7 @@ export default {
         longitude: "",
         address: "",
         link: "",
+        imageUrl: ""
       },
       addingErrors: false,
       addingErrorsMsg: "There were problems adding this landmark",
@@ -188,16 +205,13 @@ export default {
 
 <style>
 .addLandmark-page {
-  /* background-color: rgb(0, 0, 185); */
-  height: 130vh;
   width: 100%;
   display: flex;
   align-items: flex-end;
 }
 .adding-container {
-  /* background-color: #FEFCFB; */
   width: 100%;
-  height: 90%;
+  margin: 10rem 0 4rem;
 }
 .adding-form {
   background-color: #f7f7f7;

@@ -28,7 +28,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT landmark_id, name, description, category, latitude, longitude, address, link FROM landmarks;";
+                    string sql = "SELECT landmark_id, name, description, category, latitude, longitude, address, link, photo FROM landmarks;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
 
                     SqlDataReader reader = cmd.ExecuteReader();
@@ -55,7 +55,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT landmark_id, name, description, category, latitude, longitude, address, link FROM landmarks WHERE landmark_id = @landmark_id;";
+                    string sql = "SELECT landmark_id, name, description, category, latitude, longitude, address, link, photo FROM landmarks WHERE landmark_id = @landmark_id;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@landmark_id", landmarkId);
 
@@ -74,6 +74,33 @@ namespace Capstone.DAO
             return landmark;
         }
 
+        public List<Landmark> LandmarksAdminAdded()
+        {
+            List<Landmark> hotspots = new List<Landmark>();
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "SELECT landmark_id, name, description, category, latitude, longitude, address, link, photo FROM landmarks WHERE added_by=@added_by;";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@added_by", "admin");
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        hotspots.Add(GetLandmarkFromReader(reader));
+                    }
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+
+            return hotspots;
+        }
+
         public List<Landmark> LandmarksByTripId(int tripId)
         {
             List<Landmark> landmarks = new List<Landmark>();
@@ -83,7 +110,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT landmarks.landmark_id, name, description, category, latitude, longitude, address, link FROM landmarks JOIN trip_landmark ON landmarks.landmark_id = trip_landmark.landmark_id WHERE trip_landmark.trip_id = @trip_id;";
+                    string sql = "SELECT landmarks.landmark_id, name, description, category, latitude, longitude, address, link, photo FROM landmarks JOIN trip_landmark ON landmarks.landmark_id = trip_landmark.landmark_id WHERE trip_landmark.trip_id = @trip_id;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@trip_id", tripId);
 
@@ -111,9 +138,9 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "INSERT INTO landmarks(name, description, category, latitude, longitude, address, link) " +
+                    string sql = "INSERT INTO landmarks(name, description, category, latitude, longitude, address, link, added_by, photo) " +
                         "OUTPUT INSERTED.landmark_id " +
-                        "VALUES(@name, @description, @category, @latitude, @longitude, @address, @link);";
+                        "VALUES(@name, @description, @category, @latitude, @longitude, @address, @link, @added_by, @photo);";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@name", landmark.Name);
                     cmd.Parameters.AddWithValue("@description", landmark.Description);
@@ -122,6 +149,8 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@longitude", landmark.Longitude);
                     cmd.Parameters.AddWithValue("@address", landmark.Address);
                     cmd.Parameters.AddWithValue("@link", landmark.Link);
+                    cmd.Parameters.AddWithValue("@added_by", landmark.AddedBy);
+                    cmd.Parameters.AddWithValue("@photo", landmark.Photo);
 
                     landmarkId =(int)cmd.ExecuteScalar();
                 }
@@ -145,6 +174,8 @@ namespace Capstone.DAO
                 Longitude = Convert.ToString(reader["longitude"]),
                 Address = Convert.ToString(reader["address"]),
                 Link = Convert.ToString(reader["link"]),
+                //AddedBy = Convert.ToString(reader["added_by"]),
+                Photo = Convert.ToString(reader["photo"]),
             };
 
             return l;

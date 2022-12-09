@@ -35,7 +35,7 @@
     </div>
   </div>
 </template>
-
+ 
 <script>
 //import landmarkService from "@/services/LandmarkService.js";
 import openMapTripService from "../services/OpenMapTripService.js";
@@ -141,9 +141,12 @@ export default {
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-areas: "info" "aside";
+  /* background-color: black; */
+  height: 100%;
 }
 
 .details-img {
+  border-radius: 0;
   width: 100%;
   height: 75%;
   border-radius: 20px;

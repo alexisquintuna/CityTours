@@ -47,6 +47,17 @@ namespace Capstone.Controllers
             }
             return NotFound();
         }
+
+        [HttpGet("/hotspots")]
+        public ActionResult<List<Landmark>> GetHotSpotList()
+        {
+            List<Landmark> hotspots = landmarkDao.LandmarksAdminAdded();
+            if(hotspots != null)
+            {
+                return Ok(hotspots);
+            }
+            return NotFound();
+        }
         //Double check landmark doesn't exist before adding to table
         [HttpPost]
         public ActionResult AddLandmark(Landmark landmark)

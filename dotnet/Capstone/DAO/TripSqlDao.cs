@@ -120,7 +120,10 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "DELETE FROM trips WHERE trip_id=@trip_id AND user_id=@user_id;";
+                    string sql = "BEGIN TRANSACTION; " +
+                        "DELETE FROM trip_landmark WHERE trip_id=@trip_id;" +
+                        "DELETE FROM trips WHERE trip_id=@trip_id AND user_id=@user_id;" +
+                        "COMMIT;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@trip_id", tripId);
                     cmd.Parameters.AddWithValue("@user_id", userId);

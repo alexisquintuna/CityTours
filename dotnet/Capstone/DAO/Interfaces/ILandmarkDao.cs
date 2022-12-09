@@ -10,5 +10,6 @@ namespace Capstone.DAO
         public Landmark LandmarkById(int landmarkId);
         public List<Landmark> LandmarksByTripId(int tripId);
         public int CreateLandmark(Landmark landmark);
+        public List<Landmark> LandmarksAdminAdded();
     }
 }

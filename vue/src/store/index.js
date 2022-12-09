@@ -23,6 +23,8 @@ export default new Vuex.Store({
         landmarks: [],
         trips: [],
         locationQuery: "",
+        hotspots: [],
+        zipCode: "",
     },
     mutations: {
         SET_AUTH_TOKEN(state, token) {
@@ -50,6 +52,9 @@ export default new Vuex.Store({
         },
         SET_TRIPS(state, payload) {
             state.trips = payload;
+        },
+        SET_HOTSPOTS(state, payload) {
+            state.hotspots = payload;
         },
 
 

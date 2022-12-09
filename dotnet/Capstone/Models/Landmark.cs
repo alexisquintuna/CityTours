@@ -16,5 +16,7 @@ namespace Capstone.Models
         public string Longitude { get; set; }
         public string Address { get; set; }
         public string Link { get; set; }
+        public string AddedBy { get; set; }
+        public string Photo { get; set; }
     }
 }

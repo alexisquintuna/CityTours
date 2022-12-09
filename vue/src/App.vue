@@ -16,6 +16,9 @@
     </div>
     <router-view class="router-view" />
       <!-- <p v-if="$store.state.user.username"> User is {{$store.state.user.username}}</p> -->
+      <footer>
+        <h1>this is the footer</h1>
+      </footer>
   </div>
 </template>
 <script>
@@ -47,6 +50,7 @@ export default{
   height: 120px;
   width: 100%;
   align-items: center;
+  z-index: 99;
 }
 
 #nav > div{
@@ -94,5 +98,9 @@ export default{
   color: white;
   background-color: #6BAA75;
 }
-
+footer{
+  height: 10rem;
+  width: 100%;
+  background: chartreuse;
+}
 </style>
