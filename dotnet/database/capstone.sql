@@ -62,7 +62,21 @@ VALUES
 ('Ohio Stadium', 'American football stadium in Columbus, Ohio, on the campus of The Ohio State University. Common nicknames include "the Horseshoe", "the Shoe", and "the House That Harley Built".', 'Sports', '40.000999996', '-83.018499926', '411 Woody Hayes Dr., Columbus, OH 43210', 'https://ohiostatebuckeyes.com/sports/m-footbl/facilities/ohio-stadium/'),
 ('Columbus Museum of Art', 'An art museum in downtown Columbus, Ohio. The museum collects and exhibits American and European modern and contemporary art, folk art, glass art, and photography.', 'Culture', '39.964384', '-82.987770', '480 E Broad St., Columbus, OH 43215', 'https://www.columbusmuseum.org/'),
 ('Ohio Theatre', 'A performing arts center and former movie palace on Capitol Square in Downtown Columbus, Ohio.', 'Culture', '39.983334', '-82.983330', '39 E State St., Columbus, OH 43215', 'https://www.capa.com/venues/detail/ohio-theatre'),
-('North Market', 'A 145-year-old vibrant public market made up of Ohio''s best independent merchants, farmers, and makers.', 'Food', '39.9602', '-82.9990', '59 Spruce St., Columbus, OH 43215', 'https://northmarket.org')
+('North Market', 'A 145-year-old vibrant public market made up of Ohio''s best independent merchants, farmers, and makers.', 'Food', '39.9602', '-82.9990', '59 Spruce St., Columbus, OH 43215', 'https://northmarket.org');
+
+INSERT INTO trips (trip_name, user_id)
+VALUES
+('YOURE A TRIP', 2),
+('U2 R A TRIP', 2),
+('U R LESS FUN BUT STILL A TRIP', 2),
+('Aint he a trip?', 2),
+('He isnt', 2);
+
+INSERT INTO trip_landmark (trip_id, landmark_id)
+VALUES
+(1, 1000),
+(1, 1001),
+(1, 1002);
 
 
 GO

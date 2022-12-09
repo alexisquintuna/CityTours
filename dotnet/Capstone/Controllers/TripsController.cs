@@ -21,7 +21,7 @@ namespace Capstone.Controllers
             landmarkDao = _landmarkDao;
             tripDao = _tripDao;
         }
-
+        
         [HttpGet]
         public ActionResult<List<Trip>> GetTripsByUserId()
         {
@@ -29,7 +29,7 @@ namespace Capstone.Controllers
             User user = userDao.GetUser(username);
             List<Trip> trips = tripDao.TripsByUserId(user.UserId);
 
-            if(trips != null)
+            if (trips != null)
             {
                 return Ok(trips);
             }
@@ -61,7 +61,7 @@ namespace Capstone.Controllers
             }
             return BadRequest(new { message = "An error occurred and the landmark was not created." });
         }
-
+        
         [HttpPost("{tripId}")]
         public ActionResult AddLandmarkToTrip(int tripId, Landmark landmark)
         {
@@ -70,7 +70,7 @@ namespace Capstone.Controllers
 
             List<Landmark> landmarks = landmarkDao.LandmarksByTripId(tripId);
 
-            if(landmarks.Contains(landmark))
+            if (landmarks.Contains(landmark)) //<---this doesn't do what you think
             {
                 return Ok();
             }

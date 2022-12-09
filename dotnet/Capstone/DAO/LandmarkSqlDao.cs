@@ -83,7 +83,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT landmark_id, name, description, category, latitude, longitude, address, link FROM landmarks JOIN trip_landmark ON landmark.landmark_id = trip_landmark.landmark_id WHERE trip_landmark.trip_id = @trip_id;";
+                    string sql = "SELECT landmarks.landmark_id, name, description, category, latitude, longitude, address, link FROM landmarks JOIN trip_landmark ON landmarks.landmark_id = trip_landmark.landmark_id WHERE trip_landmark.trip_id = @trip_id;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@trip_id", tripId);
 
@@ -101,7 +101,7 @@ namespace Capstone.DAO
 
             return landmarks;
         }
-
+        
         public int CreateLandmark(Landmark landmark)
         {
             int landmarkId=0;
@@ -111,7 +111,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "INSERT INTO landmark(name, description, category, latitude, longitude, address, link) " +
+                    string sql = "INSERT INTO landmarks(name, description, category, latitude, longitude, address, link) " +
                         "OUTPUT INSERTED.landmark_id " +
                         "VALUES(@name, @description, @category, @latitude, @longitude, @address, @link);";
                     SqlCommand cmd = new SqlCommand(sql, conn);
