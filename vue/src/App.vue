@@ -6,7 +6,7 @@
       </div>
       <div id="nav-left">
         <router-link class="nav-subtext nav-text" v-bind:to="{ name: 'landmarks' }" v-if="$store.state.token != ''">Landmark List</router-link>
-        <router-link class="nav-subtext nav-text" v-bind:to="{ name: 'adventures' }" v-if="$store.state.user.role == 'user'">My Adventures</router-link>
+        <router-link class="nav-subtext nav-text" v-bind:to="{ name: 'adventures' }" v-if="$store.state.token != ''">My Adventures</router-link>
         <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'user'">My Profile</router-link>
         <router-link class="nav-subtext nav-text" v-bind:to="{ name: 'add-landmarks' }" v-if="$store.state.user.role == 'admin'">Add Landmarks</router-link>
         <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'admin'">Admin Profile</router-link>
