@@ -27,6 +27,7 @@ export default {
       landmarkService
         .getHotspots()
         .then((response) => {
+          console.log(response.data)
           if (response.status === 200) {
             this.$store.commit("SET_HOTSPOTS", response.data);
           }

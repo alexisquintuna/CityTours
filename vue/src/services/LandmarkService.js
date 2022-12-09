@@ -1,17 +1,16 @@
-import axios from 'axios';
+import axios from "axios";
 
 export default {
-
     getLandmarks() {
-        return axios.get('/landmark');
+        return axios.get("/landmark");
     },
     getLandmarkById(id) {
         return axios.get(`/landmark/${id}`);
     },
     createLandmark(landmark) {
-        return axios.post('/landmark', landmark);
-    }
+        return axios.post("/landmark", landmark);
+    },
     getHotspots() {
-        return axios.get('/hotspots')
-    }
-}
+        return axios.get("/hotspots");
+    },
+};

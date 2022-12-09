@@ -17,17 +17,17 @@
 
     <div class="landmark-suggestion">
         <h1>Hot spots</h1>
-      <!-- <suggestion-list></suggestion-list> -->
+      <suggestion-list></suggestion-list>
     </div>
 
   </div>
 </template>
 
 <script>
-// import SuggestionList from "@/components/LandmarkSuggestions.vue"
+import SuggestionList from "@/components/LandmarkSuggestions.vue"
 export default {
   name: "home",
-  // components: {SuggestionList},
+  components: {SuggestionList},
   data() {
     return {
       zipCode: "",

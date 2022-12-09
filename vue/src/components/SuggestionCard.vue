@@ -6,13 +6,14 @@
     v-bind:to="{ name: 'landmark-details', params: { id: landmark.id } }"
   >
       <div class="suggestion-bg">
+        <img class="suggestion-img" v-bind:src="landmark.photo" alt="">
         <div class="suggestion-details">
           <h1>{{ landmark.name }}</h1>
         </div>
         <div class="suggestion-icon">
           <img
             class="img-icon"
-            src="{{landmark.photo}}"
+            v-bind:src="landmark.photo"
             alt=""
           />
         </div>
@@ -22,7 +23,6 @@
 </template>
 
 <script>
-import LandmarkService from '../services/LandmarkService.js'
 export default {
   name: "suggestion-card",
   props: {
@@ -43,13 +43,15 @@ export default {
     rgba(247, 247, 247, 0),
     rgb(0, 0, 0)
   );
+  overflow: hidden;
 }
 .suggestion-link {
   text-decoration: none;
 }
-
+.suggestion-img{
+  height: 100%;
+}
 .suggestion-card {
-  background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/LeVeque_Tower%2C_Columbus%2C_OH%2C_US_crop.jpg/170px-LeVeque_Tower%2C_Columbus%2C_OH%2C_US_crop.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   border-radius: 30px;
