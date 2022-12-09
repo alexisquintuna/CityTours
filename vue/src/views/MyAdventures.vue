@@ -173,10 +173,9 @@ export default {
 }
 .adventure-container {
   background-color: rgb(255, 255, 255);
-  border-radius: 20px;
   position: relative;
   height: 100%;
-  margin-top: 7rem;
+  margin-top: 8rem;
   display: flex;
   flex-direction: column;
   align-items: center;

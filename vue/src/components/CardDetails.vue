@@ -5,27 +5,26 @@
       <div class="details-main">
         <div class="header-section">
           <h1 class="landmark-header">{{ landmark.name }}</h1>
-          <p>In {{ landmark.address.city }}, {{landmark.address.state}} </p>
+          <p class="landmark-subheader">In {{ landmark.address.city }}, {{landmark.address.country}} </p>
         </div>
         <section class="info-section">
           <div class="right-side">
-            <div class="details-img" style="background-image: v-bind:url('this.landmark.image')" ></div>
-            <!-- <img
+            <img
               class="details-img"
-              v-bind:src="landmark.image"
+              src="https://www.kids-world-travel-guide.com/images/xitaly_coloseo_shutterstock_88957447_ed_1445441219_31892.jpg.pagespeed.ic.L-ebfWM8d-.webp"
               alt="picture of location"
-            /> -->
+            />
             <p class="details-description">{{ landmark.wikipedia_extracts.text }}</p>
           </div>
           <aside>
             <h3>Details</h3>
             <p class="aside-p">
-              <span class="aside-span">Address</span> {{ landmark.address.house_number }} {{ landmark.address.road }}, {{ landmark.address.city }} {{ landmark.address.postcode }}
+              <span class="aside-span">Address</span> {{ landmark.address.house_number }} {{ landmark.address.road }} {{ landmark.address.city }} {{ landmark.address.postcode }}
             </p>
             <p class="aside-p">
               <span class="aside-span">Website</span>
               <a :href="landmark.link" target="_blank" class="details-link">{{
-                landmark.link
+                landmark.url ? landmark.url : "No Website link found"
               }}</a>
             </p>
             <br />
@@ -133,6 +132,10 @@ export default {
 }
 .landmark-header {
   font-size: 48px;
+}
+
+.landmark-subheader{
+  font-style: italic;
 }
 .info-section {
   display: grid;
