@@ -7,21 +7,27 @@
         placeholder="Please enter a zip code"
         v-model="zipCode"
       />
-      <div class="div-submit">
         <router-link
           class="submit-btn"
           v-bind:to="{ name: 'landmarks', params: { zip: zipCode } }"
         >
           <input class="enter-zip" type="submit" />
         </router-link>
-      </div>
     </form>
+
+    <div class="landmark-suggestion">
+        <h1>Hot spots</h1>
+      <!-- <suggestion-list></suggestion-list> -->
+    </div>
+
   </div>
 </template>
 
 <script>
+// import SuggestionList from "@/components/LandmarkSuggestions.vue"
 export default {
   name: "home",
+  // components: {SuggestionList},
   data() {
     return {
       zipCode: "",
@@ -41,12 +47,18 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  flex-direction: column;
+  background: chartreuse;
 }
+
 .home-form {
-  width: 50%;
+  width: auto;
   display: flex;
   align-items: center;
+  background: chocolate;
 }
+
 .home-input {
   background-color: rgba(255, 255, 255, 0);
   border-bottom: 5px solid white;
@@ -54,30 +66,28 @@ export default {
   font-size: 65px;
   height: 7rem;
   color: white;
+  width: 33rem;
+  font-size: 3rem;
 }
 
-.div-submit{
-  height: 5rem;
-  width: 7rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  right: 7rem;
-}
+
 .submit-btn {
   height: 40%;
-  width: 45rem;
+  width: 8rem;
   border-radius: 20px;
   background-color: #dbdbdb;
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
-  position: relative;
-  left:0.5rem;
 }
 
+.submit-btn:hover {
+  cursor: pointer;
+  background-color: black;
+  color: white;
+  transition: 400ms;
+}
 .enter-zip:hover {
   cursor: pointer;
   background-color: black;
@@ -98,7 +108,26 @@ export default {
 .home-input::placeholder {
   color: white;
 }
+
 .home-input:focus::placeholder {
   color: white;
 }
+
+.landmark-suggestion {
+  position: absolute;
+  /* bottom: 2rem; */
+  bottom: 0;
+  /* border-radius: 20px; */
+  margin: 5rem auto 0;
+  height: 18rem;
+  width: 75%;
+  background-color: #f5f5f5;
+}
+
+.landmark-suggestion > h1 {
+    font-size: 2.5rem;
+    display: inline-block;
+    margin: 1rem 1rem 0rem 2.7rem;
+}
+
 </style>
