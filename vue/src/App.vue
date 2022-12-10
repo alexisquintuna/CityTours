@@ -2,47 +2,88 @@
   <div id="app">
     <div id="nav">
       <div>
-        <router-link id="logo-text" class="nav-text" v-bind:to="{ name: 'home' }">Opn <br>City</router-link>
+        <router-link
+          id="logo-text"
+          class="nav-text"
+          v-bind:to="{ name: 'home' }"
+          >Opn <br />City</router-link
+        >
       </div>
-      <div id="nav-left">
-        <router-link class="nav-subtext nav-text" v-bind:to="{ name: 'landmarks' }" v-if="$store.state.token != ''">Landmark List</router-link>
-        <router-link class="nav-subtext nav-text" v-bind:to="{ name: 'adventures' }" v-if="$store.state.token != ''">My Adventures</router-link>
-        <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'user'">My Profile</router-link>
-        <router-link class="nav-subtext nav-text" v-bind:to="{ name: 'add-landmarks' }" v-if="$store.state.user.role == 'admin'">Add Landmarks</router-link>
-        <router-link class="nav-subtext nav-text" v-bind:to="{ name: '' }" v-if="$store.state.user.role == 'admin'">Admin Profile</router-link>
-        <router-link class="nav-subtext nav-text login-btn" v-bind:to="{ name: 'logout' }" v-if="$store.state.token != ''">Logout</router-link>
-        <router-link class="nav-subtext nav-text login-btn" v-bind:to="{ name: 'login' }" v-if="$store.state.token == ''" >Log In</router-link>
+      <div id="nav-right">
+        <router-link
+          class="nav-subtext nav-text"
+          v-bind:to="{ name: 'landmarks' }"
+          v-if="$store.state.token != ''"
+          >Landmark List</router-link
+        >
+        <router-link
+          class="nav-subtext nav-text"
+          v-bind:to="{ name: 'adventures' }"
+          v-if="$store.state.token != ''"
+          >My Adventures</router-link
+        >
+        <router-link
+          class="nav-subtext nav-text"
+          v-bind:to="{ name: '' }"
+          v-if="$store.state.user.role == 'user'"
+          >My Profile</router-link
+        >
+        <router-link
+          class="nav-subtext nav-text"
+          v-bind:to="{ name: 'add-landmarks' }"
+          v-if="$store.state.user.role == 'admin'"
+          >Add Landmarks</router-link
+        >
+        <router-link
+          class="nav-subtext nav-text"
+          v-bind:to="{ name: '' }"
+          v-if="$store.state.user.role == 'admin'"
+          >Admin Profile</router-link
+        >
+        <router-link
+          class="nav-login-btn"
+          v-bind:to="{ name: 'logout' }"
+          v-if="$store.state.token != ''"
+          >Logout</router-link
+        >
+        <router-link
+          class="nav-login-btn"
+          v-bind:to="{ name: 'login' }"
+          v-if="$store.state.token == ''"
+          >Log In</router-link
+        >
       </div>
     </div>
     <router-view class="router-view" />
-      <!-- <p v-if="$store.state.user.username"> User is {{$store.state.user.username}}</p> -->
-      <footer>
-        <h1>this is the footer</h1>
-      </footer>
+    <footer>
+      <h1>this is the footer</h1>
+    </footer>
   </div>
 </template>
 <script>
-export default{
-  data(){
-    return{
-      user:{
-        role: this.$store.state.user
-      }
-    }
-  }
-}
+export default {
+  data() {
+    return {
+      user: {
+        role: this.$store.state.user,
+      },
+    };
+  },
+};
 </script>
 
 <style>
-.router-view{
+.router-view {
   bottom: 0;
   height: auto;
   width: 100%;
 }
-#app{
+#app {
   height: auto;
+  /* background-color: wheat; */
 }
-#nav{
+#nav {
+  background-color: #1a2e34;
   position: absolute;
   top: 0;
   display: flex;
@@ -53,54 +94,88 @@ export default{
   z-index: 99;
 }
 
-#nav > div{
+#nav > div {
   margin: 0 70px;
 }
 
 .nav-text {
   text-decoration: none;
-  color: rgb(255, 255, 255);;
-}
- 
-#logo-text{
-  font-size: 36px;
+  color: rgb(255, 255, 255);
+  display: inline-block;
+  font-size: 1.2rem;
 }
 
-#nav-left{
+#logo-text {
+  font-size: 36px;
+  color:#59E3A8;
+}
+
+#nav-right {
+  /* background-color: tomato; */
   display: flex;
   align-items: center;
+  justify-content: flex-end;
+  width: auto;
 }
-
 .nav-subtext{
-  font-size: 24px;
-  margin: 0 15px;
+  margin: 0 1rem;
 }
-
-.nav-subtext:hover{
-  color:#6BAA75;
+.nav-subtext:hover {
+  color: #59E3A8;
   text-decoration: underline;
   transition: 400ms;
 }
 
-.login-btn{
+.nav-login-btn {
   background-color: rgba(255, 255, 255, 0.288);
-  border-radius: 100px;
-  display: block;
-  height: 40px;
-  width: 120px;
-  display: flex;
-  align-items: center;
+  color:white;
+  border-radius: 20px;
+  height: 2.5rem;
+  width: 6rem;
+  display:flex;
+  margin: 0 10px;
   justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  font-size: 1.2rem;
+
 }
 
-.login-btn:hover{
-  transition: 700ms;
-  color: white;
-  background-color: #6BAA75;
+.nav-login-btn:hover{
+  color:#1A2E34;
+  background-color: #59E3A8 ;
+  transition: 300ms;
 }
-footer{
+
+.login-btn:hover {
+  transition: 300ms;
+  color: #1A2E34;
+  background-color: #59E3A8;
+}
+footer {
   height: 10rem;
   width: 100%;
-  background: chartreuse;
+  background: #1A2E34;
+  color: white;
+}
+input {
+  border: none;
+}
+input:focus {
+  outline: none;
+}
+
+button {
+  margin: 0 auto;
+  height: 60px;
+  border: none;
+  border-radius: 50px;
+}
+
+button:hover {
+  color: black;
+  background-color: white;
+  transition: 300ms;
+  cursor: pointer;
 }
 </style>

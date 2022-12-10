@@ -1,25 +1,22 @@
 <template>
-    <div class="suggestion-card">
-
-  <router-link
-    class="suggestion-link"
-    v-bind:to="{ name: 'landmark-details', params: { id: landmark.id } }"
-  >
+  <div class="suggestion-card">
+    <!-- het rid of password thing -->
+    <!-- chrome settings and security -->
+    <router-link
+      class="suggestion-link"
+      v-bind:to="{ name: 'landmark-details', params: { id: landmark.id } }"
+    >
       <div class="suggestion-bg">
-        <img class="suggestion-img" v-bind:src="landmark.photo" alt="">
+        <img class="suggestion-img" v-bind:src="landmark.photo" alt="" />
         <div class="suggestion-details">
           <h1>{{ landmark.name }}</h1>
         </div>
         <div class="suggestion-icon">
-          <img
-            class="img-icon"
-            v-bind:src="landmark.photo"
-            alt=""
-          />
+          <img class="img-icon" v-bind:src="landmark.photo" alt="" />
         </div>
       </div>
-  </router-link>
-    </div>
+    </router-link>
+  </div>
 </template>
 
 <script>
@@ -28,13 +25,18 @@ export default {
   props: {
     landmark: Object,
   },
-
 };
 </script>
 
 <style>
+  .suggestion-card {
+    border-radius: 30px;
+    height: 100%;
+    width: 18rem;
+  overflow: hidden;
+  }
+
 .suggestion-bg {
-  padding: 5px 10px;
   height: 100%;
   width: 100%;
   border-radius: 20px;
@@ -43,26 +45,18 @@ export default {
     rgba(247, 247, 247, 0),
     rgb(0, 0, 0)
   );
-  overflow: hidden;
+  
 }
 .suggestion-link {
   text-decoration: none;
 }
-.suggestion-img{
+.suggestion-img {
   height: 100%;
-}
-.suggestion-card {
-  background-repeat: no-repeat;
-  background-size: cover;
-  border-radius: 30px;
-  height: 100%;
-  width: 18rem;
 }
 
 .suggestion-details {
   margin-right: 1rem;
   margin-bottom: 2rem;
-  overflow: hidden;
   width: 100%;
   height: 100%;
 }
@@ -81,7 +75,7 @@ export default {
 
 .suggestion-icon {
   position: absolute;
-  top: 1.2rem;
+  top: .2rem;
   right: 1.5rem;
   width: 1.3rem;
   height: 1.3rem;

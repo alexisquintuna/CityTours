@@ -17,7 +17,7 @@
 
     <div class="landmark-suggestion">
         <h1>Hot spots</h1>
-      <suggestion-list></suggestion-list>
+      <suggestion-list class="suggestion-container"></suggestion-list>
     </div>
 
   </div>
@@ -90,8 +90,8 @@ export default {
 }
 .enter-zip:hover {
   cursor: pointer;
-  background-color: black;
-  color: white;
+  background-color: #59E3A8;
+  color: #1A2E34;
   transition: 400ms;
   font-size: 1.6rem;
 }
@@ -100,8 +100,8 @@ export default {
   height: 100%;
   width: 100%;
   background-color: #fff;
-  color:black;
-  border-radius: 20px;
+  color:#1A2E34;
+  border-radius: 100px;
   margin: 0;
   padding: 0;
 }
@@ -116,19 +116,22 @@ export default {
 
 .landmark-suggestion {
   position: absolute;
-  /* bottom: 2rem; */
   bottom: 0;
-  /* border-radius: 20px; */
   margin: 5rem auto 0;
-  height: 18rem;
+  height: 20rem;
   width: 75%;
-  background-color: #f5f5f5;
+  background-color: #3D9F76;
+  overflow: hidden;
 }
 
 .landmark-suggestion > h1 {
     font-size: 2.5rem;
     display: inline-block;
     margin: 1rem 1rem 0rem 2.7rem;
+    color: #fff;
 }
 
+.suggestion-container{
+  height: 70%;
+}
 </style>
