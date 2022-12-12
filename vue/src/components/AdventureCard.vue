@@ -1,14 +1,14 @@
 <template>
   <div class="adventure-card">
-    <div class="delete-btn-container">
-      <button class="delete-btn" v-on:click="deleteTrip(trip.id)">x</button>
-    </div>
     <router-link
       class="adventure-link-card" v-bind:trip="trip"
       v-bind:to="{ name: 'adventure-details', params: { id: trip.id } }"
     >
       <div class="adv-bg">
         <h1>{{ trip.name }}</h1>
+      </div>
+      <div class="delete-btn-container">
+        <button class="delete-btn" v-on:click.stop="deleteTrip(trip.id)">x</button>
       </div>
       <div class="popup-adv" v-if="buttonTrigger">
         <div class="popup-inner-adv">
