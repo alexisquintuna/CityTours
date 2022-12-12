@@ -182,8 +182,6 @@ export default {
   },
   methods: {
     adding() {
-      //here will add a service to add stuff to the database
-      //example
       landmarkService
         .createLandmark(this.landmark)
         .then((res) => {

@@ -4,9 +4,17 @@
     <div class="details-container">
       <div class="details-main">
         <div class="header-section">
-          <h1 class="landmark-header">{{ landmark.name }}</h1>
-          <p class="landmark-subheader">In {{ landmark.address.city }}, {{landmark.address.country}} </p>
-          <button class="landmark-headerBtn">Save adventure</button>
+          <h1 class="landmark-header">{{ rawLandmark.name }}</h1>
+          <p class="landmark-subheader">In {{ rawLandmark.address.city }}, {{rawLandmark.address.country}} </p>
+          <form class="addLandmarkBtn" v-on:submit.prevent="adding">
+            <label for="trips">Add To An Adventure:</label>
+            <select name="trips" class="form-control" v-model="trip">
+              <option>Select Adventure</option>
+              <option v-for="trip in this.$store.state.trips"
+              v-bind:key="trip.id" v-bind:value="trip">{{trip.name}}</option>
+            </select>
+            <input type="submit">
+          </form>
         </div>
         <section class="info-section">
           <div class="right-side">
@@ -15,17 +23,17 @@
               v-bind:src='image'
               alt="picture of location"
             />
-            <p class="details-description">{{ landmark.wikipedia_extracts.text }}</p>
+            <p class="details-description">{{ rawLandmark.wikipedia_extracts.text }}</p>
           </div>
           <aside>
             <h3>Details</h3>
             <p class="aside-p">
-              <span class="aside-span">Address</span> {{ landmark.address.house_number }} {{ landmark.address.road }} {{ landmark.address.city }} {{ landmark.address.postcode }}
+              <span class="aside-span">Address</span> {{ rawLandmark.address.house_number }} {{ rawLandmark.address.road }} {{ rawLandmark.address.city }} {{ rawLandmark.address.postcode }}
             </p>
             <p class="aside-p">
               <span class="aside-span">Website</span>
-              <a :href="landmark.link" target="_blank" class="details-link">{{
-                landmark.url ? landmark.url : "No Website link found"
+              <a :href="rawLandmark.link" target="_blank" class="details-link">{{
+                rawLandmark.url ? rawLandmark.url : "No Website link found"
               }}</a>
             </p>
             <br />
@@ -40,25 +48,64 @@
 <script>
 //import landmarkService from "@/services/LandmarkService.js";
 import openMapTripService from "../services/OpenMapTripService.js";
+import TripsService from '../services/TripsService.js';
 
 export default {
   name: "card-details",
   data() {
     return {
-      landmark: {},
-      image: ""
+      rawLandmark: {},
+      image: "",
+      landmark:{
+        name: '',
+        description: '',
+        category: '',
+        latitude: '',
+        longitude: '',
+        address: '',
+        link: '',
+        photo: '',
+      },
+      trip: {
+        id: '',
+        name: '',
+      }
     };
   },
   props: ["id"],
+  methods: {
+    adding() {
+      TripsService
+      .addLandmarkToTrip(this.trip.id, this.landmark)
+      .then((res) => {
+        if (res.status == 200) {
+          console.log(res.status)
+        }
+      })
+      .catch ((err) => {
+        if(err.response.status==400) {
+          console.log(err.response.status)
+        }
+      });
+    }
+  },
   created() {
     openMapTripService.getPlaceDetails(this.id)
     .then((response) => {
       console.log(response.data)
       if (response.status === 200) {
         console.log(response.data);
-        this.landmark = response.data;
+        this.rawLandmark = response.data;
         
-        this.image = this.landmark.preview.source;
+        this.image = this.rawLandmark.preview.source;
+        this.landmark.name= `${this.rawLandmark.name}`;
+        this.landmark.description= `${this.rawLandmark.wikipedia_extracts.text}`;
+        this.landmark.category= `${this.rawLandmark.kinds}`;
+        this.landmark.latitude= `${this.rawLandmark.point.lat}`;
+        this.landmark.longitude= `${this.rawLandmark.point.lon}`;
+        this.landmark.address= `${this.rawLandmark.address.house_number} ${this.rawLandmark.address.road}, ${this.rawLandmark.address.city}, ${this.rawLandmark.address.postcode}`;
+        this.landmark.link= `${this.rawLandmark.link}`;
+        this.landmark.photo= `${this.image}`;
       }
     })
     .catch((error) => {

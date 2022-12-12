@@ -70,7 +70,7 @@ namespace Capstone.Controllers
 
             List<Landmark> landmarks = landmarkDao.LandmarksByTripId(tripId);
 
-            if (landmarks.Contains(landmark)) //<---this doesn't do what you think
+            if (landmarks != null) //<---this doesn't do what you think
             {
                 return Ok();
             }
