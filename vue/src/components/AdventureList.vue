@@ -1,12 +1,16 @@
 <template>
   <div class="">
     <div class="adventure-list">
-      <div class="adv-list-container">
+      <div v-if="hasAdventures" class="adv-list-container">
         <adventure-card
           class="adv-card"
           v-for="trip in this.$store.state.trips"
           v-bind:key="trip.id" v-bind:trip="trip"
         />
+      </div>
+      <div v-show="!hasAdventures" class="no-adventures-container">
+          <img class="no-adventures-img" src="https://img.freepik.com/free-vector/journey-concept-illustration_114360-3445.jpg?w=826&t=st=1670683792~exp=1670684392~hmac=6720338be7b3899a378ae2021b7dc6bb73234d9dd9c645b044643eed118f9462" alt="">
+          <h2>You have no adventures lets start planning one!</h2>
       </div>
     </div>
   </div>
@@ -19,12 +23,20 @@ import TripsService from "../services/TripsService.js";
 export default {
   name: "adventure-list",
   components: { AdventureCard },
+  data(){
+    return{
+      hasAdventures: false,
+    }
+  },
   methods: {
     getTripsByUser() {
       TripsService.getTrips()
         .then((response) => {
-          console.log(response.data)
+          console.log(response.data.length)
           if (response.status === 200) {
+            if(response.data.length !=0){
+              this.hasAdventures = true;
+            }
             this.$store.commit("SET_TRIPS", response.data);
           }
         })
@@ -55,5 +67,18 @@ export default {
 }
 .adv-card {
   margin: 1rem;
+}
+.no-adventures-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.no-adventures-img{
+  height: 40%;
+  width: 40%;
+}
+.no-adventures-container > h2{
+  font-size: 2rem;
 }
 </style>
