@@ -38,6 +38,7 @@ export default {
   justify-content: space-around;
   background-color: #f5f5f5;
   width: 75%;
+  height: 85%;
   margin: 0 auto;
   border-radius: 20px;
 }

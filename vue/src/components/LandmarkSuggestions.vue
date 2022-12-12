@@ -48,23 +48,29 @@ export default {
 <style>
 .suggestion-list {
   width: 95%;
-  height: auto;
   background-color: rgb(255, 255, 255);
   margin: 1rem auto 0;
-  overflow: auto;
   border-radius: 10px;
   padding: 10px 20px;
-  position: relative;
 }
 .suggestion-list  > ul {
     display: flex;
+    /*grid-column: ;flex-wrap: nowrap;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+    background-color: aquamarine; */
+    width: 100%;
     height: 100%;
-    width: auto;
-    display: flex;
-    align-items: center;
+    margin: 4px, 4px;
+        padding: 4px;
+        /* background-color: #08c708; */
+        overflow-x: auto;
+        overflow-y: hidden;
+        white-space: nowrap;
 }
-.suggestion-list  > ul > li {
-    width: 20%;
+.suggestion-li{
     height: 90%;
+    width: 25%;
 }
 </style>
