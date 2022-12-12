@@ -27,9 +27,10 @@ export default {
   data() {
       return {
           location: {
-              
-              
-          }
+            features: [
+          ]
+          },
+          coordinates: []
       }
   },
   //props: ['zipCode'],
@@ -43,17 +44,10 @@ export default {
               if (response.status === 200) {
                   this.location = response.data;
                   console.log(response.data);
-                  
-              }
-          })
-          .catch((error) => {
-              console.log("reached catch in landmarklist.vue");
-              console.log(error);
-              if (error.response.status == 404) {
-                  this.$router.push({ name: "NotFound"});
-              }
-          })
-          openMapTripService.getNearbyPlaces(this.location[0], this.location[0])
+                  this.coordinates = (this.location.features[0].geometry.coordinates);
+                  console.log(this.coordinates);
+
+                            openMapTripService.getNearbyPlaces(this.coordinates[0], this.coordinates[1])
                   .then((response) => {
                       if (response.status === 200) {
                           this.$store.commit("SET_LANDMARKS", response.data);
@@ -65,6 +59,18 @@ export default {
                           this.$router.push({ name: "NotFound"});
                       }
                   });
+                  
+              }
+          })
+          .catch((error) => {
+              console.log("reached catch in landmarklist.vue");
+              console.log(error);
+              if (error.response.status == 404) {
+                  this.$router.push({ name: "NotFound"});
+              }
+          })
+
+
 
       }
     // getAllLandmarks() {
