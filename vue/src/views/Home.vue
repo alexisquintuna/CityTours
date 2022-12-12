@@ -33,6 +33,7 @@
 
 <script>
 import SuggestionList from "@/components/LandmarkSuggestions.vue"
+import TripsService from "../services/TripsService.js"
 export default {
   name: "home",
   components: {SuggestionList},
@@ -45,6 +46,24 @@ export default {
     saveQuery() {
       this.$store.commit("SET_LOCATION_QUERY", this.locationQuery);
     },
+    getTripsByUser() {
+      TripsService.getTrips()
+        .then((response) => {
+          console.log(response.data)
+          if (response.status === 200) {
+            this.$store.commit("SET_TRIPS", response.data);
+          }
+        })
+        .catch((error) => {
+          if (error.response.status == 400) {
+            this.$router.push({ name: "NotFound" });
+          }
+        });
+    },
+  },
+  created() {
+    console.log("reaching created");
+    this.getTripsByUser();
   },
 };
 </script>

@@ -1,58 +1,60 @@
 <template>
   <div class="adventure-card">
-    <div class="adv-bg">
-      <div class="delete-btn-container">
-        <button class="delete-btn" v-on:click="deleteTrip(trip.id)">x</button>
-      </div>
-      <h1>{{ trip.name }}</h1>
+    <div class="delete-btn-container">
+      <button class="delete-btn" v-on:click="deleteTrip(trip.id)">x</button>
     </div>
-    <!-- v-if="buttonTrigger" -->
-    <div class="popup-adv" v-if="buttonTrigger">
-      <div class="popup-inner-adv" >
-        <h1>Are you sure you want to delete this card?</h1>
-        <div class="adv-btn-container">
-          <button v-on:click="togglePopup()" >Cancel</button>
-          <button v-on:click="toggleDelete()" >Confirm</button>
+    <router-link
+      class="adventure-link-card"
+      v-bind:to="{ name: 'adventure-details', params: { id: trip.id } }"
+    >
+      <div class="adv-bg">
+        <h1>{{ trip.name }}</h1>
+      </div>
+      <div class="popup-adv" v-if="buttonTrigger">
+        <div class="popup-inner-adv">
+          <h1>Are you sure you want to delete this card?</h1>
+          <div class="adv-btn-container">
+            <button v-on:click="togglePopup()">Cancel</button>
+            <button v-on:click="toggleDelete()">Confirm</button>
+          </div>
         </div>
       </div>
-    </div>
+    </router-link>
   </div>
 </template>
 
 <script>
 import TripsService from "../services/TripsService";
 export default {
-  data(){
-    return{
+  data() {
+    return {
       buttonTrigger: false,
       confirmDelete: false,
       tripId: 0,
-    }
+    };
   },
   name: "adventure-card",
   props: ["trip"],
   methods: {
     deleteTrip(id) {
-      this.buttonTrigger = !this.buttonTrigger
-      this.tripId = id
+      this.buttonTrigger = !this.buttonTrigger;
+      this.tripId = id;
     },
-    togglePopup(){
-      this.buttonTrigger = !this.buttonTrigger
+    togglePopup() {
+      this.buttonTrigger = !this.buttonTrigger;
     },
-    toggleDelete(){
-      this.confirmDelete = !this.confirmDelete
-      if(this.confirmDelete){
-              TripsService.deleteTrip(this.tripId)
-        .then(
-           location.reload()
-        )
-        .catch((error) => {
-          if (error.response.status == 400) {
-            this.$router.push({ name: "NotFound" });
-          }
-        });
+    toggleDelete() {
+      this.confirmDelete = !this.confirmDelete;
+      if (this.confirmDelete) {
+        TripsService.deleteTrip(this.tripId)
+          .then(location.reload())
+          .catch((error) => {
+            if (error.response.status == 400) {
+              this.$router.push({ name: "NotFound" });
+            }
+          });
       }
-    }
+    },
   },
 };
 </script>
@@ -65,7 +67,9 @@ export default {
   width: 22%;
   background-image: url("https://globalgrasshopper.com/wp-content/uploads/2020/09/The-best-places-to-vist-in-Ecuador.jpg");
 }
-
+.adventure-link-card {
+  color: #59e3a8;
+}
 .adv-bg {
   height: 100%;
   width: 100%;
@@ -106,6 +110,7 @@ export default {
   top: 1rem;
   width: 2rem;
   height: 2rem;
+  z-index: 1;
 }
 
 .delete-btn {
@@ -115,14 +120,14 @@ export default {
   color: rgb(253, 253, 253);
 }
 
-.popup-adv{
+.popup-adv {
   color: black;
   position: fixed;
-  left:0;
+  left: 0;
   right: 0;
-  top:0;
-  bottom:0;
-  background: rgba(0,0,0,0.2);
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
   z-index: 99;
 
   display: flex;
@@ -130,17 +135,17 @@ export default {
   justify-content: center;
 }
 
-.popup-inner-adv{
+.popup-inner-adv {
   background: white;
   height: 25%;
   width: 30%;
   display: flex;
   align-items: center;
   justify-content: center;
-flex-direction: column;
+  flex-direction: column;
 }
 
-.adv-btn-container{
+.adv-btn-container {
   display: flex;
 }
 </style>

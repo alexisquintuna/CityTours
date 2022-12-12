@@ -1,30 +1,39 @@
 <template>
   <div class="details-page">
-    <router-link id="back" v-bind:to="{ name: 'landmarks', params: {query: this.$store.state.locationQuery} }">BACK</router-link>
     <div class="details-container">
       <div class="details-main">
+    <router-link id="back" v-bind:to="{ name: 'landmarks', params: {query: this.$store.state.locationQuery} }">BACK</router-link>
         <div class="header-section">
-          <h1 class="landmark-header">{{ landmark.name }}</h1>
-          <p class="landmark-subheader">In {{ landmark.address.city }}, {{landmark.address.country}} </p>
+          <h1 class="landmark-header">{{ rawLandmark.name }}</h1>
+          <p class="landmark-subheader">In {{ rawLandmark.address.city }}, {{rawLandmark.address.country}} </p>
+          <form class="addLandmarkBtn" v-on:submit.prevent="adding">
+            <label for="trips">Add To An Adventure:</label>
+            <select name="trips" class="form-control" v-model="trip">
+              <option>Select Adventure</option>
+              <option v-for="trip in this.$store.state.trips"
+              v-bind:key="trip.id" v-bind:value="trip">{{trip.name}}</option>
+            </select>
+            <input type="submit">
+          </form>
         </div>
         <section class="info-section">
           <div class="right-side">
             <img
-              class="details-img"
+              id="details-img"
               v-bind:src='image'
               alt="picture of location"
             />
-            <p class="details-description">{{ landmark.wikipedia_extracts.text }}</p>
+            <p class="details-description">{{ rawLandmark.wikipedia_extracts.text }}</p>
           </div>
           <aside>
             <h3>Details</h3>
             <p class="aside-p">
-              <span class="aside-span">Address</span> {{ landmark.address.house_number }} {{ landmark.address.road }} {{ landmark.address.city }} {{ landmark.address.postcode }}
+              <span class="aside-span">Address</span> {{ rawLandmark.address.house_number }} {{ rawLandmark.address.road }} {{ rawLandmark.address.city }} {{ rawLandmark.address.postcode }}
             </p>
             <p class="aside-p">
               <span class="aside-span">Website</span>
-              <a :href="landmark.link" target="_blank" class="details-link">{{
-                landmark.url ? landmark.url : "No Website link found"
+              <a :href="rawLandmark.link" target="_blank" class="details-link">{{
+                rawLandmark.url ? rawLandmark.url : "No Website link found"
               }}</a>
             </p>
             <br />
@@ -37,27 +46,65 @@
 </template>
  
 <script>
-//import landmarkService from "@/services/LandmarkService.js";
 import openMapTripService from "../services/OpenMapTripService.js";
+import TripsService from '../services/TripsService.js';
 
 export default {
   name: "card-details",
   data() {
     return {
-      landmark: {},
-      image: ""
+      rawLandmark: {},
+      image: "",
+      landmark:{
+        name: '',
+        description: '',
+        category: '',
+        latitude: '',
+        longitude: '',
+        address: '',
+        link: '',
+        photo: '',
+      },
+      trip: {
+        id: '',
+        name: '',
+      }
     };
   },
   props: ["id"],
+  methods: {
+    adding() {
+      TripsService
+      .addLandmarkToTrip(this.trip.id, this.landmark)
+      .then((res) => {
+        if (res.status == 200) {
+          console.log(res.status)
+        }
+      })
+      .catch ((err) => {
+        if(err.response.status==400) {
+          console.log(err.response.status)
+        }
+      });
+    }
+  },
   created() {
     openMapTripService.getPlaceDetails(this.id)
     .then((response) => {
       console.log(response.data)
       if (response.status === 200) {
         console.log(response.data);
-        this.landmark = response.data;
+        this.rawLandmark = response.data;
         
-        this.image = this.landmark.preview.source;
+        this.image = this.rawLandmark.preview.source;
+        this.landmark.name= `${this.rawLandmark.name}`;
+        this.landmark.description= `${this.rawLandmark.wikipedia_extracts.text}`;
+        this.landmark.category= `${this.rawLandmark.kinds}`;
+        this.landmark.latitude= `${this.rawLandmark.point.lat}`;
+        this.landmark.longitude= `${this.rawLandmark.point.lon}`;
+        this.landmark.address= `${this.rawLandmark.address.house_number} ${this.rawLandmark.address.road}, ${this.rawLandmark.address.city}, ${this.rawLandmark.address.postcode}`;
+        this.landmark.link= `${this.rawLandmark.link}`;
+        this.landmark.photo= `${this.image}`;
       }
     })
     .catch((error) => {
@@ -65,68 +112,60 @@ export default {
         this.$router.push({name: "NotFound"});
       }
     })
-
-    // landmarkService
-    //   .getLandmarkById(this.id)
-    //   .then((response) => {
-    //     if (response.status === 200) {
-    //       console.log(response.data);
-    //       this.landmark = response.data;
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     if (error.response.status == 404) {
-    //       this.$router.push({ name: "NotFound" });
-    //     }
-    //   });
   },
 };
 </script>
 
 <style>
+
+.details-page {
+  background-color: rgb(255, 255, 255);
+  color: black;
+  padding: 0;
+  height: 160vh;
+}
+.details-container {
+  margin: 1rem auto;
+  padding: 10px;
+  height: 100%;
+
+}
+.details-main {
+  width: 78%;
+  margin: 1rem auto;
+  height: 90%;
+}
+
 #back {
   color: black;
-  position: relative;
-  bottom: -9.2rem;
-  left: 10rem;
   text-decoration: none;
   font-size: 20px;
   font-weight: bold;
-  z-index: 1;
 }
 
-.details-page {
-  color: black;
-  height: 100vh;
-}
-.details-container {
-  background-color: rgb(255, 255, 255);
-  position: relative;
-  overflow: scroll;
-  top: 4.5rem;
-  height: 50rem;
-  width: 94%;
-  border-radius: 20px;
-  margin: 2rem auto 0;
-  padding: 0;
-}
-.details-main {
-  margin: 0 auto;
-  width: 78%;
-}
 .header-section {
-  margin: 35px 0;
-}
-
-.header-section,
-.info-section {
+  margin: 25px 0;
+  display: flex;
+  flex-direction: column;
   position: relative;
-  top: 3.5rem;
+  width: 100%;
+  justify-content: center;
+}
+.landmark-headerBtn{
+  height: 3rem;
+  width: 10rem;
+  background-color: black;
+  color: white;
+  position: absolute;
+  right: 0rem;
+}
+.landmark-headerBtn{
+  border: 1px solid black;
 }
 
 .header-section h1,
 .header-section p {
-  margin: 15px 0;
+  margin: 5px 0;
   padding: 0;
 }
 .right-side {
@@ -141,18 +180,16 @@ export default {
   font-style: italic;
 }
 .info-section {
+  height: auto;
   display: grid;
   grid-template-columns: 3fr 1fr;
   grid-template-areas: "info" "aside";
-  /* background-color: black; */
-  height: 100%;
 }
 
-.details-img {
-  border-radius: 0;
-  width: 100%;
+#details-img {
+  border-radius: 0px;
+  width: 60rem;
   height: 75%;
-  border-radius: 20px;
 }
 .details-description {
   font-size: 24px;

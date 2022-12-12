@@ -17,7 +17,6 @@
 
 <script>
 import LandmarkCard from "@/components/LandmarkCard.vue";
-//import landmarkService from "../services/LandmarkService.js";
 import mapboxService from "../services/MapboxService.js";
 import openMapTripService from "../services/OpenMapTripService.js"
 
@@ -94,7 +93,6 @@ export default {
   },
   created() {
     console.log("reaching created");
-    //this.getAllLandmarks();
     this.getLandmarksByAddress();
   },
 };
