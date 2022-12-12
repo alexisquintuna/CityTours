@@ -49,17 +49,18 @@ namespace Capstone.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddTrip(Trip trip)
+        public ActionResult<List<Trip>> AddTrip(Trip trip)
         {
             string username = User.Identity.Name;
             User user = userDao.GetUser(username);
             int tripId=tripDao.CreateTrip(user.UserId, trip);
+            List<Trip> trips = tripDao.TripsByUserId(user.UserId);
 
             if (tripId != 0)
             {
-                return Ok();
+                return Ok(trips);
             }
-            return BadRequest(new { message = "An error occurred and the landmark was not created." });
+            return BadRequest(new { message = "An error occurred and the trip was not created." });
         }
         
         [HttpPost("{tripId}")]
@@ -78,19 +79,31 @@ namespace Capstone.Controllers
         }
         //Todo action results for both delete routes
         [HttpDelete("{tripId}/{landmarkId}")]
-        public ActionResult DeleteLandmarkFromTrip(int tripId, int landmarkId)
+        public ActionResult<List<Landmark>> DeleteLandmarkFromTrip(int tripId, int landmarkId)
         {
             tripDao.RemoveLandmark(tripId, landmarkId);
-            return Ok();
+            List<Landmark> landmarks = landmarkDao.LandmarksByTripId(tripId);
+
+            if (landmarks != null)
+            {
+                return Ok(landmarks);
+            }
+            return NotFound();
         }
 
         [HttpDelete("{tripId}")]
-        public ActionResult DeleteTrip(int tripId)
+        public ActionResult<List<Trip>> DeleteTrip(int tripId)
         {
             string username = User.Identity.Name;
             User user = userDao.GetUser(username);
             tripDao.RemoveTrip(tripId, user.UserId);
-            return Ok();
+            List<Trip> trips = tripDao.TripsByUserId(user.UserId);
+
+            if (tripId != 0)
+            {
+                return Ok(trips);
+            }
+            return BadRequest(new { message = "Not a valid trip." });
         }
 
     }

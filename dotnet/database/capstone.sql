@@ -25,7 +25,7 @@ CREATE TABLE users (
 )
 CREATE TABLE trips (
 	trip_id int IDENTITY(1,1) NOT NULL,
-	trip_name varchar(50) NOT NULL,
+	trip_name varchar(500) NOT NULL,
 	user_id int FOREIGN KEY REFERENCES users(user_id) NOT NULL
 	CONSTRAINT PK_trip PRIMARY KEY (trip_id)
 )
@@ -33,15 +33,15 @@ CREATE TABLE trips (
 --populate default data
 CREATE TABLE landmarks (
 	landmark_id int IDENTITY(1000,1) NOT NULL,
-	name varchar(200) NOT NULL,
-	description varchar(240),
-	category varchar(50),
-	latitude varchar(50) NOT NULL,
-	longitude varchar(50) NOT NULL,
-	address varchar(200),
-	link varchar(200),
+	name varchar(2000) NOT NULL,
+	description varchar(5000),
+	category varchar(500),
+	latitude varchar(500) NOT NULL,
+	longitude varchar(500) NOT NULL,
+	address varchar(2000),
+	link varchar(2000),
 	added_by varchar(5) NOT NULL,
-	photo varchar(200)
+	photo varchar(2000)
 	CONSTRAINT PK_landmark PRIMARY KEY (landmark_id)
 )
 

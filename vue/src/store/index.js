@@ -25,7 +25,8 @@ export default new Vuex.Store({
         locationQuery: "",
         hotspots: [],
         zipCode: "",
-        coordinates: []
+        coordinates: [],
+        forceRefresh: 0,
     },
     mutations: {
         SET_AUTH_TOKEN(state, token) {

@@ -32,6 +32,7 @@ export default {
 .suggestion-card {
   border-radius: 30px;
   height: 100%;
+  width: 5rem;
   overflow: hidden;
   position: relative;
 }
@@ -59,7 +60,6 @@ export default {
   bottom: 0;
 
 }
-
 
 .suggestion-details h1 {
   margin: 15px 10px;
