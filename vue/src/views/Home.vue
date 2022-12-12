@@ -1,20 +1,21 @@
 <template>
   <div class="home">
+    
     <!-- <div class="home-header">
       <h1>Plan your next adventure in the next city you visit</h1>
     </div> -->
     <div class="home-container">
 
-    <form class="home-form" action="" v-on:submit="saveZip">
+    <form class="home-form" action="" v-on:submit="saveQuery">
       <input
         class="home-input"
         type="text"
-        placeholder="Please enter a zip code"
-        v-model="zipCode"
+        placeholder="Please enter a location"
+        v-model="locationQuery"
       />
         <router-link
           class="submit-btn"
-          v-bind:to="{ name: 'landmarks', params: { zip: zipCode } }"
+          v-bind:to="{ name: 'landmarks', params: { query: locationQuery } }"
         >
           <input class="enter-zip" type="submit" />
         </router-link>
@@ -37,12 +38,12 @@ export default {
   components: {SuggestionList},
   data() {
     return {
-      zipCode: "",
+      locationQuery: "",
     };
   },
   methods: {
-    saveZip() {
-      this.$store.commit("SET_ZIPCODE", this.zipCode);
+    saveQuery() {
+      this.$store.commit("SET_LOCATION_QUERY", this.locationQuery);
     },
   },
 };
