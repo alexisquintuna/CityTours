@@ -1,5 +1,11 @@
 <template>
   <div class="home">
+    
+    <!-- <div class="home-header">
+      <h1>Plan your next adventure in the next city you visit</h1>
+    </div> -->
+    <div class="home-container">
+
     <form class="home-form" action="" v-on:submit="saveQuery">
       <input
         class="home-input"
@@ -17,7 +23,9 @@
 
     <div class="landmark-suggestion">
         <h1>Hot spots</h1>
-      <suggestion-list></suggestion-list>
+      <suggestion-list class="suggestion-container"></suggestion-list>
+    </div>
+
     </div>
 
   </div>
@@ -43,20 +51,47 @@ export default {
 
 <style>
 .home {
-  height: 100vh;
+  height: 120vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   flex-direction: column;
-  margin-bottom: 5rem;
+}
+
+/* color */
+  /* background-color: rgb(165, 62, 62); */
+
+.home-header{
+  /* background-color: rgb(28, 165, 28); */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.938) 35%, rgba(255, 255, 255, 0.733));
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-header > h1{
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.home-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* background-color: rgb(165, 62, 62); */
+  height: 100%;
+  width: 100%;
+
 }
 
 .home-form {
   width: auto;
   display: flex;
   align-items: center;
-  /* background: chocolate; */
 }
 
 .home-input {
@@ -90,8 +125,8 @@ export default {
 }
 .enter-zip:hover {
   cursor: pointer;
-  background-color: black;
-  color: white;
+  background-color: #59E3A8;
+  color: #1A2E34;
   transition: 400ms;
   font-size: 1.6rem;
 }
@@ -100,8 +135,8 @@ export default {
   height: 100%;
   width: 100%;
   background-color: #fff;
-  color:black;
-  border-radius: 20px;
+  color:#1A2E34;
+  border-radius: 100px;
   margin: 0;
   padding: 0;
 }
@@ -116,19 +151,21 @@ export default {
 
 .landmark-suggestion {
   position: absolute;
-  /* bottom: 2rem; */
   bottom: 0;
-  /* border-radius: 20px; */
   margin: 5rem auto 0;
-  height: 18rem;
+  height: 20rem;
   width: 75%;
-  background-color: #f5f5f5;
+  background-color: #3D9F76;
 }
 
 .landmark-suggestion > h1 {
     font-size: 2.5rem;
     display: inline-block;
     margin: 1rem 1rem 0rem 2.7rem;
+    color: #fff;
 }
 
+.suggestion-container{
+  height: 70%;
+}
 </style>

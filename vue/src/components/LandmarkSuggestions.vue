@@ -48,11 +48,11 @@ export default {
 <style>
 .suggestion-list {
   width: 95%;
-  height: 77%;
+  height: auto;
   background-color: rgb(255, 255, 255);
   margin: 1rem auto 0;
   overflow: auto;
-  border-radius: 20px;
+  border-radius: 10px;
   padding: 10px 20px;
   position: relative;
 }
@@ -64,8 +64,7 @@ export default {
     align-items: center;
 }
 .suggestion-list  > ul > li {
-    width: 22%;
-    height: 100%;
-    margin-right: 2rem;
+    width: 20%;
+    height: 90%;
 }
 </style>
