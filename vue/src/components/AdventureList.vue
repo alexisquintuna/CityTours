@@ -44,12 +44,12 @@ export default {
 
 <style>
 .adventure-list {
-  width: 100rem;
+  width: 100%;
 }
 
 .adv-list-container {
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
   width: 25% 25% 25% 25%;
   flex-wrap: wrap;
 }

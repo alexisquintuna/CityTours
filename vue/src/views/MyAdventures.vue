@@ -6,7 +6,7 @@
           + Add New Trip
         </button>
       </div>
-      <adventure-list class="adv-list" ></adventure-list>
+        <adventure-list class="adv-list"></adventure-list>
     </div>
     <div class="popup" v-if="buttonTrigger">
       <div class="popup-inner">
@@ -29,12 +29,7 @@
             >
               Cancel
             </button>
-            <button
-              class="popup-close add-btn"
-              type="submit"
-            >
-              Add Trip
-            </button>
+            <button class="popup-close add-btn" type="submit">Add Trip</button>
           </div>
         </form>
       </div>
@@ -50,8 +45,8 @@ export default {
     return {
       buttonTrigger: false,
       trip: {
-        name: ""
-      }
+        name: "",
+      },
     };
   },
   name: "my-adventures",
@@ -133,8 +128,6 @@ export default {
 .buttons-div {
   height: 15%;
   display: flex;
-  /* position: absolute;
-  bottom: 1rem; */
   align-items: center;
   justify-content: space-around;
   width: 100%;
@@ -154,31 +147,22 @@ export default {
   width: 100%;
   border-radius: 20px;
 }
-.adding-new-trip {
-  background-color: aquamarine;
-  height: 100vh;
-  width: 100%;
-  display: hidden;
-}
+
 .adventure-page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   height: auto;
 }
-.adv-list {
-  position: relative;
-  height: 100%;
-  margin-top: 1rem;
-}
+
 .adventure-container {
   background-color: rgb(255, 255, 255);
   position: relative;
   height: 100%;
-  margin-top: 7.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding: 3rem 0 10rem;
 }
 .newTrip-border-btn {
   height: 3rem;
@@ -187,7 +171,7 @@ export default {
   align-items: center;
   justify-content: center;
   border-radius: 20px;
-  margin: 2rem 0;
+  margin: 1rem;
 }
 .new-trip-btn {
   background-color: #6baa75;
@@ -205,5 +189,9 @@ export default {
 .new-trip-btn:hover {
   background-color: black;
   color: white;
+}
+
+.adv-list{
+  width: 85%; 
 }
 </style>
