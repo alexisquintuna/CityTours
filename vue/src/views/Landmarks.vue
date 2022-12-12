@@ -2,18 +2,20 @@
   <div class="landmark-page">
     <div class="landmark-container">
       <landmark-list></landmark-list>
-      <landmark-map></landmark-map>
+      <!-- <landmark-map></landmark-map> -->
+      <mapbox-map></mapbox-map>
     </div>
   </div>
 </template>
 
 <script>
 import LandmarkList from "@/components/LandmarkList.vue";
-import LandmarkMap from "@/components/LandmarkMap.vue";
+//import LandmarkMap from "@/components/LandmarkMap.vue";
+import MapboxMap from "@/components/MapboxMap.vue";
 
 export default {
   name: "landmarks",
-  components: { LandmarkList, LandmarkMap },
+  components: { LandmarkList, MapboxMap}, //LandmarkMap
 };
 </script>
 

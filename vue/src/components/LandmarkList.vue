@@ -46,6 +46,7 @@ export default {
                   console.log(response.data);
                   this.coordinates = (this.location.features[0].geometry.coordinates);
                   console.log(this.coordinates);
+                  this.$store.commit("SET_COORDINATES", this.coordinates);
 
                             openMapTripService.getNearbyPlaces(this.coordinates[0], this.coordinates[1])
                   .then((response) => {

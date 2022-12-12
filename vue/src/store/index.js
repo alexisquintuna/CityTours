@@ -25,6 +25,7 @@ export default new Vuex.Store({
         locationQuery: "",
         hotspots: [],
         zipCode: "",
+        coordinates: []
     },
     mutations: {
         SET_AUTH_TOKEN(state, token) {
@@ -56,6 +57,9 @@ export default new Vuex.Store({
         SET_HOTSPOTS(state, payload) {
             state.hotspots = payload;
         },
+        SET_COORDINATES(state, payload) {
+            state.coordinates = payload;
+        }
 
 
     }

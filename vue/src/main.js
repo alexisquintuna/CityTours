@@ -11,6 +11,7 @@ axios.defaults.baseURL = process.env.VUE_APP_REMOTE_API;
 
 
 
+
 new Vue({
   router,
   store,
