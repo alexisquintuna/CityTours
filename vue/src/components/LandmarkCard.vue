@@ -39,7 +39,6 @@ export default {
     landmark: Object,
   },
   created(){
-    this.kinds = this.landmark.kinds.split('_')[0].split(',')[0]
     // openMapTripService.getPlaceDetails(this.id)
     // .then((response) => {
     //   console.log(response.data)
