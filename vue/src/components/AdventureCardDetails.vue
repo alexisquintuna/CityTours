@@ -67,11 +67,13 @@ export default {
       .getTripById(this.id)
       .then((res) => {
         console.log("this is the page");
+        console.log(res.data)
+        console.log(res.status)
         if (res.status == 200) {
           this.landmarks = res.data;
-          console.log(this.trips);
-          if(this.trips.length != 0){
-            this.hasTrips = true;
+          console.log(this.landmarks.length);
+          if(this.landmarks.length != 0){
+            this.hasLandmarks = true;
           }
         }
       })
