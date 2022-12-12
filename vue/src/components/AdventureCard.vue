@@ -1,12 +1,12 @@
 <template>
   <div class="adventure-card">
+<router-link class="adventure-link-card" v-bind:to="{name: 'adventure-details', params: {id: trip.id}}">
     <div class="adv-bg">
       <div class="delete-btn-container">
         <button class="delete-btn" v-on:click="deleteTrip(trip.id)">x</button>
       </div>
       <h1>{{ trip.name }}</h1>
     </div>
-    <!-- v-if="buttonTrigger" -->
     <div class="popup-adv" v-if="buttonTrigger">
       <div class="popup-inner-adv" >
         <h1>Are you sure you want to delete this card?</h1>
@@ -16,6 +16,7 @@
         </div>
       </div>
     </div>
+  </router-link>
   </div>
 </template>
 
@@ -65,7 +66,9 @@ export default {
   width: 22%;
   background-image: url("https://globalgrasshopper.com/wp-content/uploads/2020/09/The-best-places-to-vist-in-Ecuador.jpg");
 }
-
+.adventure-link-card{
+  color: #59E3A8;
+}
 .adv-bg {
   height: 100%;
   width: 100%;

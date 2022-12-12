@@ -2,7 +2,7 @@
   <router-link
     class="big-card"
     v-bind:to="{ name: 'landmark-details', params: { id: landmark.xid } }"
-  >
+  > 
     <div class="card">
       <div>
         <img

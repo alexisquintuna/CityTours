@@ -6,6 +6,7 @@
         <div class="header-section">
           <h1 class="landmark-header">{{ landmark.name }}</h1>
           <p class="landmark-subheader">In {{ landmark.address.city }}, {{landmark.address.country}} </p>
+          <button class="landmark-headerBtn">Save adventure</button>
         </div>
         <section class="info-section">
           <div class="right-side">
@@ -113,8 +114,14 @@ export default {
 }
 .header-section {
   margin: 35px 0;
+  display: flex;
+  flex-direction: column;
 }
-
+.landmark-headerBtn{
+  height: 75%;
+  background-color: black;
+  color: white;
+}
 .header-section,
 .info-section {
   position: relative;
