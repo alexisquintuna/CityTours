@@ -149,7 +149,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@longitude", landmark.Longitude);
                     cmd.Parameters.AddWithValue("@address", landmark.Address);
                     cmd.Parameters.AddWithValue("@link", landmark.Link);
-                    cmd.Parameters.AddWithValue("@added_by", landmark.AddedBy);
+                    cmd.Parameters.AddWithValue("@added_by", "admin");
                     cmd.Parameters.AddWithValue("@photo", landmark.Photo);
 
                     landmarkId =(int)cmd.ExecuteScalar();

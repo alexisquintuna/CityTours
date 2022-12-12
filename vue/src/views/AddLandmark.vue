@@ -147,7 +147,7 @@
           <div class="adding-input">
             <input
               placeholder="Image Url"
-              v-model="landmark.link"
+              v-model="landmark.photo"
               required
               class="adding-form-control"
               type="text"
@@ -174,7 +174,7 @@ export default {
         longitude: "",
         address: "",
         link: "",
-        imageUrl: ""
+        photo: ""
       },
       addingErrors: false,
       addingErrorsMsg: "There were problems adding this landmark",

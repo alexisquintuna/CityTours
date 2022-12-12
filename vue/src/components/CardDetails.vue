@@ -1,6 +1,6 @@
 <template>
   <div class="details-page">
-    <router-link id="back" v-bind:to="{ name: 'landmarks', params: {zip: this.$store.state.zipCode} }">BACK</router-link>
+    <router-link id="back" v-bind:to="{ name: 'landmarks', params: {query: this.$store.state.locationQuery} }">BACK</router-link>
     <div class="details-container">
       <div class="details-main">
         <div class="header-section">
@@ -12,7 +12,7 @@
           <div class="right-side">
             <img
               class="details-img"
-              src="https://www.kids-world-travel-guide.com/images/xitaly_coloseo_shutterstock_88957447_ed_1445441219_31892.jpg.pagespeed.ic.L-ebfWM8d-.webp"
+              v-bind:src='image'
               alt="picture of location"
             />
             <p class="details-description">{{ landmark.wikipedia_extracts.text }}</p>
@@ -46,6 +46,7 @@ export default {
   data() {
     return {
       landmark: {},
+      image: ""
     };
   },
   props: ["id"],
@@ -56,6 +57,8 @@ export default {
       if (response.status === 200) {
         console.log(response.data);
         this.landmark = response.data;
+        
+        this.image = this.landmark.preview.source;
       }
     })
     .catch((error) => {

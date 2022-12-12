@@ -18,7 +18,7 @@
 <script>
 import LandmarkCard from "@/components/LandmarkCard.vue";
 //import landmarkService from "../services/LandmarkService.js";
-import zipCodeService from "../services/ZipCodeService.js";
+import mapboxService from "../services/MapboxService.js";
 import openMapTripService from "../services/OpenMapTripService.js"
 
 export default {
@@ -27,32 +27,27 @@ export default {
   data() {
       return {
           location: {
-              lat: "",
-              lng: ""
-          }
+            features: [
+          ]
+          },
+          coordinates: []
       }
   },
   //props: ['zipCode'],
   methods: {
-      getLandmarksByZip() {
-          const zipCode = this.$route.params.zip;
-          zipCodeService.getZipCodeInfo(zipCode)
+      getLandmarksByAddress() {
+          const address = this.$route.params.query;
+          mapboxService.getAddressInfo(address)
           .then((response) => {
               //response.header("Access-Control-Allow-Origin", "*");
               console.log("Getting Zip Codes");
               if (response.status === 200) {
                   this.location = response.data;
-                  
-              }
-          })
-          .catch((error) => {
-              console.log("reached catch in landmarklist.vue");
-              console.log(error);
-              if (error.response.status == 404) {
-                  this.$router.push({ name: "NotFound"});
-              }
-          })
-          openMapTripService.getNearbyPlaces(this.location.lat, this.location.lng)
+                  console.log(response.data);
+                  this.coordinates = (this.location.features[0].geometry.coordinates);
+                  console.log(this.coordinates);
+
+                            openMapTripService.getNearbyPlaces(this.coordinates[0], this.coordinates[1])
                   .then((response) => {
                       if (response.status === 200) {
                           this.$store.commit("SET_LANDMARKS", response.data);
@@ -64,6 +59,18 @@ export default {
                           this.$router.push({ name: "NotFound"});
                       }
                   });
+                  
+              }
+          })
+          .catch((error) => {
+              console.log("reached catch in landmarklist.vue");
+              console.log(error);
+              if (error.response.status == 404) {
+                  this.$router.push({ name: "NotFound"});
+              }
+          })
+
+
 
       }
     // getAllLandmarks() {
@@ -87,7 +94,7 @@ export default {
   created() {
     console.log("reaching created");
     //this.getAllLandmarks();
-    this.getLandmarksByZip();
+    this.getLandmarksByAddress();
   },
 };
 </script>
