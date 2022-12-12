@@ -175,7 +175,6 @@ export default {
   background-color: rgb(255, 255, 255);
   position: relative;
   height: 100%;
-  margin-top: 7.5rem;
   display: flex;
   flex-direction: column;
   align-items: center;

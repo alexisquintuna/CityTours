@@ -12,9 +12,9 @@
       <div id="nav-right">
         <router-link
           class="nav-subtext nav-text"
-          v-bind:to="{ name: 'landmarks' }"
+          v-bind:to="{ name: 'home' }"
           v-if="$store.state.token != ''"
-          >Landmark List</router-link
+          >Home</router-link
         >
         <router-link
           class="nav-subtext nav-text"
@@ -75,8 +75,8 @@ export default {
 <style>
 .router-view {
   position: relative;
-  height: auto;
   width: 100%;
+  margin: 7.5rem 0;
 }
 #app {
   height: auto;
@@ -155,6 +155,8 @@ export default {
   background-color: #59E3A8;
 }
 footer {
+  position: absolute;
+  bottom: 0;
   height: 10rem;
   width: 100%;
   background: #1A2E34;
