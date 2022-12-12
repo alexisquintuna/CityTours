@@ -62,7 +62,7 @@ namespace Capstone.Controllers
         [HttpPost]
         public ActionResult AddLandmark(Landmark landmark)
         {
-            int landmarkId = landmarkDao.CreateLandmark(landmark);
+            int landmarkId = landmarkDao.AdminCreateLandmark(landmark);
 
             if(landmarkId != 0)
             {

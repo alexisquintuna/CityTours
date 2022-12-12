@@ -128,7 +128,38 @@ namespace Capstone.DAO
 
             return landmarks;
         }
-        
+        public int AdminCreateLandmark(Landmark landmark)
+        {
+            int landmarkId = 0;
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    string sql = "INSERT INTO landmarks(name, description, category, latitude, longitude, address, link, added_by, photo) " +
+                        "OUTPUT INSERTED.landmark_id " +
+                        "VALUES(@name, @description, @category, @latitude, @longitude, @address, @link, @added_by, @photo);";
+                    SqlCommand cmd = new SqlCommand(sql, conn);
+                    cmd.Parameters.AddWithValue("@name", landmark.Name);
+                    cmd.Parameters.AddWithValue("@description", landmark.Description);
+                    cmd.Parameters.AddWithValue("@category", landmark.Category);
+                    cmd.Parameters.AddWithValue("@latitude", landmark.Latitude);
+                    cmd.Parameters.AddWithValue("@longitude", landmark.Longitude);
+                    cmd.Parameters.AddWithValue("@address", landmark.Address);
+                    cmd.Parameters.AddWithValue("@link", landmark.Link);
+                    cmd.Parameters.AddWithValue("@added_by", "admin");
+                    cmd.Parameters.AddWithValue("@photo", landmark.Photo);
+
+                    landmarkId = (int)cmd.ExecuteScalar();
+                }
+            }
+            catch (SqlException)
+            {
+                throw;
+            }
+            return landmarkId;
+        }
         public int CreateLandmark(Landmark landmark)
         {
             int landmarkId=0;
@@ -149,7 +180,7 @@ namespace Capstone.DAO
                     cmd.Parameters.AddWithValue("@longitude", landmark.Longitude);
                     cmd.Parameters.AddWithValue("@address", landmark.Address);
                     cmd.Parameters.AddWithValue("@link", landmark.Link);
-                    cmd.Parameters.AddWithValue("@added_by", "admin");
+                    cmd.Parameters.AddWithValue("@added_by", "user");
                     cmd.Parameters.AddWithValue("@photo", landmark.Photo);
 
                     landmarkId =(int)cmd.ExecuteScalar();
