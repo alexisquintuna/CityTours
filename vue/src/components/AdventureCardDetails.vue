@@ -1,7 +1,9 @@
 <template>
   <div class="tripCard-details-page">
-    <h1>Trip Name Here</h1>
-    <ul>
+    <div class="adding-more-landmarks">
+    <router-link class="btn-add-more" v-bind:to="{name: 'home'}">Add landmarks</router-link>
+    </div>
+    <ul class="adventure-list-card-container" v-if="hasLandmarks">
       <li
         class="adventure-card-list"
         v-for="landmark in this.landmarks"
@@ -21,6 +23,10 @@
         </div>
       </li>
     </ul>
+    <div class="no-items" v-show="!hasLandmarks">
+          <img class="no-items-img" src="https://img.freepik.com/free-vector/rio-de-janeiro-concept-illustration_114360-4589.jpg?w=826&t=st=1670680651~exp=1670681251~hmac=0e14d75f2428b5a1ab39102f1350aaedf924de6f092286ffe6604954abaf376e" alt="">
+      <h2>You have no saved landmarks let's change that</h2>
+    </div>
   </div>
 </template>
 
@@ -33,6 +39,7 @@ export default {
   components: { LandmarkCard },
   data() {
     return {
+      hasLandmarks: false,
       landmarks: {},
     };
   },
@@ -63,6 +70,9 @@ export default {
         if (res.status == 200) {
           this.landmarks = res.data;
           console.log(this.trips);
+          if(this.trips.length != 0){
+            this.hasTrips = true;
+          }
         }
       })
       .catch((err) => {
@@ -70,6 +80,7 @@ export default {
           this.$router.push({ name: "NotFound" });
         }
       });
+    
   },
 };
 </script>
@@ -87,9 +98,51 @@ export default {
 }
 .adventure-card-list {
   display: flex;
+  align-items: center;
 }
 .landmark-card {
-  background-color: cadetblue;
   width: 95%;
+}
+.adding-more-landmarks{
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.btn-add-more{
+  border-radius: 20px;
+  display: flex;
+  background-color: black;
+  width: 11rem;
+  height: 2.5rem;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+}
+.btn-add-more:hover{
+  color: #59E3A8;
+  background-color: #1a2e34;
+  transition: 400ms;
+}
+
+.adventure-btn{
+  background-color: black;
+  color: white;
+}
+.no-items{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.no-items-container{
+  margin: 0 auto;
+}
+.no-items-img{
+  width: 75%;
+  height: 75%;
+  margin: 0 auto;
 }
 </style>

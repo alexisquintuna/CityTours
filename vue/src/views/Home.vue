@@ -72,8 +72,6 @@ export default {
 .home {
   height: 120vh;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
 }
 
@@ -95,13 +93,12 @@ export default {
   font-size: 4rem;
   font-weight: bold;
 }
-
+ 
 .home-container{
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  /* background-color: rgb(165, 62, 62); */
   height: 100%;
   width: 100%;
 
@@ -169,8 +166,8 @@ export default {
 }
 
 .landmark-suggestion {
-  position: absolute;
-  bottom: 0;
+  /* position: absolute; */
+  /* bottom: 10rem; */
   margin: 5rem auto 0;
   height: 20rem;
   width: 75%;
@@ -186,5 +183,6 @@ export default {
 
 .suggestion-container{
   height: 70%;
+  /* width: 50%; */
 }
 </style>
