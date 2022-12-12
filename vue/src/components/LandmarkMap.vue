@@ -1,12 +1,18 @@
 <template>
   <div class="map">
-    <h1>MAP</h1>
+    <mapbox-map />
   </div>
 </template>
 
 <script>
+
+import MapboxMap from '@/components/MapboxMap.vue';
+
 export default {
-    name: 'landmark-map'
+    name: 'landmark-map',
+    components: {
+      MapboxMap
+    }
 
 }
 </script>

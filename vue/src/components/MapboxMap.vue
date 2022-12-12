@@ -1,5 +1,5 @@
 <template>
-  <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="center" />
+  <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="this.$store.state.coordinates" :zoom=12 />
 
 </template>
 
@@ -12,6 +12,7 @@ export default {
     components: {
         MglMap
     },
+
     // methods: {
     //     async onMapLoad(event) {
     //         const asyncActions = event.component.asyncActions
@@ -28,12 +29,12 @@ export default {
         return {
             accessToken: 'pk.eyJ1IjoiZHJld3N3ZWV0IiwiYSI6ImNsYmgwM2kzdDBlb2MzcHFtZm8zajg2ZzIifQ.pDG4UufOD--ptSzeCeiPWA',
             mapStyle: "mapbox://styles/mapbox/streets-v11",
-            center: this.$store.state.coordinates
+            center: []
         };
     },
     created() {
         this.mapbox = Mapbox;
-        //this.options.center=this.$store.state.coordinates
+        console.log(this.$store.state.coordinates)
         
     }
 
