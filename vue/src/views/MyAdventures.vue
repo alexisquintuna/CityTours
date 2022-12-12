@@ -6,7 +6,7 @@
           + Add New Trip
         </button>
       </div>
-        <adventure-list class="adv-list"></adventure-list>
+        <adventure-list  class="adv-list"></adventure-list>
     </div>
     <div class="popup" v-if="buttonTrigger">
       <div class="popup-inner">
@@ -47,6 +47,7 @@ export default {
       trip: {
         name: "",
       },
+      hasAdventures: false
     };
   },
   name: "my-adventures",
@@ -158,7 +159,7 @@ export default {
 .adventure-container {
   background-color: rgb(255, 255, 255);
   position: relative;
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
