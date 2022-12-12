@@ -3,10 +3,10 @@
     <div class="adding-more-landmarks">
     <router-link class="btn-add-more" v-bind:to="{name: 'home'}">Add landmarks</router-link>
     </div>
-    <ul class="adventure-list-card-container" v-if="hasTrips">
+    <ul class="adventure-list-card-container" v-if="hasLandmarks">
       <li
         class="adventure-card-list"
-        v-for="landmark in this.trips"
+        v-for="landmark in this.landmarks"
         v-bind:key="landmark.xid"
       >
         <landmark-card
@@ -14,11 +14,16 @@
           v-bind:landmark="landmark"
         ></landmark-card>
         <div class="adventure-btn-container">
-          <button class="adventure-btn">Delete Landmark</button>
+          <button
+            class="adventure-btn"
+            v-on:click="deleteLandmark(landmark.id)"
+          >
+            Delete Landmark
+          </button>
         </div>
       </li>
     </ul>
-    <div class="no-items" v-show="!hasTrips">
+    <div class="no-items" v-show="!hasLandmarks">
           <img class="no-items-img" src="https://img.freepik.com/free-vector/rio-de-janeiro-concept-illustration_114360-4589.jpg?w=826&t=st=1670680651~exp=1670681251~hmac=0e14d75f2428b5a1ab39102f1350aaedf924de6f092286ffe6604954abaf376e" alt="">
       <h2>You have no saved landmarks let's change that</h2>
     </div>
@@ -34,18 +39,36 @@ export default {
   components: { LandmarkCard },
   data() {
     return {
-      hasTrips: false,
-      trips: {},
+      hasLandmarks: false,
+      landmarks: {},
     };
   },
-  props: ["id"],
+  props: ["id", "trip"],
+  methods: {
+    deleteLandmark(id) {
+      tripsService
+        .deleteLandmarkFromTrip(this.$route.params.id, id)
+        .then((response) => {
+          console.log(response.status);
+          if (response.status === 200) {
+             this.landmarks = response.data;
+          }
+        })
+        .catch((error) => {
+          console.log(error.response.status);
+          if (error.response.status == 404) {
+            this.$router.push({ name: "NotFound" });
+          }
+        });
+    },
+  },
   created() {
     tripsService
       .getTripById(this.id)
       .then((res) => {
         console.log("this is the page");
         if (res.status == 200) {
-          this.trips = res.data;
+          this.landmarks = res.data;
           console.log(this.trips);
           if(this.trips.length != 0){
             this.hasTrips = true;

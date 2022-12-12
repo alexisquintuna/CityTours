@@ -4,7 +4,7 @@
       <button class="delete-btn" v-on:click="deleteTrip(trip.id)">x</button>
     </div>
     <router-link
-      class="adventure-link-card"
+      class="adventure-link-card" v-bind:trip="trip"
       v-bind:to="{ name: 'adventure-details', params: { id: trip.id } }"
     >
       <div class="adv-bg">
@@ -47,7 +47,12 @@ export default {
       this.confirmDelete = !this.confirmDelete;
       if (this.confirmDelete) {
         TripsService.deleteTrip(this.tripId)
-          .then(location.reload())
+          .then((response)=>{
+            if(response.status===200) {
+              this.$store.commit('SET_TRIPS', response.data);
+              this.$store.state.forceRefresh++;
+            }
+          })
           .catch((error) => {
             if (error.response.status == 400) {
               this.$router.push({ name: "NotFound" });

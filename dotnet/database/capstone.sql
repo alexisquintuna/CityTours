@@ -34,7 +34,7 @@ CREATE TABLE trips (
 CREATE TABLE landmarks (
 	landmark_id int IDENTITY(1000,1) NOT NULL,
 	name varchar(2000) NOT NULL,
-	description varchar(2400),
+	description varchar(5000),
 	category varchar(500),
 	latitude varchar(500) NOT NULL,
 	longitude varchar(500) NOT NULL,

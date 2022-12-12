@@ -17,8 +17,8 @@ export default {
     deleteTrip(id) {
         return axios.delete(`/trips/${id}`);
     },
-    deleteLandmarkFromTrip(id, landmark) {
-        return axios.delete(`/trips/${id}/${landmark.id}`);
+    deleteLandmarkFromTrip(id, landmarkId) {
+        return axios.delete(`/trips/${id}/${landmarkId}`);
     }
 
 }
