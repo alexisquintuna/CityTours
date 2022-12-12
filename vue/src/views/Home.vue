@@ -1,5 +1,10 @@
 <template>
   <div class="home">
+    <!-- <div class="home-header">
+      <h1>Plan your next adventure in the next city you visit</h1>
+    </div> -->
+    <div class="home-container">
+
     <form class="home-form" action="" v-on:submit="saveZip">
       <input
         class="home-input"
@@ -18,6 +23,8 @@
     <div class="landmark-suggestion">
         <h1>Hot spots</h1>
       <suggestion-list class="suggestion-container"></suggestion-list>
+    </div>
+
     </div>
 
   </div>
@@ -43,20 +50,47 @@ export default {
 
 <style>
 .home {
-  height: 100vh;
+  height: 120vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
   flex-direction: column;
-  margin-bottom: 5rem;
+}
+
+/* color */
+  /* background-color: rgb(165, 62, 62); */
+
+.home-header{
+  /* background-color: rgb(28, 165, 28); */
+  background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.938) 35%, rgba(255, 255, 255, 0.733));
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.home-header > h1{
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+}
+
+.home-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  /* background-color: rgb(165, 62, 62); */
+  height: 100%;
+  width: 100%;
+
 }
 
 .home-form {
   width: auto;
   display: flex;
   align-items: center;
-  /* background: chocolate; */
 }
 
 .home-input {
@@ -121,7 +155,6 @@ export default {
   height: 20rem;
   width: 75%;
   background-color: #3D9F76;
-  overflow: hidden;
 }
 
 .landmark-suggestion > h1 {
