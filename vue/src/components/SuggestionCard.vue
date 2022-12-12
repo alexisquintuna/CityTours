@@ -11,9 +11,9 @@
         <div class="suggestion-details">
           <h1>{{ landmark.name }}</h1>
         </div>
-        <div class="suggestion-icon">
+        <!-- <div class="suggestion-icon">
           <img class="img-icon" v-bind:src="landmark.photo" alt="" />
-        </div>
+        </div> -->
       </div>
     </router-link>
   </div>
@@ -29,53 +29,52 @@ export default {
 </script>
 
 <style>
-  .suggestion-card {
-    border-radius: 30px;
-    height: 100%;
-    width: 18rem;
+.suggestion-card {
+  border-radius: 30px;
+  height: 100%;
   overflow: hidden;
-  }
+  position: relative;
+}
 
 .suggestion-bg {
   height: 100%;
   width: 100%;
   border-radius: 20px;
-  background-image: linear-gradient(
-    to bottom,
-    rgba(247, 247, 247, 0),
-    rgb(0, 0, 0)
-  );
-  
 }
 .suggestion-link {
+  position: relative;
   text-decoration: none;
 }
 .suggestion-img {
-  height: 100%;
-}
-
-.suggestion-details {
-  margin-right: 1rem;
-  margin-bottom: 2rem;
+  position: relative;
   width: 100%;
   height: 100%;
 }
 
-.suggestion-details h1 {
+.suggestion-details {
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.027) 65%,rgb(0, 0, 0));
+  width: 100%;
+  height: 100%;
   position: absolute;
-  bottom: 1rem;
+  bottom: 0;
+
+}
+
+
+.suggestion-details h1 {
+  margin: 15px 10px;
+  display: inline-block;
   color: #fff;
   font-size: 1.8rem;
-  display: inline-block;
-  margin: 5px 0;
-  padding: 0;
+  position: inherit;
+  bottom: 0;
   flex-wrap: wrap;
-  width: 10%;
+  width: 50%;
 }
 
 .suggestion-icon {
   position: absolute;
-  top: .2rem;
+  top: 0.2rem;
   right: 1.5rem;
   width: 1.3rem;
   height: 1.3rem;
@@ -83,7 +82,7 @@ export default {
 }
 .img-icon {
   width: 1.3rem;
-  height: 1rem;
+  height: 1.3rem;
   border-radius: 100px;
 }
 </style>

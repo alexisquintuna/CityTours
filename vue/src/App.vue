@@ -74,13 +74,15 @@ export default {
 
 <style>
 .router-view {
-  bottom: 0;
+  position: relative;
   height: auto;
   width: 100%;
 }
 #app {
   height: auto;
-  /* background-color: wheat; */
+  position: absolute;
+  top: 0;
+  width: 100%;
 }
 #nav {
   background-color: #1a2e34;

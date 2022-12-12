@@ -64,8 +64,7 @@ export default {
     align-items: center;
 }
 .suggestion-list  > ul > li {
-    width: auto;
-    height: 100%;
-    background-color: tomato;
+    width: 20%;
+    height: 90%;
 }
 </style>
