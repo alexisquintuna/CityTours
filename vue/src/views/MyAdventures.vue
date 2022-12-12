@@ -6,7 +6,7 @@
           + Add New Trip
         </button>
       </div>
-        <adventure-list class="adv-list"></adventure-list>
+        <adventure-list class="adv-list" :key="this.$store.state.forceRefresh"></adventure-list>
     </div>
     <div class="popup" v-if="buttonTrigger">
       <div class="popup-inner">
@@ -62,7 +62,9 @@ export default {
         .then((response) => {
           if (response.status === 200) {
             this.TogglePopup();
-            location.reload();
+            this.$store.commit("SET_TRIPS", response.data);
+            this.$store.state.forceRefresh++;
+            this.trip.name='';
           }
         })
         .catch((error) => {
