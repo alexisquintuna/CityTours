@@ -33,6 +33,7 @@
 <script>
 import tripsService from "@/services/TripsService.js";
 import AdventureLandmarkCard from "@/components/AdventureLandmarkCard.vue"
+import mapboxService from "@/services/MapboxService.js";
 
 export default {
   name: "adventure-card-details",
@@ -41,7 +42,51 @@ export default {
     return {
       hasLandmarks: false,
       landmarks: {},
+      optimizedRoute: {}
     };
+  },
+  computed: {
+    routeCoordinates() {
+      let coordinatesString = `${this.landmarks[0].longitude},${this.landmarks[0].latitude}`;
+      console.log(coordinatesString);
+      for (let i = 1; i < this.landmarks.length; i++) {
+        coordinatesString += `;${this.landmarks[i].longitude},${this.landmarks[i].latitude}`
+      }
+      return coordinatesString;
+    },
+    locations() {
+      let locationsArray = [];
+      for (let i = 0; i < this.landmarks.length; i++) {
+        locationsArray.push({
+          name: this.landmarks[i].name,
+          coordinates: [this.landmarks[i].longitude, this.landmarks[i].latitude]
+        })
+      }
+      return locationsArray;
+    },
+    services() {
+      let servicesArray = [];
+      for (let i = 0; i < this.locations.length; i++) {
+        servicesArray.push({
+          name: `${this.locations[i].name}-service`,
+          location: this.locations[i].name
+        })
+      }
+      return servicesArray;
+    },
+    routeProblem() {
+        return {
+        version: 1,
+        locations: this.locations,
+        vehicles: [{
+          name: "tourist",
+          routing_profile: "mapbox/driving",
+        }],
+        services: this.services
+
+        }
+        
+      }
   },
   props: ["id", "trip"],
   methods: {
@@ -61,6 +106,34 @@ export default {
           }
         });
     },
+    generateTravelRoute() {
+      mapboxService.getOptimizedRoute(this.routeCoordinates)
+      .then(response => {
+        if(response.status === 200) {
+          console.log(response.data);
+          this.optimizedRoute = response.data;
+        }
+      })
+      .catch((error) => {
+          console.log(error.response.status);
+          console.log(error.response.data)
+          if (error.response.status == 404) {
+            this.$router.push({ name: "NotFound" });
+          }
+      });
+      // mapboxService.submitRoutingProblem(this.routeProblem)
+      // .then(response => {
+      //   if (response.status === 202) {
+      //     console.log(response.data);
+      //   }
+      // })
+      // .catch((error) => {
+      //     console.log(error.response.status);
+      //     if (error.response.status == 404) {
+      //       this.$router.push({ name: "NotFound" });
+      //     }
+      // });
+    }
   },
   created() {
     tripsService
@@ -73,9 +146,15 @@ export default {
           this.landmarks = res.data;
           console.log(this.landmarks.length);
           console.log(this.landmarks[0].id != "" ? "yes" : "suggested")
+          console.log(this.routeCoordinates);
           if(this.landmarks.length != 0){
             this.hasLandmarks = true;
           }
+          // console.log(this.locations);
+          // console.log(this.services);
+          // console.log(this.routeProblem);
+          //console.log(this.routeCoordinates);
+          this.generateTravelRoute();
         }
       })
       .catch((err) => {
