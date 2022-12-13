@@ -20,8 +20,8 @@
       <div class="popup-inner-adv">
         <h1>Are you sure you want to delete this card?</h1>
         <div class="adv-btn-container">
-          <button v-on:click="togglePopup()">Cancel</button>
-          <button v-on:click="toggleDelete()">Confirm</button>
+          <button class="popup-Btn cancel" v-on:click="togglePopup()">Cancel</button>
+          <button class="popup-Btn delete" v-on:click="toggleDelete()">Confirm</button>
         </div>
       </div>
     </div>
@@ -144,6 +144,10 @@ export default {
   background-color: rgba(0, 0, 0, 0.288);
   color: rgb(253, 253, 253);
 }
+.delete-btn:hover{
+  color: white;
+  background-color: black;
+}
 
 .popup-adv {
   color: black;
@@ -169,8 +173,27 @@ export default {
   justify-content: center;
   flex-direction: column;
 }
-
+.popup-inner-adv > h1{
+  font-size: 1.5rem;
+}
+.popup-Btn{
+  width: 10rem;
+  height: 3rem;
+}
 .adv-btn-container {
   display: flex;
+  align-items: center;
+  width: 65%;
+  height: 25%;
+  margin-top: 1rem;
+}
+.delete{
+  background-color: #59E3A8;
+  color: white;
+}
+.delete:hover{
+  color: white;
+  background-color: black;
+  border: 1px solid black;
 }
 </style>
