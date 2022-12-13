@@ -2,7 +2,7 @@
   <router-link
     class="big-card"
     v-bind:to="{ name: 'landmark-details', params: { id: landmark.xid } }"
-  > 
+  >  
     <div class="card">
       <div>
         <img
@@ -31,7 +31,8 @@
 export default {
   data(){
     return{
-      kinds: ''
+      kinds: '',
+      isApi: true,
     }
   },
   name: "landmark-card",
