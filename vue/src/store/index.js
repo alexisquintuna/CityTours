@@ -27,6 +27,7 @@ export default new Vuex.Store({
         zipCode: "",
         coordinates: [],
         forceRefresh: 0,
+        optimizedRoute: {}
     },
     mutations: {
         SET_AUTH_TOKEN(state, token) {
@@ -60,6 +61,9 @@ export default new Vuex.Store({
         },
         SET_COORDINATES(state, payload) {
             state.coordinates = payload;
+        },
+        SET_OPTIMIZED_ROUTE(state, payload) {
+            state.optimizedRoute = payload;
         }
 
 

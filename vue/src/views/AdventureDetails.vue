@@ -2,17 +2,17 @@
   <div class="adventure-details-page">
     <div class="adventure-details-container">
       <adventure-card-details v-bind:id="tripId" />
-      <landmark-map />
+      <mapbox-map />
     </div>
   </div>
 </template>
 
 <script>
 import AdventureCardDetails from "@/components/AdventureCardDetails.vue";
-import LandmarkMap from "@/components/LandmarkMap.vue";
+import MapboxMap from "@/components/MapboxMapAdventure.vue";
 export default {
   name: "adventure-details",
-  components: { AdventureCardDetails, LandmarkMap },
+  components: { AdventureCardDetails, MapboxMap },
   data() {
     return {
       tripId: 0,
