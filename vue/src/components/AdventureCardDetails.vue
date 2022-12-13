@@ -7,12 +7,12 @@
       <li
         class="adventure-card-list"
         v-for="landmark in this.landmarks"
-        v-bind:key="landmark.xid"
+        v-bind:key="landmark.id"
       >
-        <landmark-card
+        <adventure-landmark-card
           class="landmark-card"
           v-bind:landmark="landmark"
-        ></landmark-card>
+        ></adventure-landmark-card>
         <div class="adventure-btn-container">
           <button
             class="adventure-btn"
@@ -32,12 +32,12 @@
 
 <script>
 import tripsService from "@/services/TripsService.js";
-import LandmarkCard from "@/components/LandmarkCard.vue";
+import AdventureLandmarkCard from "@/components/AdventureLandmarkCard.vue"
 import mapboxService from "@/services/MapboxService.js";
 
 export default {
   name: "adventure-card-details",
-  components: { LandmarkCard },
+  components: { AdventureLandmarkCard },
   data() {
     return {
       hasLandmarks: false,
@@ -146,6 +146,7 @@ export default {
         if (res.status == 200) {
           this.landmarks = res.data;
           console.log(this.landmarks.length);
+          console.log(this.landmarks[0].id != "" ? "yes" : "suggested")
           console.log(this.routeCoordinates);
           if(this.landmarks.length != 0){
             this.hasLandmarks = true;
