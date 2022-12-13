@@ -53,7 +53,7 @@ export default {
 }
 
 .suggestion-details {
-  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.027) 65%,rgb(0, 0, 0));
+  background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.027) 35%,rgb(0, 0, 0));
   width: 100%;
   height: 100%;
   position: absolute;
@@ -63,16 +63,17 @@ export default {
 
 .suggestion-details h1 {
   margin: 15px 10px;
-  display: inline-block;
   color: #fff;
-  font-size: 1.8rem;
-  position: inherit;
+  font-size: 1.5rem;
+  position: absolute;
   bottom: 0;
-  flex-wrap: wrap;
+  display: flex;
+  flex-wrap:wrap;
   width: 50%;
+  height: auto;
 }
 
-.suggestion-icon {
+/* .suggestion-icon {
   position: absolute;
   top: 0.2rem;
   right: 1.5rem;
@@ -84,5 +85,5 @@ export default {
   width: 1.3rem;
   height: 1.3rem;
   border-radius: 100px;
-}
+} */
 </style>

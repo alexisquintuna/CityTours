@@ -137,14 +137,15 @@ export default {
   cursor: pointer;
   background-color: black;
   color: white;
-  transition: 400ms;
+  transition: 500ms;
+  border-radius: 20px;
+
 }
 .enter-zip:hover {
   cursor: pointer;
   background-color: #59E3A8;
   color: #1A2E34;
   transition: 400ms;
-  font-size: 1.6rem;
 }
 .enter-zip {
   font-size: 1.4rem;

@@ -182,6 +182,15 @@ export default {
   display: flex;
   align-items: center;
 }
+
+.adventure-list-card-container > li:nth-child(1) {
+  box-shadow: 0px 2px 5px 3px rgba(168, 167, 167, 0.281);
+}
+
+.adventure-list-card-container > li:hover {
+  box-shadow: 0px 2px 5px 3px rgba(168, 167, 167, 0.281);
+}
+
 .landmark-card {
   width: 95%;
 }
@@ -212,6 +221,7 @@ export default {
 .adventure-btn{
   background-color: black;
   color: white;
+  margin-right: 1rem;
 }
 
 .adventure-btn:hover{
