@@ -9,7 +9,7 @@
 
 <script>
 import AdventureCardDetails from "@/components/AdventureCardDetails.vue";
-import MapboxMap from "@/components/MapboxMapAdventure.vue";
+import MapboxMap from "@/components/MapboxMap.vue";
 export default {
   name: "adventure-details",
   components: { AdventureCardDetails, MapboxMap },

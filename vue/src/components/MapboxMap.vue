@@ -1,5 +1,5 @@
 <template>
-  <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="this.$store.state.coordinates" :zoom=12 >
+  <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="this.$store.state.coordinates" :zoom=12 :key="this.$store.state.coordinates">
 
       <!-- <MglGeojsonLayer :source="geoJsonSource" layerId="myLayer" :layer="geoJsonlayer" /> -->
   </MglMap>
@@ -45,11 +45,14 @@ export default {
             // }
         };
     },
-    created() {
+    updated() {
         this.mapbox = Mapbox;
         console.log(this.$store.state.coordinates)
+
         
-    }
+        
+    },
+
 
 };
 </script>
