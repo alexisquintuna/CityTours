@@ -43,6 +43,45 @@ export default {
       landmarks: {},
     };
   },
+  computed: {
+    locations() {
+      let locationsArray = [];
+      for (let i = 0; i < this.landmarks.length; i++) {
+        locationsArray.push({
+          name: this.landmarks[i].name,
+          coordinates: [this.landmarks[i].longitude, this.landmarks[i].latitude]
+        })
+      }
+      return locationsArray;
+    },
+    // routeProblem() {
+    //     return {
+    //     version: 1,
+    //     locations: [
+    //       {
+    //       name: "",
+    //       coordinates: []
+    //     },
+    //     ],
+    //     locations: this.landmarks.forEach(element => {
+    //       name: element.name,
+    //       coordinates: 
+    //     })
+    //     vehicles: [{
+    //       name: "tourist",
+    //       routing_profile: "mapbox/driving",
+    //     }],
+    //     services: [
+    //       {
+    //       name: "",
+    //       location: "",
+    //     },
+    //     ],
+
+    //     }
+        
+    //   }
+  },
   props: ["id", "trip"],
   methods: {
     deleteLandmark(id) {
@@ -80,7 +119,7 @@ export default {
           this.$router.push({ name: "NotFound" });
         }
       });
-    
+    console.log(this.locations);
   },
 };
 </script>
