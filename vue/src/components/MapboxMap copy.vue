@@ -1,19 +1,20 @@
 <template>
   <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="this.$store.state.coordinates" :zoom=12 >
 
-      <!-- <MglGeojsonLayer :source="geoJsonSource" layerId="myLayer" :layer="geoJsonlayer" /> -->
+      <MglGeojsonLayer :source="geoJsonSource" layerId="myLayer" :layer="geoJsonlayer" />
   </MglMap>
 
 </template>
 
 <script>
 import Mapbox from "mapbox-gl";
-import {MglMap} from "vue-mapbox";
+import {MglMap, MglGeojsonLayer} from "vue-mapbox";
 
 export default {
     name: "mapbox-map",
     components: {
         MglMap,
+        MglGeojsonLayer,
     },
 
     // methods: {
@@ -32,22 +33,26 @@ export default {
         return {
             accessToken: 'pk.eyJ1IjoiZHJld3N3ZWV0IiwiYSI6ImNsYmgwM2kzdDBlb2MzcHFtZm8zajg2ZzIifQ.pDG4UufOD--ptSzeCeiPWA',
             mapStyle: "mapbox://styles/mapbox/streets-v11",
-            // geoJsonSource: {
-            //     //...some GeoJSON object
-            // },
-            // geoJsonLayer: {
-            //     id: 'optimized-route',
-            //     type: 'line',
-            //     source: 'geoJsonSource',
-            //     layout: {
+            geoJsonSource: {
+                //...some GeoJSON object
+            },
+            geoJsonLayer: {
+                id: 'optimized-route',
+                type: 'line',
+                source: 'geoJsonSource',
+                layout: {
 
-            //     }
-            // }
+                }
+            }
         };
     },
     created() {
         this.mapbox = Mapbox;
         console.log(this.$store.state.coordinates)
+
+        this.map.on('load', () => {
+            
+        }
         
     }
 
