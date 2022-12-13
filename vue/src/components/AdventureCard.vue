@@ -36,7 +36,7 @@ export default {
       buttonTrigger: false,
       confirmDelete: false,
       tripId: 0,
-    };
+    }; 
   },
   name: "adventure-card",
   props: ["trip"],

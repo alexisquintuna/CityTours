@@ -4,7 +4,7 @@
     <!-- chrome settings and security -->
     <router-link
       class="suggestion-link"
-      v-bind:to="{ name: 'landmark-details', params: { id: landmark.id } }"
+      v-bind:to="{ name: 'suggested-details', params: { id: landmark.id } }" 
     >
       <div class="suggestion-bg">
         <img class="suggestion-img" v-bind:src="landmark.photo" alt="" />

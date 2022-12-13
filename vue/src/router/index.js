@@ -9,6 +9,7 @@ import Register from "../views/Register.vue";
 import NotFound from "@/views/NotFound.vue";
 import Landmarks from "@/views/Landmarks.vue";
 import LandmarkDetails from "@/views/LandmarkDetails.vue";
+import SuggestedDetails from "@/views/SuggestedDetailsPage.vue"
 import MyAdventures from "@/views/MyAdventures.vue";
 import AddLandmark from "@/views/AddLandmark.vue";
 import AdventureCardDetails from "@/views/AdventureDetails.vue"
@@ -47,6 +48,14 @@ const router = new Router({
             path: "/landmark/:id",
             name: "landmark-details",
             component: LandmarkDetails,
+            meta: {
+                requiresAuth: true,
+            },
+        },
+        {
+            path: "/suggested-details/:id",
+            name: "suggested-details",
+            component: SuggestedDetails,
             meta: {
                 requiresAuth: true,
             },

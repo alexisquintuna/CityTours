@@ -10,7 +10,7 @@
           class="landmark-card"
           v-bind:landmark="landmark"
         ></suggestion-card>
-      </li>
+      </li> 
     </ul>
   </div>
 </template>

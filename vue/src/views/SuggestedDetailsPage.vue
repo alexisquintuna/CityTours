@@ -1,14 +1,14 @@
 <template>
   <div>
-    <card-details v-bind:id="landmarkId" />
+    <suggested-card-details v-bind:id="landmarkId" />
   </div>
 </template>
-
+ 
 <script>
-import CardDetails from "@/components/CardDetails.vue";
+import SuggestedCardDetails from "@/components/SuggestedCardDetails.vue";
 export default {
   name: "landmark-details",
-  components: { CardDetails },
+  components: { SuggestedCardDetails },
   data() {
     return { landmarkId: 0 };
   },
