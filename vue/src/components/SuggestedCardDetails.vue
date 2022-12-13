@@ -10,9 +10,9 @@
           >BACK</router-link
         >
         <div class="header-section">
-          <h1 class="landmark-header">{{ suggestedLandmark.name }}</h1>
+          <h1 class="landmark-header">{{ landmark.name }}</h1>
           <p class="landmark-subheader">
-            In {{ suggestedLandmark.address }}
+            In {{ landmark.address }}
           </p>
           <div class="addLandmark-container">
             <form class="addToAdv" v-on:submit.prevent="adding">
@@ -35,27 +35,27 @@
           <div class="right-side">
             <img
               id="details-img"
-              v-bind:src="suggestedLandmark.photo"
+              v-bind:src="landmark.photo"
               alt="picture of location"
             />
             <p class="details-description">
-              {{ suggestedLandmark.description }}
+              {{ landmark.description }}
             </p>
           </div>
           <aside>
             <h3>Details</h3>
             <p class="aside-p">
               <span class="aside-span">Address</span>
-              {{ suggestedLandmark.address }}
+              {{ landmark.address }}
             </p>
             <p class="aside-p">
               <span class="aside-span">Website</span>
               <a
-                :href="rawLandmark.link"
+                :href="landmark.link"
                 target="_blank"
                 class="details-link"
                 >{{
-                  suggestedLandmark.link ? suggestedLandmark.link : "No Website link found"
+                  landmark.link ? landmark.link : "No Website link found"
                 }}</a
               >
             </p>
@@ -87,9 +87,9 @@ export default {
   data() {
     return {
       buttonTrigger: false,
-      rawLandmark: {},
+     /*  rawLandmark: {}, */
       image: "",
-      suggestedLandmark: {},
+      /* suggestedLandmark: {}, */
       landmark: {
         name: "",
         description: "",
@@ -132,9 +132,9 @@ export default {
         console.log(response.data);
         if (response.status === 200) {
           console.log(response.data);
-          this.suggestedLandmark = response.data;
+          this.landmark = response.data;
 
-          this.image = this.rawLandmark.preview.source;
+          /* this.image = this.rawLandmark.preview.source;
           this.landmark.name = `${this.rawLandmark.name}`;
           this.landmark.description = `${this.rawLandmark.wikipedia_extracts.text}`;
           this.landmark.category = `${this.rawLandmark.kinds}`;
@@ -142,7 +142,7 @@ export default {
           this.landmark.longitude = `${this.rawLandmark.point.lon}`;
           this.landmark.address = `${this.rawLandmark.address.house_number} ${this.rawLandmark.address.road}, ${this.rawLandmark.address.city}, ${this.rawLandmark.address.postcode}`;
           this.landmark.link = `${this.rawLandmark.link}`;
-          this.landmark.photo = `${this.image}`;
+          this.landmark.photo = `${this.image}`; */
         }
       })
       .catch((error) => {
