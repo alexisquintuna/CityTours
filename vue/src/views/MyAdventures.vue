@@ -139,12 +139,21 @@ export default {
 .close-btn {
   color: black;
   background-color: white;
+  border: 1px solid black;
 }
 .close-btn:hover {
   color: white;
   background-color: black;
 }
-
+.add-btn{
+  background-color: #59E3A8;
+  color: white;
+}
+.add-btn:hover{
+  color: white;
+  background-color: black;
+  border: 1px solid black;
+}
 .addingTrip-form {
   height: 100%;
   width: 100%;

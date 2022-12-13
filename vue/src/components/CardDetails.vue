@@ -2,39 +2,65 @@
   <div class="details-page">
     <div class="details-container">
       <div class="details-main">
-    <router-link id="back" v-bind:to="{ name: 'landmarks', params: {query: this.$store.state.locationQuery} }">BACK</router-link>
+        <router-link
+          id="back"
+          v-bind:to="{
+            name: 'landmarks',
+            params: { query: this.$store.state.locationQuery },
+          }"
+          >BACK</router-link
+        >
         <div class="header-section">
           <h1 class="landmark-header">{{ rawLandmark.name }}</h1>
-          <p class="landmark-subheader">In {{ rawLandmark.address.city }}, {{rawLandmark.address.country}} </p>
-          <form class="addLandmarkBtn" v-on:submit.prevent="adding">
-            <label for="trips">Add To An Adventure:</label>
-            <select name="trips" class="form-control" v-model="trip">
-              <option>Select Adventure</option>
-              <option v-for="trip in this.$store.state.trips"
-              v-bind:key="trip.id" v-bind:value="trip">{{trip.name}}</option>
-            </select>
-            <input type="submit">
-          </form>
+          <p class="landmark-subheader">
+            In {{ rawLandmark.address.city }}, {{ rawLandmark.address.country }}
+          </p>
+          <div class="addLandmark-container">
+            <form class="addToAdv" v-on:submit.prevent="adding">
+              <label for="trips">Add To An Adventure:</label>
+              <select name="trips" class="select-adv" v-model="trip">
+                <option>Select Adventure</option>
+                <option
+                  v-for="trip in this.$store.state.trips"
+                  v-bind:key="trip.id"
+                  v-bind:value="trip"
+                >
+                  {{ trip.name }}
+                </option>
+              </select>
+              <input type="submit" v-on:click="togglePopup()" />
+            </form>
+          </div>
         </div>
         <section class="info-section">
           <div class="right-side">
             <img
               id="details-img"
-              v-bind:src='image'
+              v-bind:src="image"
               alt="picture of location"
             />
-            <p class="details-description">{{ rawLandmark.wikipedia_extracts.text }}</p>
+            <p class="details-description">
+              {{ rawLandmark.wikipedia_extracts.text }}
+            </p>
           </div>
           <aside>
             <h3>Details</h3>
             <p class="aside-p">
-              <span class="aside-span">Address</span> {{ rawLandmark.address.house_number }} {{ rawLandmark.address.road }} {{ rawLandmark.address.city }} {{ rawLandmark.address.postcode }}
+              <span class="aside-span">Address</span>
+              {{ rawLandmark.address.house_number }}
+              {{ rawLandmark.address.road }} {{ rawLandmark.address.city }}
+              {{ rawLandmark.address.postcode }}
             </p>
             <p class="aside-p">
               <span class="aside-span">Website</span>
-              <a :href="rawLandmark.link" target="_blank" class="details-link">{{
-                rawLandmark.url ? rawLandmark.url : "No Website link found"
-              }}</a>
+              <a
+                :href="rawLandmark.link"
+                target="_blank"
+                class="details-link"
+                >{{
+                  rawLandmark.url ? rawLandmark.url : "No Website link found"
+                }}</a
+              >
             </p>
             <br />
             <hr />
@@ -42,82 +68,95 @@
         </section>
       </div>
     </div>
+    <div class="popup-adv" v-show="buttonTrigger">
+      <div class="popup-inner-adv">
+        <h1>Adventure added to {{ trip.name }}</h1>
+        <div class="adv-btn-container">
+          <button class="popup-Btn delete" v-on:click="togglePopup()">
+            Okay
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
- 
+
 <script>
 import openMapTripService from "../services/OpenMapTripService.js";
-import TripsService from '../services/TripsService.js';
+import TripsService from "../services/TripsService.js";
 
 export default {
   name: "card-details",
   data() {
     return {
+      buttonTrigger: false,
       rawLandmark: {},
       image: "",
-      landmark:{
-        name: '',
-        description: '',
-        category: '',
-        latitude: '',
-        longitude: '',
-        address: '',
-        link: '',
-        photo: '',
+      landmark: {
+        name: "",
+        description: "",
+        category: "",
+        latitude: "",
+        longitude: "",
+        address: "",
+        link: "",
+        photo: "",
       },
       trip: {
-        id: '',
-        name: '',
-      }
+        id: "",
+        name: "",
+      },
     };
   },
   props: ["id"],
   methods: {
     adding() {
-      TripsService
-      .addLandmarkToTrip(this.trip.id, this.landmark)
-      .then((res) => {
-        if (res.status == 200) {
-          console.log(res.status)
-        }
-      })
-      .catch ((err) => {
-        if(err.response.status==400) {
-          console.log(err.response.status)
-        }
-      });
+      TripsService.addLandmarkToTrip(this.trip.id, this.landmark)
+        .then((res) => {
+          if (res.status == 200) {
+            console.log(res.status);
+          }
+        })
+        .catch((err) => {
+          if (err.response.status == 400) {
+            console.log(err.response.status);
+          }
+        });
+    },
+    togglePopup(){
+      this.buttonTrigger = !this.buttonTrigger
     }
   },
   created() {
-    openMapTripService.getPlaceDetails(this.id)
-    .then((response) => {
-      console.log(response.data)
-      if (response.status === 200) {
+    openMapTripService
+      .getPlaceDetails(this.id)
+      .then((response) => {
         console.log(response.data);
-        this.rawLandmark = response.data;
-        
-        this.image = this.rawLandmark.preview.source;
-        this.landmark.name= `${this.rawLandmark.name}`;
-        this.landmark.description= `${this.rawLandmark.wikipedia_extracts.text}`;
-        this.landmark.category= `${this.rawLandmark.kinds}`;
-        this.landmark.latitude= `${this.rawLandmark.point.lat}`;
-        this.landmark.longitude= `${this.rawLandmark.point.lon}`;
-        this.landmark.address= `${this.rawLandmark.address.house_number} ${this.rawLandmark.address.road}, ${this.rawLandmark.address.city}, ${this.rawLandmark.address.postcode}`;
-        this.landmark.link= `${this.rawLandmark.link}`;
-        this.landmark.photo= `${this.image}`;
-      }
-    })
-    .catch((error) => {
-      if (error.response.status == 404) {
-        this.$router.push({name: "NotFound"});
-      }
-    })
+        if (response.status === 200) {
+          console.log(response.data);
+          this.rawLandmark = response.data;
+
+          this.image = this.rawLandmark.preview.source;
+          this.landmark.name = `${this.rawLandmark.name}`;
+          this.landmark.description = `${this.rawLandmark.wikipedia_extracts.text}`;
+          this.landmark.category = `${this.rawLandmark.kinds}`;
+          this.landmark.latitude = `${this.rawLandmark.point.lat}`;
+          this.landmark.longitude = `${this.rawLandmark.point.lon}`;
+          this.landmark.address = `${this.rawLandmark.address.house_number} ${this.rawLandmark.address.road}, ${this.rawLandmark.address.city}, ${this.rawLandmark.address.postcode}`;
+          this.landmark.link = `${this.rawLandmark.link}`;
+          this.landmark.photo = `${this.image}`;
+        }
+      })
+      .catch((error) => {
+        if (error.response.status == 404) {
+          this.$router.push({ name: "NotFound" });
+        }
+      });
   },
 };
 </script>
 
 <style>
-
 .details-page {
   background-color: rgb(255, 255, 255);
   color: black;
@@ -128,7 +167,6 @@ export default {
   margin: 1rem auto;
   padding: 10px;
   height: 100%;
-
 }
 .details-main {
   width: 78%;
@@ -151,15 +189,48 @@ export default {
   width: 100%;
   justify-content: center;
 }
-.landmark-headerBtn{
-  height: 3rem;
-  width: 10rem;
+.addLandmark-container {
+  /* z-index: 99; */
+  /* position: fixed;
+  top: 0;
+  right:0;
+  left:0;
+  bottom: 0; */
+  position: absolute;
+  right: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.addToAdv {
+  height: 7rem;
+  width: 33rem;
+  color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.addToAdv > label {
+  font-size: 1.3rem;
+  font-weight: 600;
+  display: inline;
+}
+
+.addToAdv > input {
+  height: 2rem;
+  width: 7rem;
+  border-radius: 20px;
   background-color: black;
   color: white;
-  position: absolute;
-  right: 0rem;
 }
-.landmark-headerBtn{
+.addToAdv > input:hover {
+  cursor: pointer;
+  background-color: #59e3a8;
+  color: black;
+  transition: 300ms;
+}
+.landmark-headerBtn {
   border: 1px solid black;
 }
 
@@ -176,7 +247,7 @@ export default {
   font-size: 48px;
 }
 
-.landmark-subheader{
+.landmark-subheader {
   font-style: italic;
 }
 .info-section {
