@@ -47,6 +47,7 @@ export default {
       trip: {
         name: "",
       },
+      hasAdventures: false
     };
   },
   name: "my-adventures",
@@ -160,7 +161,7 @@ export default {
 .adventure-container {
   background-color: rgb(255, 255, 255);
   position: relative;
-  height: 100%;
+  height: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
