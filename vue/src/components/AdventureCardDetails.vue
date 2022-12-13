@@ -112,6 +112,7 @@ export default {
         if(response.status === 200) {
           console.log(response.data);
           this.optimizedRoute = response.data;
+          this.$store.commit("SET_OPTIMIZED_ROUTE", this.optimizedRoute);
         }
       })
       .catch((error) => {

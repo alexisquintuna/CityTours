@@ -10,9 +10,11 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@turf/turf": "^6.5.0",
     "axios": "^0.21.1",
     "core-js": "^3.9.1",
     "mapbox-gl": "^0.53.1",
+    "turf": "^3.0.14",
     "vue": "^2.6.12",
     "vue-mapbox": "^0.4.1",
     "vue-router": "^3.5.1",
