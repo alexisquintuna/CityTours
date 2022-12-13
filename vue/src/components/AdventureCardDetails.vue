@@ -133,6 +133,11 @@ export default {
   background-color: black;
   color: white;
 }
+
+.adventure-btn:hover{
+  background-color: black;
+  color: #59E3A8;
+}
 .no-items{
   display: flex;
   flex-direction: column;

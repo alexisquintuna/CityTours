@@ -206,10 +206,13 @@ export default {
   width: 100%;
   display: flex;
   align-items: flex-end;
+  height: 160vh;
+  background: white;
 }
 .adding-container {
   width: 100%;
-  margin: 10rem 0 4rem;
+  padding-bottom: 10rem;
+  /* margin: 10rem 0 4rem; */
 }
 .adding-form {
   background-color: #f7f7f7;
