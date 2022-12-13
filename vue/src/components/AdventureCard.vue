@@ -86,12 +86,27 @@ export default {
   height: 100%;
   background-image: linear-gradient(
     to bottom,
-    rgba(247, 247, 247, 0) 55%,
+    rgba(247, 247, 247, 0) 65%,
     rgb(0, 0, 0)
   );
   border-radius: 20px;
-
 }
+
+/* .adventure-card:hover{
+  background-size: 400px;
+  transition-duration: 9000ms;
+} */
+.adventure-link-card:hover,
+.adventure-link-card:hover .adv-bg{
+ background-image: linear-gradient(
+    to bottom,
+    rgba(247, 247, 247, 0) 25%,
+    rgb(0, 0, 0)
+  );
+  color: white;
+  transition-duration: 400ms;
+}
+
 .adv-bg {
   height: 100%;
   width: 100%;

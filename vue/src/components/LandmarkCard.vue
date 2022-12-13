@@ -71,14 +71,12 @@ export default {
   border-radius: 30px;
   height: 150px;
   width: 90%;
-  background-color: #fff;
 }
 .img-location {
   margin: 0;
   padding: 0;
   height: 120px;
   width: 120px;
-  background-color: chocolate;
   border-radius: 30px;
   overflow: hidden;
 }
@@ -92,26 +90,8 @@ export default {
 
 .details h1{
     color: #1a2e34;
-    font-size: 1.8rem;
+    font-size: 1.7rem;
 }
-
-.details h1,
-.details p {
-  display: inline-block;
-  margin: 5px 0;
-  padding: 0;
-  /* how to figure out to hide extra info when being sent */
-}
-
-.details p {
-  width: 100%;
-  height: 4.5ch;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  /* how to figure out to hide extra info when being sent */
-}
-
 .icon {
   position: relative;
   bottom: 2.8rem;

@@ -85,6 +85,7 @@ export default {
   width: 100%;
 }
 #nav {
+  animation: 1s ease-out 0s 1 slideInDown;
   background-color: #1a2e34;
   position: absolute;
   top: 0;
@@ -99,7 +100,23 @@ export default {
 #nav > div {
   margin: 0 70px;
 }
+@keyframes slideInDown {
+        0% {
+          transform: translatey(-100%);
+        }
+        100% {
+          transform: translatey(0);
+        }
+      }
 
+@keyframes easeIn {
+  0%{
+    opacity: 0%;
+  }
+  100%{
+    opacity: 100%;
+  }
+}
 .nav-text {
   text-decoration: none;
   color: rgb(255, 255, 255);
