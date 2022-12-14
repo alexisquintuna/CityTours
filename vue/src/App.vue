@@ -1,13 +1,21 @@
 <template>
   <div id="app">
-    <div id="nav">
+    <nav id="nav" ref="nav" class="inactive">
       <div>
         <router-link
           id="logo-text"
           class="nav-text"
           v-bind:to="{ name: 'home' }"
-          >Opn <br />City</router-link
-        >
+          >
+          <div class="logo-txt">
+            <p>
+          Opn
+            </p>
+            <p>
+              City
+            </p>
+          </div>
+          </router-link>
       </div>
       <div id="nav-right">
         <router-link
@@ -53,7 +61,7 @@
           >Log In</router-link
         >
       </div>
-    </div>
+    </nav>
     <router-view class="router-view" />
     <footer>
       <h1>this is the footer</h1>
@@ -69,10 +77,74 @@ export default {
       },
     };
   },
+  methods: {
+    addingClass(){
+      console.log("reaching adding")
+        let navBar = document.getElementById('nav')
+        console.log(navBar)
+        navBar.classList.remove('.inactive')
+      navBar.classList.add(".active")
+    }
+  },
 };
 </script>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital@0;1&family=DM+Serif+Display&display=swap');
+
+:root{
+  --logo:green;
+  --title: black;
+  --subtitle: white;
+}
+/* 
+
+font-family: 'DM Sans', sans-serif;
+font-family: 'DM Serif Display', serif;
+
+*/
+.main-title-font{
+font-family: 'DM Serif Display', serif;
+
+}
+
+.sub-title-font{
+  font-family: 'DM Sans', sans-serif;
+}
+
+/* @keyframes slideInDown {
+        0% {
+          transform: translatey(-100%);
+        }
+        100% {
+          transform: translatey(0);
+        }
+      }
+
+@keyframes easeIn {
+  0%{
+    opacity: 0%;
+  }
+  99%{
+    opacity: 75%;
+  }
+  100%{
+    opacity: 100%;
+  }
+}
+
+@keyframes zoomOut {
+  0%{
+    transform: scale(3);
+  }
+  50%{
+    transform: scale(3);
+  }
+  100%{
+    transform: scale(1);
+  }
+} */
 .router-view {
   position: relative;
   width: 100%;
@@ -84,8 +156,28 @@ export default {
   top: 0;
   width: 100%;
 }
-#nav {
+.background-img{
+  animation-name: zoomOut;
+  animation-duration: 2.5s;
+  animation-timing-function: ease-in;
+  animation-delay: 0s;
+
+  width: 100%;
+  position: absolute;
+  top: 7rem;
+  display: flex;
+  justify-content: center;
+}
+.background-img > img {
+  width: 65%;
+}
+.inactive{
+  display: none;
+}
+.active{
   animation: 1s ease-out 0s 1 slideInDown;
+}
+#nav {
   background-color: #1a2e34;
   position: absolute;
   top: 0;
@@ -100,22 +192,16 @@ export default {
 #nav > div {
   margin: 0 70px;
 }
-@keyframes slideInDown {
-        0% {
-          transform: translatey(-100%);
-        }
-        100% {
-          transform: translatey(0);
-        }
-      }
 
-@keyframes easeIn {
-  0%{
-    opacity: 0%;
-  }
-  100%{
-    opacity: 100%;
-  }
+
+.logo-txt{
+  display:flex;
+  flex-direction: column;
+}
+.logo-txt p {
+  margin: -0.5rem auto;
+  display: inline-block;
+  font-size: 2.5rem;
 }
 .nav-text {
   text-decoration: none;
@@ -127,6 +213,7 @@ export default {
 #logo-text {
   font-size: 36px;
   color:#59E3A8;
+  font-family: 'Cinzel',serif;
 }
 
 #nav-right {
@@ -138,6 +225,7 @@ export default {
 }
 .nav-subtext{
   margin: 0 1rem;
+  font-family: 'Proza Libre', sans-serif;
 }
 .nav-subtext:hover {
   color: #59E3A8;
@@ -149,15 +237,15 @@ export default {
   background-color: rgba(255, 255, 255, 0.288);
   color:white;
   border-radius: 20px;
-  height: 2.5rem;
-  width: 6rem;
+  height: 2.8rem;
+  width: 7rem;
   display:flex;
   margin: 0 10px;
   justify-content: center;
   align-items: center;
   text-decoration: none;
   font-size: 1.2rem;
-
+  font-family: 'Proza Libre', sans-serif;
 }
 
 .nav-login-btn:hover{
@@ -181,6 +269,7 @@ footer {
 }
 input {
   border: none;
+  font-family: 'Proza Libre', sans-serif;
 }
 input:focus {
   outline: none;
@@ -191,6 +280,7 @@ button {
   height: 60px;
   border: none;
   border-radius: 50px;
+  font-family: 'Proza Libre', sans-serif;
 }
 
 button:hover {

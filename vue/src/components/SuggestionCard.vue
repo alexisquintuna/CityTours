@@ -64,13 +64,15 @@ export default {
 .suggestion-details h1 {
   margin: 15px 10px;
   color: #fff;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
   position: absolute;
   bottom: 0;
   display: flex;
   flex-wrap:wrap;
   width: 50%;
   height: auto;
+  font-family: 'Proza Libre', sans-serif;
 }
 
 /* .suggestion-icon {
