@@ -50,7 +50,7 @@ export default {
   width: 95%;
   background-color: rgb(255, 255, 255);
   margin: 1rem auto 0;
-  border-radius: 10px;
+  border-radius: 30px;
   padding: 10px 20px;
 }
 .suggestion-list  > ul {

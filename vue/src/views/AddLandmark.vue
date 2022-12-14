@@ -207,11 +207,11 @@ export default {
   display: flex;
   align-items: flex-end;
   height: 160vh;
-  background: white;
+  background: rgb(255, 255, 255);
 }
 .adding-container {
   width: 100%;
-  padding-bottom: 10rem;
+  padding-bottom: 7%;
   /* margin: 10rem 0 4rem; */
 }
 .adding-form {
@@ -306,7 +306,7 @@ export default {
   border-radius: 5px;
 }
 .cancel {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   color: black;
   border: 1px solid;
 }

@@ -18,7 +18,7 @@
     </form>
 
     <div class="landmark-suggestion">
-        <h1 class="main-title-font">Hot spots</h1>
+        <h1 class="main-title-font">Hotspots</h1>
       <suggestion-list class="suggestion-container"></suggestion-list>
     </div>
 
@@ -169,15 +169,18 @@ export default {
   margin: 5rem auto 0;
   height: 20rem;
   width: 75%;
-  background-color: #3D9F76;
+  background-color:  #7c7c7cd8;
+  border-radius: 30px;
+  backdrop-filter: blur(5px);
 }
 
 .landmark-suggestion > h1 {
     font-size: 2.5rem;
     display: inline-block;
     margin: 1rem 1rem 0rem 2.7rem;
-    color: #fff;
+    color: rgb(255, 255, 255);
     font-weight: 500;
+    padding-left: 2%;
 }
 
 .suggestion-container{
