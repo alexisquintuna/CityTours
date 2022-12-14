@@ -207,7 +207,7 @@ export default {
   display: flex;
   align-items: flex-end;
   height: 160vh;
-  background: white;
+  background: rgba(255, 255, 255, 0);
 }
 .adding-container {
   width: 100%;
@@ -306,7 +306,7 @@ export default {
   border-radius: 5px;
 }
 .cancel {
-  background-color: white;
+  background-color: rgb(255, 255, 255);
   color: black;
   border: 1px solid;
 }

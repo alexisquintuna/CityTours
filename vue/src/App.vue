@@ -148,7 +148,7 @@ font-family: 'DM Serif Display', serif;
   animation: 1s ease-out 0s 1 slideInDown;
 }
 #nav {
-  background-color: #1a2e34;
+  background-color: #1a2e34c9;
   position: absolute;
   top: 0;
   display: flex;
