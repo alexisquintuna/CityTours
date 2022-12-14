@@ -171,6 +171,7 @@ export default {
   width: 75%;
   background-color:  #7c7c7cd8;
   border-radius: 30px;
+  backdrop-filter: blur(5px);
 }
 
 .landmark-suggestion > h1 {

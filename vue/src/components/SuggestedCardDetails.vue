@@ -5,38 +5,45 @@
         <router-link
           id="back"
           v-bind:to="{
-            name: 'home'
+            name: 'home',
           }"
           >BACK</router-link
         >
         <div class="header-section">
           <div class="main-header-section">
-          <h1 class="landmark-header main-title-font">{{ landmark.name }}</h1>
-          <div class="addLandmark-container">
-            <form class="addToAdv" v-on:submit.prevent="adding">
-              <label for="trips">Choose Adventure:</label>
-              <select name="trips" class="select-adv" v-model="trip">
-                <option
-                  v-for="trip in this.$store.state.trips"
-                  v-bind:key="trip.id"
-                  v-bind:value="trip"
-                >
-                  {{ trip.name }}
-                </option>
-              </select>
-              <input type="submit" value="Add" v-on:click="togglePopup()" />
-            </form>
-          </div>
+            <h1 class="landmark-header main-title-font">{{ landmark.name }}</h1>
+            <div class="addLandmark-container">
+              <form class="addToAdv" v-on:submit.prevent="adding">
+                <label for="trips">Choose Adventure:</label>
+                <select name="trips" class="select-adv" v-model="trip">
+                  <option
+                    v-for="trip in this.$store.state.trips"
+                    v-bind:key="trip.id"
+                    v-bind:value="trip"
+                  >
+                    {{ trip.name }}
+                  </option>
+                </select>
+                <input type="submit" value="Add" v-on:click="togglePopup()" />
+              </form>
+            </div>
           </div>
           <div class="submain-header-section">
-
-          <p class="landmark-subheader sub-title-font">
-            In {{ landmark.address }}
-          </p>
-          <div class="count">
-              <p>{{this.count}}</p>
-              <span class="material-symbols-outlined thumbs_up" v-on:click="countUp()">thumb_up</span>
-              <span class="material-symbols-outlined thumbs_down" v-on:click="countDown()">thumb_down</span>
+            <p class="landmark-subheader sub-title-font">
+              In {{ landmark.address }}
+            </p>
+            <div class="count">
+              <p>{{ this.count }}</p>
+              <span
+                class="material-symbols-outlined thumbs_up"
+                v-on:click="countUp()"
+                >thumb_up</span
+              >
+              <span
+                class="material-symbols-outlined thumbs_down"
+                v-on:click="countDown()"
+                >thumb_down</span
+              >
             </div>
           </div>
         </div>
@@ -56,14 +63,9 @@
             </p>
             <p class="aside-p sub-title-font">
               <span class="aside-span">Website</span>
-              <a
-                :href="landmark.link"
-                target="_blank"
-                class="details-link"
-                >{{
-                  landmark.link ? landmark.link : "No Website link found"
-                }}</a
-              >
+              <a :href="landmark.link" target="_blank" class="details-link">{{
+                landmark.link ? landmark.link : "No Website link found"
+              }}</a>
             </p>
             <br />
             <hr />
@@ -117,11 +119,11 @@ export default {
   },
   props: ["id"],
   methods: {
-    countUp(){
-      this.count++
+    countUp() {
+      this.count++;
     },
-    countDown(){
-      this.count--
+    countDown() {
+      this.count--;
     },
     adding() {
       TripsService.addLandmarkToTrip(this.trip.id, this.landmark)
@@ -136,9 +138,9 @@ export default {
           }
         });
     },
-    togglePopup(){
-      this.buttonTrigger = !this.buttonTrigger
-    }
+    togglePopup() {
+      this.buttonTrigger = !this.buttonTrigger;
+    },
   },
   created() {
     landmarkService
@@ -169,6 +171,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
