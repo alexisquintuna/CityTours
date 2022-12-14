@@ -2,7 +2,7 @@
   <div class="adventure-page">
     <div class="adventure-container">
       <div class="newTrip-border-btn">
-        <button class="new-trip-btn" v-on:click="TogglePopup()">
+        <button class="new-trip-btn sub-title-font" v-on:click="TogglePopup()">
           + Add New Trip
         </button>
       </div>
@@ -11,25 +11,25 @@
     <div class="popup" v-if="buttonTrigger">
       <div class="popup-inner">
         <form
-          class="addingTrip-form"
+          class="addingTrip-form sub-title-font"
           action=""
           v-on:submit.prevent="addingTrip"
         >
           <h1>Add a new trip to the list!</h1>
           <input
-            class="trip-name-input"
+            class="trip-name-input sub-title-font"
             type="text"
             placeholder="Name of trip"
             v-model="trip.name"
           />
           <div class="buttons-div">
             <button
-              class="popup-close close-btn"
+              class="popup-close close-btn sub-title-font"
               v-on:click.prevent="TogglePopup()"
             >
               Cancel
             </button>
-            <button class="popup-close add-btn" type="submit">Add Trip</button>
+            <button class="popup-close add-btn sub-title-font" type="submit">Add Trip</button>
           </div>
         </form>
       </div>
@@ -124,16 +124,16 @@ export default {
   width: 75%;
 }
 .popup-close {
-  width: 35%;
-  height: 55%;
+  width: 40%;
+  height: 70%;
   font-size: 1.3rem;
 }
 .buttons-div {
   height: 15%;
+  width: 78%;
   display: flex;
   align-items: center;
   justify-content: space-around;
-  width: 100%;
 }
 
 .close-btn {
@@ -150,9 +150,9 @@ export default {
   color: white;
 }
 .add-btn:hover{
-  color: white;
-  background-color: black;
-  border: 1px solid black;
+  color: var(--lime-green);
+  background-color: white;
+  border: 1px solid var(--lime-green);
 }
 .addingTrip-form {
   height: 100%;
@@ -186,7 +186,7 @@ export default {
   margin: 1rem;
 }
 .new-trip-btn {
-  background-color: #6baa75;
+  background-color: black;
   color: white;
   text-decoration: none;
   height: 3rem;
@@ -199,8 +199,8 @@ export default {
 }
 
 .new-trip-btn:hover {
-  background-color: black;
-  color: white;
+  background-color: var(--lime-green);
+  color: black;
 }
 
 .adv-list{

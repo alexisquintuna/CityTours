@@ -159,7 +159,7 @@ ul {
 }
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #0717aa;
+  background: black;
   transition: 400ms;
 }
 </style>

@@ -1,14 +1,10 @@
 <template>
   <div class="home">
-    
-    <!-- <div class="home-header">
-      <h1>Plan your next adventure in the next city you visit</h1>
-    </div> -->
     <div class="home-container">
 
     <form class="home-form" action="" v-on:submit="saveQuery">
       <input
-        class="home-input"
+        class="home-input sub-title-font"
         type="text"
         placeholder="Please enter a location"
         v-model="locationQuery"
@@ -17,12 +13,12 @@
           class="submit-btn"
           v-bind:to="{ name: 'landmarks', params: { query: locationQuery } }"
         >
-          <input class="enter-zip" type="submit" />
+          <input class="enter-zip sub-title-font " type="submit" />
         </router-link>
     </form>
 
     <div class="landmark-suggestion">
-        <h1>Hot spots</h1>
+        <h1 class="main-title-font">Hot spots</h1>
       <suggestion-list class="suggestion-container"></suggestion-list>
     </div>
 
@@ -79,7 +75,6 @@ export default {
   /* background-color: rgb(165, 62, 62); */
 
 .home-header{
-  /* background-color: rgb(28, 165, 28); */
   background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.938) 35%, rgba(255, 255, 255, 0.733));
   width: 100%;
   height: 100%;
@@ -120,7 +115,6 @@ export default {
   color: white;
   width: 34rem;
   font-size: 3rem;
-  font-family: 'Proza Libre', sans-serif;
 }
 
 
@@ -183,7 +177,6 @@ export default {
     display: inline-block;
     margin: 1rem 1rem 0rem 2.7rem;
     color: #fff;
-    font-family: 'Raleway', sans-serif;
     font-weight: 500;
 }
 

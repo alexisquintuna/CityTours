@@ -9,7 +9,7 @@
       <div class="suggestion-bg">
         <img class="suggestion-img" v-bind:src="landmark.photo" alt="" />
         <div class="suggestion-details">
-          <h1>{{ landmark.name }}</h1>
+          <h1 class="sub-title-font">{{ landmark.name }}</h1>
         </div>
         <!-- <div class="suggestion-icon">
           <img class="img-icon" v-bind:src="landmark.photo" alt="" />
@@ -72,20 +72,6 @@ export default {
   flex-wrap:wrap;
   width: 50%;
   height: auto;
-  font-family: 'Proza Libre', sans-serif;
 }
 
-/* .suggestion-icon {
-  position: absolute;
-  top: 0.2rem;
-  right: 1.5rem;
-  width: 1.3rem;
-  height: 1.3rem;
-  border-radius: 100px;
-}
-.img-icon {
-  width: 1.3rem;
-  height: 1.3rem;
-  border-radius: 100px;
-} */
 </style>
