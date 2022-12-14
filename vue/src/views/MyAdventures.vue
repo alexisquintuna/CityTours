@@ -19,8 +19,14 @@
           <input
             class="trip-name-input sub-title-font"
             type="text"
-            placeholder="Name of trip"
+            placeholder="Trip Name"
             v-model="trip.name"
+          />
+          <input
+            class="trip-name-input sub-title-font"
+            type="text"
+            placeholder="Cover Photo URL"
+            v-model="trip.pic"
           />
           <div class="buttons-div">
             <button
@@ -46,6 +52,7 @@ export default {
       buttonTrigger: false,
       trip: {
         name: "",
+        pic: '',
       },
       hasAdventures: false
     };

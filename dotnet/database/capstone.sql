@@ -26,6 +26,7 @@ CREATE TABLE users (
 CREATE TABLE trips (
 	trip_id int IDENTITY(1,1) NOT NULL,
 	trip_name varchar(500) NOT NULL,
+	trip_pic varchar(1000) NOT NULL,
 	user_id int FOREIGN KEY REFERENCES users(user_id) NOT NULL
 	CONSTRAINT PK_trip PRIMARY KEY (trip_id)
 )
@@ -33,15 +34,15 @@ CREATE TABLE trips (
 --populate default data
 CREATE TABLE landmarks (
 	landmark_id int IDENTITY(1000,1) NOT NULL,
-	name nvarchar(2000) NOT NULL,
+	name varchar(2000) NOT NULL,
 	description nvarchar(4000),
-	category nvarchar(500),
-	latitude nvarchar(500) NOT NULL,
-	longitude nvarchar(500) NOT NULL,
+	category varchar(500),
+	latitude varchar(500) NOT NULL,
+	longitude varchar(500) NOT NULL,
 	address nvarchar(2000),
-	link nvarchar(2000),
-	added_by nvarchar(5) NOT NULL,
-	photo nvarchar(2000)
+	link varchar(2000),
+	added_by varchar(5) NOT NULL,
+	photo varchar(2000)
 	CONSTRAINT PK_landmark PRIMARY KEY (landmark_id)
 )
 
@@ -69,12 +70,12 @@ VALUES
 ('Ca'' Pesaro and Galleria d''Arte Moderna', 'One of Italy''s finest collections of modern art, it contains works by important 19th- and 20th-century painters and sculptors including Gustav Klimt, Marc Chagall, and Auguste Rodin. Highlights include decorative arts of the 20th century such as works in glass made by Carlo Scarpa in the 1930s and 1940s and rare furniture pieces by the cabinetmaker Carlo Bugatti.', 'Culture', '45.441063', '12.3316317', 'Santa Croce, 2076, 30135 Venezia VE, Italy', 'https://capesaro.visitmuve.it/en/home/', 'user', 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/27/Ca%27Pesaro_di_Baldassarre_Longhena_facciata_sul_Canal_Grande.jpg/1200px-Ca%27Pesaro_di_Baldassarre_Longhena_facciata_sul_Canal_Grande.jpg'),
 ('Petra', 'Petra, originally known to its inhabitants as Raqmu or Raqēmō, is an historic and archaeological city in southern Jordan. It is adjacent to the mountain of Jabal Al-Madbah, in a basin surrounded by mountains forming the eastern flank of the Arabah valley running from the Dead Sea to the Gulf of Aqaba. The area around Petra has been inhabited from as early as 7000 BC, and the Nabataeans might have settled in what would become the capital city of their kingdom as early as the 4th century BC.', 'Ruins', '30.328611', '35.441944', '28 Wadi Mousa - Jordan', 'https://www.visitpetra.jo/', 'user', 'https://upload.wikimedia.org/wikipedia/commons/e/ed/Al_khazneh.jpg');
 
-INSERT INTO trips (trip_name, user_id)
+INSERT INTO trips (trip_name, trip_pic, user_id)
 VALUES
-('Columbus, Ohio', 2),
-('Venice, Italy', 2),
-('2024 Vacation Ideas', 2),
-('10th Anniversary', 2);
+('Columbus, Ohio', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/LeVeque_Tower%2C_Columbus%2C_OH%2C_US_crop.jpg/800px-LeVeque_Tower%2C_Columbus%2C_OH%2C_US_crop.jpg', 2),
+('Venice, Italy', 'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQbBnCskxBFqrgATeglMFdHbIiVHJhd_ZfyX5tPBGmPK-5IJEWVRqo8QNaHbfEWrDXg', 2),
+('2024 Vacation Ideas', 'https://m.media-amazon.com/images/M/MV5BODVmYjU4NGYtZWUyMC00ZWQyLWI1M2ItYjc5Nzk0NzYyZDUxXkEyXkFqcGdeQXVyMzczODMzOTg@._V1_FMjpg_UX1000_.jpg', 2),
+('10th Anniversary', 'https://shebuystravel.com/wp-content/uploads/2022/06/two-champagne-flutes-anniversary-trip.jpg', 2);
 
 INSERT INTO trip_landmark (trip_id, landmark_id)
 VALUES

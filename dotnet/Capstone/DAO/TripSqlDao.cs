@@ -76,11 +76,12 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "INSERT INTO trips(trip_name, user_id) " +
+                    string sql = "INSERT INTO trips(trip_name, trip_pic, user_id) " +
                         "OUTPUT INSERTED.trip_id " +
-                        "VALUES(@trip_name, @user_id);";
+                        "VALUES(@trip_name, @trip_pic, @user_id);";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@trip_name", trip.Name);
+                    cmd.Parameters.AddWithValue("@trip_pic", trip.Pic);
                     cmd.Parameters.AddWithValue("@user_id", userId);
 
                     tripId=(int)cmd.ExecuteScalar();
@@ -143,6 +144,7 @@ namespace Capstone.DAO
             {
                 Id = Convert.ToInt32(reader["trip_id"]),
                 Name = Convert.ToString(reader["trip_name"]),
+                Pic = Convert.ToString(reader["trip_pic"]),
             };
 
             return t;
