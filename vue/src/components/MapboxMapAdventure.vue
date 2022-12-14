@@ -1,16 +1,21 @@
 <template>
 
   <MglMap
+    @load="getOptimizedCoordinates"
     :accessToken="accessToken"
     :mapStyle="mapStyle"
-    :center="this.optimizedCoordinates[0]"
+    :center="[this.$store.state.tripLandmarks[0].longitude,this.$store.state.tripLandmarks[0].latitude]"
     :zoom="13"
+    :key="this.$store.state.tripLandmarks"
   >
     <MglGeojsonLayer
       :sourceId="geoJsonSource.data.id"
       :source="geoJsonSource"
       layerId="myLayerId"
       :layer="geoJsonLayer"
+      
+      
+      
     />
     <MglMarker v-for="waypoint in this.$store.state.optimizedRoute.waypoints" v-bind:key="waypoint.waypoint_index" v-bind:waypoint="waypoint" :coordinates="waypoint.location" color="red">
         <MglPopup :showed="true" anchor="right" :closeOnClick="false">
@@ -39,7 +44,19 @@ export default {
     MglPopup
   },
 
-// methods: {
+methods: {
+  
+  getOptimizedCoordinates() {
+          let coordinatesArray = [];
+          
+          for (let i = 0; i < this.$store.state.optimizedRoute.trips[0].geometry.coordinates.length; i++) {
+              coordinatesArray.push(this.$store.state.optimizedRoute.trips[0].geometry.coordinates[i]);
+          }
+          this.geoJsonSource.data.features[0].geometry.coordinates = coordinatesArray;
+          return coordinatesArray;
+    
+    
+  },
 //     getLandmarksOrder() {
 
         
@@ -55,7 +72,7 @@ export default {
 // //   //         })
 // //   //         console.log(newParams)
 // //   //     }
-//   },
+  },
   data() {
     return {
       accessToken:
@@ -72,7 +89,7 @@ export default {
 
               geometry: {
                 type: "LineString",
-                coordinates: []
+                coordinates: this.optimizedCoordinates
               },
               
             },
@@ -92,16 +109,21 @@ export default {
           'line-opacity': 0.75
         },
       },
+      
     };
   },
   computed: {
-      optimizedCoordinates() {
-          let coordinatesArray = [];
-          for (let i = 0; i < this.$store.state.optimizedRoute.trips[0].geometry.coordinates.length; i++) {
-              coordinatesArray.push(this.$store.state.optimizedRoute.trips[0].geometry.coordinates[i]);
-          }
-          return coordinatesArray;
-      },
+    // optimizedCoordinates() {
+    //       let coordinatesArray = [];
+          
+    //       for (let i = 0; i < this.$store.state.optimizedRoute.trips[0].geometry.coordinates.length; i++) {
+    //           coordinatesArray.push(this.$store.state.optimizedRoute.trips[0].geometry.coordinates[i]);
+    //       }
+          
+    //       return coordinatesArray;
+          
+    //   },
+      
       orderedLandmarks() {
         let orderedLandmarks = [];
         
@@ -124,11 +146,20 @@ export default {
         return orderedLandmarks;
       }
   },
+  // beforeCreate() {
+    
+  // },
   mounted() {
     this.mapbox = Mapbox;
-    console.log(this.$store.state.optimizedRoute.trips[0].geometry);
-    console.log(this.optimizedCoordinates);
-    this.geoJsonSource.data.features[0].geometry.coordinates = this.optimizedCoordinates;
+    // this.geoJsonSource.data.features[0].geometry.coordinates = this.optimizedCoordinates;
+    // let optimizedCoordinates = this.getOptimizedCoordinates();
+    // this.geoJsonSource.data.features[0].geometry.coordinates = optimizedCoordinates;
+    // this.$forceUpdate();
+
+    // console.log(this.$store.state.optimizedRoute.trips[0].geometry);
+    // console.log(this.optimizedCoordinates);
+    
+    //this.refreshKey++;
 
     console.log(this.orderedLandmarks)
 
@@ -150,9 +181,10 @@ export default {
 
     // }
   },
-//   updated() {
+  // updated() {
+  //   this.geoJsonSource.data.features[0].geometry.coordinates = this.getOptimizedCoordinates();
         
-//   }
+  // }
 }
 
 </script>

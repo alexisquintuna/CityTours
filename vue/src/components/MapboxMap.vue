@@ -83,7 +83,7 @@ export default {
             // }
         };
     },
-    updated() {
+    mounted() {
         this.mapbox = Mapbox;
         console.log(this.$store.state.coordinates)
         // eslint-disable-next-line no-undef
