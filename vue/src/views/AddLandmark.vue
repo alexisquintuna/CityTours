@@ -1,7 +1,7 @@
 <template>
   <div class="addLandmark-page">
     <div class="adding-container">
-      <form class="adding-form" v-on:submit.prevent="adding">
+      <form class="adding-form sub-title-font" v-on:submit.prevent="adding">
         <div class="adding-box-top">
           <div class="adding-header-top">
             <h1>Create a new landmark</h1>
@@ -9,8 +9,8 @@
           </div>
 
           <div class="top-btn">
-            <button class="addNew-btn cancel">Cancel</button>
-            <button class="addNew-btn adding">Add</button>
+            <button class="addNew-btn cancel sub-title-font">Cancel</button>
+            <button class="addNew-btn adding sub-title-font">Add</button>
           </div>
         </div>
 

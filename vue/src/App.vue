@@ -19,43 +19,43 @@
       </div>
       <div id="nav-right">
         <router-link
-          class="nav-subtext nav-text"
+          class="nav-subtext nav-text sub-title-font"
           v-bind:to="{ name: 'home' }"
           v-if="$store.state.token != ''"
           >Home</router-link
         >
         <router-link
-          class="nav-subtext nav-text"
+          class="nav-subtext nav-text sub-title-font"
           v-bind:to="{ name: 'adventures' }"
           v-if="$store.state.token != ''"
           >My Adventures</router-link
         >
         <router-link
-          class="nav-subtext nav-text"
+          class="nav-subtext nav-text sub-title-font"
           v-bind:to="{ name: '' }"
           v-if="$store.state.user.role == 'user'"
           >My Profile</router-link
         >
         <router-link
-          class="nav-subtext nav-text"
+          class="nav-subtext nav-text sub-title-font"
           v-bind:to="{ name: 'add-landmarks' }"
           v-if="$store.state.user.role == 'admin'"
           >Add Landmarks</router-link
         >
         <router-link
-          class="nav-subtext nav-text"
+          class="nav-subtext nav-text sub-title-font"
           v-bind:to="{ name: '' }"
           v-if="$store.state.user.role == 'admin'"
           >Admin Profile</router-link
         >
         <router-link
-          class="nav-login-btn"
+          class="nav-login-btn sub-title-font"
           v-bind:to="{ name: 'logout' }"
           v-if="$store.state.token != ''"
           >Logout</router-link
         >
         <router-link
-          class="nav-login-btn"
+          class="nav-login-btn sub-title-font"
           v-bind:to="{ name: 'login' }"
           v-if="$store.state.token == ''"
           >Log In</router-link
@@ -97,6 +97,8 @@ export default {
   --logo:green;
   --title: black;
   --subtitle: white;
+
+  --lime-green: #59E3A8;
 }
 /* 
 
@@ -113,38 +115,6 @@ font-family: 'DM Serif Display', serif;
   font-family: 'DM Sans', sans-serif;
 }
 
-/* @keyframes slideInDown {
-        0% {
-          transform: translatey(-100%);
-        }
-        100% {
-          transform: translatey(0);
-        }
-      }
-
-@keyframes easeIn {
-  0%{
-    opacity: 0%;
-  }
-  99%{
-    opacity: 75%;
-  }
-  100%{
-    opacity: 100%;
-  }
-}
-
-@keyframes zoomOut {
-  0%{
-    transform: scale(3);
-  }
-  50%{
-    transform: scale(3);
-  }
-  100%{
-    transform: scale(1);
-  }
-} */
 .router-view {
   position: relative;
   width: 100%;
@@ -225,7 +195,6 @@ font-family: 'DM Serif Display', serif;
 }
 .nav-subtext{
   margin: 0 1rem;
-  font-family: 'Proza Libre', sans-serif;
 }
 .nav-subtext:hover {
   color: #59E3A8;
@@ -245,7 +214,6 @@ font-family: 'DM Serif Display', serif;
   align-items: center;
   text-decoration: none;
   font-size: 1.2rem;
-  font-family: 'Proza Libre', sans-serif;
 }
 
 .nav-login-btn:hover{
@@ -269,7 +237,6 @@ footer {
 }
 input {
   border: none;
-  font-family: 'Proza Libre', sans-serif;
 }
 input:focus {
   outline: none;
@@ -280,7 +247,6 @@ button {
   height: 60px;
   border: none;
   border-radius: 50px;
-  font-family: 'Proza Libre', sans-serif;
 }
 
 button:hover {

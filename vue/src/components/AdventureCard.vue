@@ -12,16 +12,16 @@
         v-bind:to="{ name: 'adventure-details', params: { id: trip.id } }"
       >
         <div class="router-card">
-          <h1>{{ trip.name }}</h1>
+          <h1 class="sub-title-font">{{ trip.name }}</h1>
         </div>
       </router-link>
     </div>
-    <div class="popup-adv" v-if="buttonTrigger">
+    <div class="popup-adv sub-title-font" v-if="buttonTrigger">
       <div class="popup-inner-adv">
         <h1>Are you sure you want to delete this card?</h1>
         <div class="adv-btn-container">
           <button class="popup-Btn cancel" v-on:click="togglePopup()">Cancel</button>
-          <button class="popup-Btn delete" v-on:click="toggleDelete()">Confirm</button>
+          <button class="popup-Btn delete add-btn" v-on:click="toggleDelete()">Confirm</button>
         </div>
       </div>
     </div>
@@ -190,17 +190,19 @@ export default {
 }
 .popup-inner-adv > h1{
   font-size: 1.5rem;
+  font-weight: 600;
 }
 .popup-Btn{
   width: 10rem;
   height: 3rem;
+  font-size: 1.3rem;
 }
 .adv-btn-container {
   display: flex;
   align-items: center;
   width: 65%;
   height: 25%;
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 .delete{
   background-color: #59E3A8;

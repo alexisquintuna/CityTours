@@ -1,7 +1,7 @@
 <template>
   <div class="tripCard-details-page">
     <div class="adding-more-landmarks">
-    <router-link class="btn-add-more" v-bind:to="{name: 'home'}">Add landmarks</router-link>
+    <router-link class="btn-add-more sub-title-font" v-bind:to="{name: 'home'}">Add landmarks</router-link>
     </div>
     <ul class="adventure-list-card-container" v-if="hasLandmarks">
       <li
@@ -15,10 +15,10 @@
         ></adventure-landmark-card>
         <div class="adventure-btn-container">
           <button
-            class="adventure-btn"
+            class="adventure-btn sub-title-font"
             v-on:click="deleteLandmark(landmark.id)"
           >
-            Delete Landmark
+            Delete
           </button>
         </div>
       </li>
@@ -223,6 +223,8 @@ export default {
   background-color: black;
   color: white;
   margin-right: 1rem;
+  height: 2rem;
+  width: 4rem;
 }
 
 .adventure-btn:hover{
