@@ -4,17 +4,9 @@
       <div>
         <router-link
           id="logo-text"
-          class="nav-text"
           v-bind:to="{ name: 'home' }"
           >
-          <div class="logo-txt">
-            <p>
-          Opn
-            </p>
-            <p>
-              City
-            </p>
-          </div>
+          <img class="logo" src="@/images/LOGOCITY.png" alt="">
           </router-link>
       </div>
       <div id="nav-right">
@@ -163,15 +155,9 @@ font-family: 'DM Serif Display', serif;
   margin: 0 70px;
 }
 
-
-.logo-txt{
-  display:flex;
-  flex-direction: column;
-}
-.logo-txt p {
-  margin: -0.5rem auto;
-  display: inline-block;
-  font-size: 2.5rem;
+.logo{
+  width: 10%;
+  margin-top: .5rem;
 }
 .nav-text {
   text-decoration: none;
