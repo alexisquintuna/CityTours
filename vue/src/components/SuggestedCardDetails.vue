@@ -16,9 +16,8 @@
           </p>
           <div class="addLandmark-container">
             <form class="addToAdv" v-on:submit.prevent="adding">
-              <label for="trips">Add To An Adventure:</label>
+              <label for="trips">Choose Adventure:</label>
               <select name="trips" class="select-adv" v-model="trip">
-                <option>Select Adventure</option>
                 <option
                   v-for="trip in this.$store.state.trips"
                   v-bind:key="trip.id"
@@ -27,7 +26,7 @@
                   {{ trip.name }}
                 </option>
               </select>
-              <input type="submit" v-on:click="togglePopup()" />
+              <input type="submit" value="Add" v-on:click="togglePopup()" />
             </form>
           </div>
         </div>
