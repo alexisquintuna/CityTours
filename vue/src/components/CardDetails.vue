@@ -17,22 +17,19 @@
               {{ rawLandmark.name }}
             </h1>
             <div class="addLandmark-container">
-              <form
-                class="addToAdv sub-title-font"
-                v-on:submit.prevent="adding"
-              >
-                <select name="trips" class="select-adv" v-model="trip">
-                  <option>Select Adventure</option>
-                  <option
-                    v-for="trip in this.$store.state.trips"
-                    v-bind:key="trip.id"
-                    v-bind:value="trip"
-                  >
-                    {{ trip.name }}
-                  </option>
-                </select>
-                <input type="submit" v-on:click="togglePopup()" />
-              </form>
+               <form class="addToAdv" v-on:submit.prevent="adding">
+              <label for="trips">Choose Adventure:</label>
+              <select name="trips" class="select-adv" v-model="trip">
+                <option
+                  v-for="trip in this.$store.state.trips"
+                  v-bind:key="trip.id"
+                  v-bind:value="trip"
+                >
+                  {{ trip.name }}
+                </option>
+              </select>
+              <input type="submit" value="Add" v-on:click="togglePopup()" />
+            </form>
             </div>
           </div>
           <div class="submain-header-section">

@@ -168,6 +168,7 @@ export default {
         console.log(res.status)
         if (res.status == 200) {
           this.landmarks = res.data;
+          this.$store.commit("SET_TRIP_LANDMARKS", this.landmarks)
           console.log(this.landmarks.length);
           console.log(this.landmarks[0].id != "" ? "yes" : "suggested")
           console.log(this.routeCoordinates);

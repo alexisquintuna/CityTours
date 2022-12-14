@@ -11,12 +11,17 @@
       :source="geoJsonSource"
       layerId="myLayerId"
       :layer="geoJsonLayer"
-    >
-    <MglMarker>
-        <MglPopup>
+    />
+    <MglMarker v-for="waypoint in this.$store.state.optimizedRoute.waypoints" v-bind:key="waypoint.waypoint_index" v-bind:waypoint="waypoint" :coordinates="waypoint.location" color="red">
+        <MglPopup :showed="true" anchor="right" :closeOnClick="false">
+            {{waypoint.waypoint_index + 1}}
         </MglPopup>
         </MglMarker>
-    </MglGeojsonLayer>
+        <MglMarker v-for="landmark in this.$store.state.tripLandmarks" v-bind:key="landmark.id" v-bind:landmark="landmark" :coordinates="[landmark.longitude,landmark.latitude]" color="red">
+        <MglPopup anchor="left">
+            {{landmark.name}}
+        </MglPopup>
+        </MglMarker>
   </MglMap>
   
 </template>
@@ -34,18 +39,22 @@ export default {
     MglPopup
   },
 
-//   methods: {
-      
-//   //     async onMapLoad(event) {
-//   //         const asyncActions = event.component.asyncActions
+// methods: {
+//     getLandmarksOrder() {
 
-//   //         const newParams = await asyncActions.flyTo({
-//   //             center: this.$store.state.coordinates,
-//   //             zoom: 9,
-//   //             speed: 1
-//   //         })
-//   //         console.log(newParams)
-//   //     }
+        
+//     }
+      
+// //   //     async onMapLoad(event) {
+// //   //         const asyncActions = event.component.asyncActions
+
+// //   //         const newParams = await asyncActions.flyTo({
+// //   //             center: this.$store.state.coordinates,
+// //   //             zoom: 9,
+// //   //             speed: 1
+// //   //         })
+// //   //         console.log(newParams)
+// //   //     }
 //   },
   data() {
     return {
@@ -92,6 +101,27 @@ export default {
               coordinatesArray.push(this.$store.state.optimizedRoute.trips[0].geometry.coordinates[i]);
           }
           return coordinatesArray;
+      },
+      orderedLandmarks() {
+        let orderedLandmarks = [];
+        
+        for (let i = 0; i < this.$store.state.optimizedRoute.waypoints.length; i++) {
+            console.log(this.$store.state.optimizedRoute.waypoints[i].location[0])
+            console.log(this.$store.state.optimizedRoute.waypoints[i].location[1])
+            let longitude = this.$store.state.optimizedRoute.waypoints[i].location[0]
+            let latitude = this.$store.state.optimizedRoute.waypoints[i].location[1]
+
+            console.log(this.$store.state.tripLandmarks)
+            
+            console.log(this.$store.state.tripLandmarks.find( landmark => {
+                (longitude == landmark.longitude) && (latitude == landmark.latitude)
+
+            }))
+                
+            
+            //orderedLandmarks.push(landmark);
+        }
+        return orderedLandmarks;
       }
   },
   mounted() {
@@ -99,6 +129,8 @@ export default {
     console.log(this.$store.state.optimizedRoute.trips[0].geometry);
     console.log(this.optimizedCoordinates);
     this.geoJsonSource.data.features[0].geometry.coordinates = this.optimizedCoordinates;
+
+    console.log(this.orderedLandmarks)
 
 
     
