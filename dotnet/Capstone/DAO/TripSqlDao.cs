@@ -27,7 +27,7 @@ namespace Capstone.DAO
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
-                    string sql = "SELECT trip_id, trip_name FROM trips WHERE user_id = @user_id;";
+                    string sql = "SELECT trip_id, trip_name, trip_pic FROM trips WHERE user_id = @user_id;";
                     SqlCommand cmd = new SqlCommand(sql, conn);
                     cmd.Parameters.AddWithValue("@user_id", userId);
 

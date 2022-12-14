@@ -6,7 +6,7 @@
       </button>
     </div>
     <div class="adventure-link-card">
-    <img class="adv-card-img" src="https://img.freepik.com/free-vector/journey-concept-illustration_114360-3445.jpg?w=826&t=st=1670683792~exp=1670684392~hmac=6720338be7b3899a378ae2021b7dc6bb73234d9dd9c645b044643eed118f9462" alt="">
+    <img class="adv-card-img" v-bind:src="trip.pic" alt="">
       <router-link
         class="adv-bg"
         v-bind:trip="trip"
@@ -83,8 +83,8 @@ export default {
 .adv-card-img{
   display: block;
   position: relative;
-  height: 200px;
-  width: auto;
+  width: 100%;
+  height: 29rem;
 }
 
 .adventure-link-card {
