@@ -211,7 +211,7 @@ export default {
 }
 .adding-container {
   width: 100%;
-  padding-bottom: 10rem;
+  padding-bottom: 7%;
   /* margin: 10rem 0 4rem; */
 }
 .adding-form {

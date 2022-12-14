@@ -27,6 +27,15 @@
           <img class="no-items-img" src="https://img.freepik.com/free-vector/rio-de-janeiro-concept-illustration_114360-4589.jpg?w=826&t=st=1670680651~exp=1670681251~hmac=0e14d75f2428b5a1ab39102f1350aaedf924de6f092286ffe6604954abaf376e" alt="">
       <h2>You have no saved landmarks let's change that</h2>
     </div>
+    <div class="popup-adv sub-title-font" v-if="buttonTrigger">
+      <div class="popup-inner-adv">
+        <h1>Are you sure you want to delete this card?</h1>
+        <div class="adv-btn-container">
+          <button class="popup-Btn cancel" v-on:click="togglePopup()">Cancel</button>
+          <button class="popup-Btn delete add-btn" v-on:click="toggleDelete()">Confirm</button>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -42,7 +51,10 @@ export default {
     return {
       hasLandmarks: false,
       landmarks: {},
-      optimizedRoute: {}
+      optimizedRoute: {},
+      buttonTrigger: false,
+      confirmDelete: false,
+      tripId:0,
     };
   },
   computed: {
@@ -91,20 +103,8 @@ export default {
   props: ["id", "trip"],
   methods: {
     deleteLandmark(id) {
-      tripsService
-        .deleteLandmarkFromTrip(this.$route.params.id, id)
-        .then((response) => {
-          console.log(response.status);
-          if (response.status === 200) {
-             this.landmarks = response.data;
-          }
-        })
-        .catch((error) => {
-          console.log(error.response.status);
-          if (error.response.status == 404) {
-            this.$router.push({ name: "NotFound" });
-          }
-        });
+      this.buttonTrigger = !this.buttonTrigger;
+      this.tripId = id;
     },
     generateTravelRoute() {
       mapboxService.getOptimizedRoute(this.routeCoordinates)
@@ -134,7 +134,30 @@ export default {
       //       this.$router.push({ name: "NotFound" });
       //     }
       // });
-    }
+    },
+    togglePopup() {
+      this.buttonTrigger = !this.buttonTrigger;
+    },
+    toggleDelete() {
+      this.confirmDelete = !this.confirmDelete;
+      if (this.confirmDelete) {
+      this.buttonTrigger = !this.buttonTrigger;
+        tripsService
+        .deleteLandmarkFromTrip(this.$route.params.id, this.tripId)
+        .then((response) => {
+          console.log(response.status);
+          if (response.status === 200) {
+             this.landmarks = response.data;
+          }
+        })
+        .catch((error) => {
+          console.log(error.response.status);
+          if (error.response.status == 404) {
+            this.$router.push({ name: "NotFound" });
+          }
+        });
+      }
+    },
   },
   created() {
     tripsService
