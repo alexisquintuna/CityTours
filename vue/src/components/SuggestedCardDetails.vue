@@ -10,10 +10,8 @@
           >BACK</router-link
         >
         <div class="header-section">
-          <h1 class="landmark-header">{{ landmark.name }}</h1>
-          <p class="landmark-subheader">
-            In {{ landmark.address }}
-          </p>
+          <div class="main-header-section">
+          <h1 class="landmark-header main-title-font">{{ landmark.name }}</h1>
           <div class="addLandmark-container">
             <form class="addToAdv" v-on:submit.prevent="adding">
               <label for="trips">Choose Adventure:</label>
@@ -29,6 +27,18 @@
               <input type="submit" value="Add" v-on:click="togglePopup()" />
             </form>
           </div>
+          </div>
+          <div class="submain-header-section">
+
+          <p class="landmark-subheader sub-title-font">
+            In {{ landmark.address }}
+          </p>
+          <div class="count">
+              <p>{{this.count}}</p>
+              <span class="material-symbols-outlined thumbs_up" v-on:click="countUp()">thumb_up</span>
+              <span class="material-symbols-outlined thumbs_down" v-on:click="countDown()">thumb_down</span>
+            </div>
+          </div>
         </div>
         <section class="info-section">
           <div class="right-side">
@@ -37,19 +47,14 @@
               v-bind:src="landmark.photo"
               alt="picture of location"
             />
-            <div class="count">
-              <p>{{this.count}}</p>
-              <span class="material-symbols-outlined thumbs_up" v-on:click="countUp()">thumb_up</span>
-              <span class="material-symbols-outlined thumbs_down" v-on:click="countDown()">thumb_down</span>
-            </div>
           </div>
           <aside>
-            <h3>Details</h3>
-            <p class="aside-p">
+            <h3 class="main-title-font">Details</h3>
+            <p class="aside-p sub-title-font">
               <span class="aside-span">Address</span>
               {{ landmark.address }}
             </p>
-            <p class="aside-p">
+            <p class="aside-p sub-title-font">
               <span class="aside-span">Website</span>
               <a
                 :href="landmark.link"
@@ -62,7 +67,7 @@
             </p>
             <br />
             <hr />
-            <p class="details-description">
+            <p class="details-description sub-title-font">
               {{ landmark.description }}
             </p>
           </aside>
@@ -165,4 +170,5 @@ export default {
 </script>
 
 <style>
+
 </style>

@@ -13,12 +13,9 @@
           alt=""
         />
       </div>
-      <div class="adventure-landmark-details">
+      <div class="adventure-landmark-details main-title-font">
         <h1>{{ landmark.name }}</h1>
       </div>
-      <!-- <div class="suggestion-icon">
-          <img class="img-icon" v-bind:src="landmark.photo" alt="" />
-        </div> -->
     </div>
   </router-link>
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="this.$store.state.coordinates" :zoom=14 :key="this.$store.state.coordinates">
+  <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="this.$store.state.coordinates" :zoom=13 :key="this.$store.state.coordinates">
 
       <!-- <MglGeojsonLayer :source="geoJsonSource" layerId="myLayer" :layer="geoJsonlayer" /> -->
       <MglMarker v-for="landmark in this.$store.state.landmarks" v-bind:key="landmark.xid" :coordinates="landmark.point" color="blue" v-on:mouseover="togglePopup">
