@@ -26,7 +26,7 @@ CREATE TABLE users (
 CREATE TABLE trips (
 	trip_id int IDENTITY(1,1) NOT NULL,
 	trip_name varchar(500) NOT NULL,
-	trip_pic varchar(1000) NOT NULL,
+	trip_pic varchar(10000) NOT NULL,
 	user_id int FOREIGN KEY REFERENCES users(user_id) NOT NULL
 	CONSTRAINT PK_trip PRIMARY KEY (trip_id)
 )
@@ -72,7 +72,7 @@ VALUES
 
 INSERT INTO trips (trip_name, trip_pic, user_id)
 VALUES
-('Columbus, Ohio', 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/LeVeque_Tower%2C_Columbus%2C_OH%2C_US_crop.jpg/800px-LeVeque_Tower%2C_Columbus%2C_OH%2C_US_crop.jpg', 2),
+('Columbus, Ohio', 'https://www.tripsavvy.com/thmb/TUQILX_szsrEgZQ2Qi2oO-m2u-A=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/columbus--ohio-cityscape-825663918-04cfd5792b5d45a89b11ef0cd074d443.jpg', 2),
 ('Venice, Italy', 'http://t3.gstatic.com/licensed-image?q=tbn:ANd9GcQbBnCskxBFqrgATeglMFdHbIiVHJhd_ZfyX5tPBGmPK-5IJEWVRqo8QNaHbfEWrDXg', 2),
 ('2024 Vacation Ideas', 'https://m.media-amazon.com/images/M/MV5BODVmYjU4NGYtZWUyMC00ZWQyLWI1M2ItYjc5Nzk0NzYyZDUxXkEyXkFqcGdeQXVyMzczODMzOTg@._V1_FMjpg_UX1000_.jpg', 2),
 ('10th Anniversary', 'https://shebuystravel.com/wp-content/uploads/2022/06/two-champagne-flutes-anniversary-trip.jpg', 2);
