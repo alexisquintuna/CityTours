@@ -28,7 +28,8 @@ export default new Vuex.Store({
         coordinates: [],
         routeLocations: [],
         forceRefresh: 0,
-        optimizedRoute: {}
+        optimizedRoute: {},
+        tripLandmarks: []
     },
     mutations: {
         SET_AUTH_TOKEN(state, token) {
@@ -65,6 +66,9 @@ export default new Vuex.Store({
         },
         SET_OPTIMIZED_ROUTE(state, payload) {
             state.optimizedRoute = payload;
+        },
+        SET_TRIP_LANDMARKS(state, payload) {
+            state.tripLandmarks = payload;
         }
 
 
