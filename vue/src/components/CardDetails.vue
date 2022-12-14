@@ -4,6 +4,7 @@
       <div class="details-main">
         <router-link
           id="back"
+          class="sub-title-font"
           v-bind:to="{
             name: 'landmarks',
             params: { query: this.$store.state.locationQuery },
@@ -11,12 +12,10 @@
           >BACK</router-link
         >
         <div class="header-section">
-          <h1 class="landmark-header">{{ rawLandmark.name }}</h1>
-          <p class="landmark-subheader">
-            In {{ rawLandmark.address.city }}, {{ rawLandmark.address.country }}
-          </p>
+          <div>
+          <h1 class="landmark-header main-title-font">{{ rawLandmark.name }}</h1>
           <div class="addLandmark-container">
-            <form class="addToAdv" v-on:submit.prevent="adding">
+            <form class="addToAdv sub-title-font" v-on:submit.prevent="adding">
               <label for="trips">Add To An Adventure:</label>
               <select name="trips" class="select-adv" v-model="trip">
                 <option>Select Adventure</option>
@@ -31,6 +30,16 @@
               <input type="submit" v-on:click="togglePopup()" />
             </form>
           </div>
+          </div>
+          <p class="landmark-subheader sub-title-font">
+            In {{ rawLandmark.address.city }}, {{ rawLandmark.address.country }}
+          </p>
+          <div class="count sub-title-font">
+              <p>{{this.count}}</p>
+              <span class="material-symbols-outlined thumbs_up" v-on:click="countUp()">thumb_up</span>
+              <span class="material-symbols-outlined thumbs_down" v-on:click="countDown()">thumb_down</span>
+            </div>
+          
         </div>
         <section class="info-section">
           <div class="right-side">
@@ -39,24 +48,21 @@
               v-bind:src="image"
               alt="picture of location"
             />
-            <p class="details-description">
-              {{ rawLandmark.wikipedia_extracts.text }}
-            </p>
           </div>
           <aside>
-            <h3>Details</h3>
-            <p class="aside-p">
+            <h3 class="main-title-font">Details</h3>
+            <p class="aside-p sub-title-font">
               <span class="aside-span">Address</span>
               {{ rawLandmark.address.house_number }}
               {{ rawLandmark.address.road }} {{ rawLandmark.address.city }}
               {{ rawLandmark.address.postcode }}
             </p>
-            <p class="aside-p">
+            <p class="aside-p sub-title-font">
               <span class="aside-span">Website</span>
               <a
                 :href="rawLandmark.link"
                 target="_blank"
-                class="details-link"
+                class="details-link "
                 >{{
                   rawLandmark.url ? rawLandmark.url : "No Website link found"
                 }}</a
@@ -64,6 +70,9 @@
             </p>
             <br />
             <hr />
+            <p class="details-description sub-title-font">
+              {{ rawLandmark.wikipedia_extracts.text }}
+            </p>
           </aside>
         </section>
       </div>
@@ -89,6 +98,7 @@ export default {
   name: "card-details",
   data() {
     return {
+      count: Math.floor(Math.random() * 100),
       buttonTrigger: false,
       rawLandmark: {},
       image: "",
@@ -110,6 +120,12 @@ export default {
   },
   props: ["id"],
   methods: {
+    countUp(){
+      this.count++
+    },
+    countDown(){
+      this.count--
+    },
     adding() {
       TripsService.addLandmarkToTrip(this.trip.id, this.landmark)
         .then((res) => {
@@ -190,12 +206,6 @@ export default {
   justify-content: center;
 }
 .addLandmark-container {
-  /* z-index: 99; */
-  /* position: fixed;
-  top: 0;
-  right:0;
-  left:0;
-  bottom: 0; */
   position: absolute;
   right: 0;
   height: 100%;
@@ -203,6 +213,7 @@ export default {
   justify-content: center;
   align-items: center;
 }
+
 .addToAdv {
   height: 7rem;
   width: 33rem;
@@ -245,6 +256,7 @@ export default {
 }
 .landmark-header {
   font-size: 48px;
+  font-weight: 500;
 }
 
 .landmark-subheader {
@@ -253,33 +265,57 @@ export default {
 .info-section {
   height: auto;
   display: grid;
-  grid-template-columns: 3fr 1fr;
+  grid-template-columns: 2fr 1fr;
   grid-template-areas: "info" "aside";
 }
-
+.count{
+  margin-top: 1rem;
+  display: flex;
+  user-select: none;
+}
+.count p {
+  font-size: 2rem;
+}
+.material-symbols-outlined{
+  font-size: 2rem;
+}
+.thumbs_up{
+  margin-left: 0.5rem;
+  margin-right: 0.3rem;
+}
+.thumbs_up:hover{
+  color:green;
+  cursor: pointer;
+}
+.thumbs_down:hover{
+  color:red;
+  cursor: pointer;
+}
 #details-img {
   border-radius: 0px;
-  width: 60rem;
-  height: 75%;
+  width: 100%;
 }
+
 .details-description {
-  font-size: 24px;
-  width: 75%;
+  font-size: 20px;
   margin: 50px auto;
   padding-top: 20px;
 }
+
 aside {
   grid-area: "aside";
   margin-right: 2rem;
+  width: 30rem;
 }
 aside h3 {
   margin: 1rem 0;
   font-size: 1.8rem;
+  font-weight: 400;
 }
 .aside-p {
   margin: 0.5rem 0;
   font-size: 1rem;
-  width: 20rem;
+  width: 24rem;
   overflow: hidden;
   display: flex;
 }

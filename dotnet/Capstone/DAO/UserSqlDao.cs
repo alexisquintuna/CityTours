@@ -26,7 +26,7 @@ namespace Capstone.DAO
         {
             connectionString = dbConnectionString;
         }
-
+        //THIS IS THROWING AN ERROR AFTER LOGGING OUT AND GOING TO THE HOME SCREEN
         public User GetUser(string username)
         {
             User returnUser = null;
