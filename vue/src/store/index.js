@@ -26,6 +26,7 @@ export default new Vuex.Store({
         hotspots: [],
         zipCode: "",
         coordinates: [],
+        routeLocations: [],
         forceRefresh: 0,
         optimizedRoute: {}
     },

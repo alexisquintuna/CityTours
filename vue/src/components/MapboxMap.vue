@@ -2,18 +2,20 @@
   <MglMap :accessToken="accessToken" :mapStyle="mapStyle" :center="this.$store.state.coordinates" :zoom=12 :key="this.$store.state.coordinates">
 
       <!-- <MglGeojsonLayer :source="geoJsonSource" layerId="myLayer" :layer="geoJsonlayer" /> -->
+      <MglMarker v-for="landmark in this.$store.state.landmarks" v-bind:key="landmark.xid" :coordinates="landmark.point" color="blue" />
   </MglMap>
 
 </template>
 
 <script>
 import Mapbox from "mapbox-gl";
-import {MglMap} from "vue-mapbox";
+import {MglMap, MglMarker} from "vue-mapbox";
 
 export default {
     name: "mapbox-map",
     components: {
         MglMap,
+        MglMarker
     },
 
     // methods: {
@@ -32,6 +34,7 @@ export default {
         return {
             accessToken: 'pk.eyJ1IjoiZHJld3N3ZWV0IiwiYSI6ImNsYmgwM2kzdDBlb2MzcHFtZm8zajg2ZzIifQ.pDG4UufOD--ptSzeCeiPWA',
             mapStyle: "mapbox://styles/mapbox/streets-v11",
+            coordinates: []
             // geoJsonSource: {
             //     //...some GeoJSON object
             // },
