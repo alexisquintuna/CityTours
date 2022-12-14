@@ -14,8 +14,8 @@
             <h1 class="landmark-header main-title-font">{{ landmark.name }}</h1>
             <div class="addLandmark-container">
               <form class="addToAdv" v-on:submit.prevent="adding">
-                <label for="trips">Choose Adventure:</label>
-                <select name="trips" class="select-adv" v-model="trip">
+                <label id="label-add" for="trips" class="label-add">Choose Adventure:</label>
+                <select v-on:click="turnoffLabel()" name="trips" class="select-adv" v-model="trip">
                   <option
                     v-for="trip in this.$store.state.trips"
                     v-bind:key="trip.id"
@@ -119,6 +119,11 @@ export default {
   },
   props: ["id"],
   methods: {
+    turnoffLabel(){
+      console.log("clicking")
+      let label = document.getElementById('label-add')
+      label.classList.add('inactive')
+    },
     countUp() {
       this.count++;
     },

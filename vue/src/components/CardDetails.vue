@@ -18,8 +18,8 @@
             </h1>
             <div class="addLandmark-container">
                <form class="addToAdv" v-on:submit.prevent="adding">
-              <label for="trips">Choose Adventure:</label>
-              <select name="trips" class="select-adv" v-model="trip">
+              <label id="label-add" for="trips" class="label-add">Choose Adventure:</label>
+              <select name="trips" v-on:click="turnoffLabel()" class="select-adv" v-model="trip">
                 <option
                   v-for="trip in this.$store.state.trips"
                   v-bind:key="trip.id"
@@ -131,6 +131,11 @@ export default {
   },
   props: ["id"],
   methods: {
+    turnoffLabel(){
+      console.log("clicking")
+      let label = document.getElementById('label-add')
+      label.classList.add('inactive')
+    },
     countUp() {
       this.count++;
     },
@@ -245,8 +250,19 @@ export default {
   justify-content: space-between;
   align-items: center;
 }
+.label-add{
+  position: absolute;
+}
+.inactive-thing{
+  display: none;
+}
+select{
+  border:thin solid transparent;
+  border-bottom: 1px solid black;
+}
 .select-adv{
   width: 14rem;
+  outline:none;
 }
 .addToAdv > input {
   height: 2rem;

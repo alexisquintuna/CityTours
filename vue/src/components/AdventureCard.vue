@@ -6,6 +6,7 @@
       </button>
     </div>
     <div class="adventure-link-card">
+    <img class="adv-card-img" src="https://img.freepik.com/free-vector/journey-concept-illustration_114360-3445.jpg?w=826&t=st=1670683792~exp=1670684392~hmac=6720338be7b3899a378ae2021b7dc6bb73234d9dd9c645b044643eed118f9462" alt="">
       <router-link
         class="adv-bg"
         v-bind:trip="trip"
@@ -75,13 +76,17 @@ export default {
   position: relative;
   height: 30rem;
   width: 22%;
-  background-image: url("https://img.freepik.com/free-vector/journey-concept-illustration_114360-3445.jpg?w=826&t=st=1670683792~exp=1670684392~hmac=6720338be7b3899a378ae2021b7dc6bb73234d9dd9c645b044643eed118f9462");
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
   border-radius: 20px;
-
+  overflow: hidden;
 }
+
+.adv-card-img{
+  display: block;
+  position: relative;
+  height: 200px;
+  width: auto;
+}
+
 .adventure-link-card {
   height: 100%;
   background-image: linear-gradient(
@@ -90,6 +95,7 @@ export default {
     rgb(0, 0, 0)
   );
   border-radius: 20px;
+  display: inline-block;
 }
 
 /* .adventure-card:hover{
@@ -118,6 +124,11 @@ export default {
   width: 100%;
   position: absolute;
   bottom: 0;
+  background-image: linear-gradient(
+    to bottom,
+    rgba(247, 247, 247, 0) 25%,
+    rgb(0, 0, 0)
+  );
 }
 
 .adv-bg:hover {
