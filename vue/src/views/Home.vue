@@ -108,6 +108,7 @@ export default {
   width: auto;
   display: flex;
   align-items: center;
+  backdrop-filter: blur(1px);
 }
 
 .home-input {
@@ -117,8 +118,9 @@ export default {
   font-size: 65px;
   height: 7rem;
   color: white;
-  width: 33rem;
+  width: 34rem;
   font-size: 3rem;
+  font-family: 'Proza Libre', sans-serif;
 }
 
 
@@ -142,9 +144,10 @@ export default {
 
 }
 .enter-zip:hover {
+  border-radius: 20px;
   cursor: pointer;
-  background-color: #59E3A8;
-  color: #1A2E34;
+  background-color: black;
+  color: white;
   transition: 400ms;
 }
 .enter-zip {
@@ -153,7 +156,7 @@ export default {
   width: 100%;
   background-color: #fff;
   color:#1A2E34;
-  border-radius: 100px;
+  border-radius: 20px;
   margin: 0;
   padding: 0;
 }
@@ -180,6 +183,8 @@ export default {
     display: inline-block;
     margin: 1rem 1rem 0rem 2.7rem;
     color: #fff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 500;
 }
 
 .suggestion-container{

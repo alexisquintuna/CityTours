@@ -57,8 +57,7 @@ export default {
 <style>
 .adventure-list {
   width: 100%;
-  animation: 1s ease-out 0s 1 easeIn;
-
+  animation: 0.5s ease-out 0s 1 easeIn;
 }
 
 .adv-list-container {
