@@ -207,7 +207,7 @@ export default {
   display: flex;
   align-items: flex-end;
   height: 160vh;
-  background: rgba(255, 255, 255, 0);
+  background: rgb(255, 255, 255);
 }
 .adding-container {
   width: 100%;
