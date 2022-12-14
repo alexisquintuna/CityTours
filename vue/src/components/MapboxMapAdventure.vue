@@ -3,42 +3,50 @@
   <MglMap
     :accessToken="accessToken"
     :mapStyle="mapStyle"
-    :center="this.$store.state.coordinates"
-    :zoom="12"
+    :center="this.optimizedCoordinates[0]"
+    :zoom="13"
   >
     <MglGeojsonLayer
       :sourceId="geoJsonSource.data.id"
       :source="geoJsonSource"
       layerId="myLayerId"
       :layer="geoJsonLayer"
-    />
+    >
+    <MglMarker>
+        <MglPopup>
+        </MglPopup>
+        </MglMarker>
+    </MglGeojsonLayer>
   </MglMap>
   
 </template>
 
 <script>
 import Mapbox from "mapbox-gl";
-import { MglMap, MglGeojsonLayer } from "vue-mapbox"; //MglGeojsonLayer
+import { MglMap, MglGeojsonLayer, MglMarker, MglPopup } from "vue-mapbox"; //MglGeojsonLayer
 
 export default {
   name: "mapbox-map",
   components: {
     MglMap,
     MglGeojsonLayer,
+    MglMarker,
+    MglPopup
   },
 
-  // methods: {
-  //     async onMapLoad(event) {
-  //         const asyncActions = event.component.asyncActions
+//   methods: {
+      
+//   //     async onMapLoad(event) {
+//   //         const asyncActions = event.component.asyncActions
 
-  //         const newParams = await asyncActions.flyTo({
-  //             center: this.$store.state.coordinates,
-  //             zoom: 9,
-  //             speed: 1
-  //         })
-  //         console.log(newParams)
-  //     }
-  // },
+//   //         const newParams = await asyncActions.flyTo({
+//   //             center: this.$store.state.coordinates,
+//   //             zoom: 9,
+//   //             speed: 1
+//   //         })
+//   //         console.log(newParams)
+//   //     }
+//   },
   data() {
     return {
       accessToken:
@@ -91,6 +99,8 @@ export default {
     console.log(this.$store.state.optimizedRoute.trips[0].geometry);
     console.log(this.optimizedCoordinates);
     this.geoJsonSource.data.features[0].geometry.coordinates = this.optimizedCoordinates;
+
+
     
 
     //this.geoJsonSource.data.features.geometry = this.$store.state.optimizedRoute.trips[0].geometry;
