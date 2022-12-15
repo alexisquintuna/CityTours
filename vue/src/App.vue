@@ -2,12 +2,9 @@
   <div id="app">
     <nav id="nav" ref="nav" class="inactive">
       <div>
-        <router-link
-          id="logo-text"
-          v-bind:to="{ name: 'home' }"
-          >
-          <img class="logo" src="@/images/LOGOCITY.png" alt="">
-          </router-link>
+        <router-link id="logo-text" v-bind:to="{ name: 'home' }">
+          <img class="logo" src="@/images/LOGOCITY.png" alt="" />
+        </router-link>
       </div>
       <div id="nav-right">
         <router-link
@@ -56,7 +53,33 @@
     </nav>
     <router-view class="router-view" />
     <footer>
-      <h1>this is the footer</h1>
+      <div class="footer-container">
+        <div class="logo-side">
+          <img class="footer-logo" src="@/images/LOGOCITY.png" alt="" />
+          <div class="footer-words">
+            <p>share your memories with us on social media</p>
+            <div>
+              <i class="social-icons fa fa-instagram"></i>
+              <i class="social-icons fa fa-facebook-square"></i>
+              <i class="social-icons fa fa-twitter-square"></i>
+            </div>
+          </div>
+        </div>
+        <div class="navFooter">
+          <router-link class="navFooter-text" v-bind:to="{ name: 'home' }"
+            >Home</router-link
+          >
+          <router-link class="navFooter-text" v-bind:to="{ name: 'home' }"
+            >About Us</router-link
+          >
+          <router-link class="navFooter-text" v-bind:to="{ name: 'home' }"
+            >Contact Us</router-link
+          >
+        </div>
+        <div class="copyright">
+          <p>Copyright <i class="fa fa-copyright"></i> 2022 OPEN CITY</p>
+        </div>
+      </div>
     </footer>
   </div>
 </template>
@@ -70,27 +93,27 @@ export default {
     };
   },
   methods: {
-    addingClass(){
-      console.log("reaching adding")
-        let navBar = document.getElementById('nav')
-        console.log(navBar)
-        navBar.classList.remove('.inactive')
-      navBar.classList.add(".active")
-    }
+    addingClass() {
+      console.log("reaching adding");
+      let navBar = document.getElementById("nav");
+      console.log(navBar);
+      navBar.classList.remove(".inactive");
+      navBar.classList.add(".active");
+    },
   },
 };
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:ital@0;1&family=DM+Serif+Display&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:ital@0;1&family=DM+Serif+Display&display=swap");
 
-:root{
-  --logo:green;
+:root {
+  --logo: green;
   --title: black;
   --subtitle: white;
 
-  --lime-green: #59E3A8;
+  --lime-green: #59e3a8;
 }
 /* 
 
@@ -98,13 +121,12 @@ font-family: 'DM Sans', sans-serif;
 font-family: 'DM Serif Display', serif;
 
 */
-.main-title-font{
-font-family: 'DM Serif Display', serif;
-
+.main-title-font {
+  font-family: "DM Serif Display", serif;
 }
 
-.sub-title-font{
-  font-family: 'DM Sans', sans-serif;
+.sub-title-font {
+  font-family: "DM Sans", sans-serif;
 }
 
 .router-view {
@@ -118,7 +140,7 @@ font-family: 'DM Serif Display', serif;
   top: 0;
   width: 100%;
 }
-.background-img{
+.background-img {
   animation-name: zoomOut;
   animation-duration: 2.5s;
   animation-timing-function: ease-in;
@@ -133,10 +155,10 @@ font-family: 'DM Serif Display', serif;
 .background-img > img {
   width: 65%;
 }
-.inactive{
+.inactive {
   display: none;
 }
-.active{
+.active {
   animation: 1s ease-out 0s 1 slideInDown;
 }
 #nav {
@@ -156,9 +178,9 @@ font-family: 'DM Serif Display', serif;
   margin: 0 70px;
 }
 
-.logo{
+.logo {
   width: 10%;
-  margin-top: .5rem;
+  margin-top: 0.5rem;
 }
 .nav-text {
   text-decoration: none;
@@ -169,8 +191,8 @@ font-family: 'DM Serif Display', serif;
 
 #logo-text {
   font-size: 36px;
-  color:#59E3A8;
-  font-family: 'Cinzel',serif;
+  color: #59e3a8;
+  font-family: "Cinzel", serif;
 }
 
 #nav-right {
@@ -180,22 +202,22 @@ font-family: 'DM Serif Display', serif;
   justify-content: flex-end;
   width: auto;
 }
-.nav-subtext{
+.nav-subtext {
   margin: 0 1rem;
 }
 .nav-subtext:hover {
-  color: #59E3A8;
+  color: #59e3a8;
   text-decoration: underline;
   transition: 400ms;
 }
 
 .nav-login-btn {
   background-color: rgba(255, 255, 255, 0.288);
-  color:white;
+  color: white;
   border-radius: 20px;
   height: 2.8rem;
   width: 7rem;
-  display:flex;
+  display: flex;
   margin: 0 10px;
   justify-content: center;
   align-items: center;
@@ -203,24 +225,93 @@ font-family: 'DM Serif Display', serif;
   font-size: 1.2rem;
 }
 
-.nav-login-btn:hover{
-  color:#1A2E34;
-  background-color: #59E3A8 ;
+.nav-login-btn:hover {
+  color: #1a2e34;
+  background-color: #59e3a8;
   transition: 300ms;
 }
 
 .login-btn:hover {
   transition: 300ms;
-  color: #1A2E34;
-  background-color: #59E3A8;
+  color: #1a2e34;
+  background-color: #59e3a8;
 }
 footer {
   position: absolute;
   bottom: 0;
   height: 10rem;
   width: 100%;
-  background: #1A2E34;
+  background: #1a2e34;
   color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+footer > div > div {
+  width: 28%;
+  height: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.footer-container {
+  height: 100%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+}
+.footer-logo {
+  width: 25%;
+}
+.logo-side {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}
+.footer-words {
+  width: 50%;
+}
+.footer-words p,
+.footer-words div {
+  margin: 1rem 0;
+}
+.footer-words p {
+  font-size: 1.5rem;
+}
+.footer-words div {
+  width: 93%;
+  font-size: 1.7rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.social-icons:hover{
+  transition: 400ms;
+  transform: translateY(5px);
+  cursor: pointer;
+  color: var(--lime-green)
+}
+
+.navFooter {
+  justify-content: space-evenly;
+}
+
+.navFooter-text {
+  font-size: 1.3rem;
+  text-decoration: none;
+  color: white;
+}
+.navFooter-text:hover{
+  transition: 400ms;
+  color: var(--lime-green);
+  text-decoration: underline;
+  transform: translateY(5px);
 }
 input {
   border: none;

@@ -5,23 +5,19 @@
   >  
     <div class="card">
       <div>
-        <img
-          class="img-location"
-          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR7oV4dvRTPvtGv56ZPQN0P1iXRpBHoWM3i_g&usqp=CAU"
-          alt=""
-        />
+        <span class="material-symbols-outlined">location_on</span>
       </div>
       <div class="details">
         <h1>{{ landmark.name }}</h1>
         <p>{{ this.kinds }}</p>
       </div>
-      <div class="icon">
+      <!-- <div class="icon">
         <img
           class="img-icon"
           src="https://w7.pngwing.com/pngs/244/287/png-transparent-google-map-maker-pin-computer-icons-google-maps-map-icon-angle-black-map.png"
           alt=""
         />
-      </div>
+      </div> -->
     </div>
   </router-link>
 </template>
