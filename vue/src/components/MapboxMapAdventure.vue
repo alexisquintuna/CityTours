@@ -23,7 +23,7 @@
         </MglPopup>
         </MglMarker>
         <MglMarker v-for="landmark in this.$store.state.tripLandmarks" v-bind:key="landmark.id" v-bind:landmark="landmark" :coordinates="[landmark.longitude,landmark.latitude]" color="red">
-        <MglPopup anchor="left">
+        <MglPopup :showed="true" anchor="left">
             {{landmark.name}}
         </MglPopup>
         </MglMarker>
