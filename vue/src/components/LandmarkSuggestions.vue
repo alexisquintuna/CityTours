@@ -70,6 +70,8 @@ export default {
   background-color: black;
   margin: 1rem;
 }
+
+
 .suggestion-landmark-card {
   width: 100%;
 }
