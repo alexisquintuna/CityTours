@@ -1,22 +1,22 @@
 <template>
   <div class="suggestion-list">
-      <ul>
+    <ul>
       <li
-      class="suggestion-li"
+        class="suggestion-li"
         v-for="landmark in this.$store.state.hotspots"
         v-bind:key="landmark.id"
       >
         <suggestion-card
-          class="landmark-card"
+          class="suggestion-landmark-card"
           v-bind:landmark="landmark"
         ></suggestion-card>
-      </li> 
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
-import SuggestionCard from "@/components/SuggestionCard.vue"
+import SuggestionCard from "@/components/SuggestionCard.vue";
 import landmarkService from "../services/LandmarkService.js";
 
 export default {
@@ -27,7 +27,7 @@ export default {
       landmarkService
         .getHotspots()
         .then((response) => {
-          console.log(response.data)
+          console.log(response.data);
           if (response.status === 200) {
             this.$store.commit("SET_HOTSPOTS", response.data);
           }
@@ -52,25 +52,25 @@ export default {
   margin: 1rem auto 0;
   border-radius: 30px;
   padding: 10px 20px;
+  overflow: scroll;
 }
-.suggestion-list  > ul {
-    display: flex;
-    /*grid-column: ;flex-wrap: nowrap;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    white-space: nowrap;
-    background-color: aquamarine; */
-    width: 100%;
-    height: 100%;
-    margin: 4px, 4px;
-        padding: 4px;
-        /* background-color: #08c708; */
-        overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
+.suggestion-list::-webkit-scrollbar {
+  display: none;
 }
-.suggestion-li{
-    height: 90%;
-    width: 25%;
+.suggestion-list > ul {
+  display: flex;
+  width: 250%;
+  height: 100%;
+  margin: 4px, 4px;
+  padding: 4px;
+}
+.suggestion-li {
+  height: 90%;
+  width: 15rem;
+  background-color: black;
+  margin: 1rem;
+}
+.suggestion-landmark-card {
+  width: 100%;
 }
 </style>
