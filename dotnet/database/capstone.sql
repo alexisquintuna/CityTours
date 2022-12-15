@@ -26,7 +26,7 @@ CREATE TABLE users (
 CREATE TABLE trips (
 	trip_id int IDENTITY(1,1) NOT NULL,
 	trip_name varchar(500) NOT NULL,
-	trip_pic varchar(10000) NOT NULL,
+	trip_pic varchar(8000) NOT NULL,
 	user_id int FOREIGN KEY REFERENCES users(user_id) NOT NULL
 	CONSTRAINT PK_trip PRIMARY KEY (trip_id)
 )
