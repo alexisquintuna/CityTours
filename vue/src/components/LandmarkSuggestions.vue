@@ -3,7 +3,7 @@
     <ul>
       <li
         class="suggestion-li"
-        v-for="landmark in this.$store.state.hotspots"
+        v-for="landmark in this.$store.state.hotspots.slice().reverse()"
         v-bind:key="landmark.id"
       >
         <suggestion-card
@@ -59,7 +59,7 @@ export default {
 }
 .suggestion-list > ul {
   display: flex;
-  width: 250%;
+  width: 450%;
   height: 100%;
   margin: 4px, 4px;
   padding: 4px;
