@@ -172,15 +172,17 @@ export default {
   background-color:  #7c7c7cd8;
   border-radius: 30px;
   backdrop-filter: blur(5px);
+  /* text-align: center; */
 }
 
 .landmark-suggestion > h1 {
     font-size: 2.5rem;
-    display: inline-block;
-    margin: 1rem 1rem 0rem 2.7rem;
+    /* display: inline-block; */
+    width: 10rem;
+    margin: 1rem auto;
     color: rgb(255, 255, 255);
     font-weight: 500;
-    padding-left: 2%;
+    /* padding-left: 2%; */
 }
 
 .suggestion-container{
