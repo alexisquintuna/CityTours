@@ -5,7 +5,7 @@
       <MglMarker v-for="landmark in this.$store.state.landmarks" v-bind:key="landmark.xid" :coordinates="landmark.point" color="blue" v-on:mouseover="togglePopup">
           <MglPopup :anchor="top-right" ref="popup">
               
-                  <div>{{landmark.name}}</div>
+                  <router-link v-bind:to="{ name: 'landmark-details', params: { id: landmark.xid } }"><div>{{landmark.name}}</div></router-link>
               
           </MglPopup>
       </MglMarker>

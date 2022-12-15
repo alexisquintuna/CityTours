@@ -9,7 +9,7 @@ const apiKey = '5ae2e3f221c38a28845f05b63990604f55d5cb94615f18773a16bd6c';
 export default {
 
     getNearbyPlaces(longitude, latitude) {
-        return http.get(`/radius?radius=10000&lon=${longitude}&lat=${latitude}&rate=3h&format=json&limit=30&apikey=${apiKey}`);
+        return http.get(`/radius?radius=10000&lon=${longitude}&lat=${latitude}&rate=3&format=json&limit=50&apikey=${apiKey}`);
     },
 
     getPlaceDetails(xid) {
